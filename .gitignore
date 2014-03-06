@@ -5,6 +5,9 @@ __pycache__/
 #Edited file backups
 *~
 
+#Mac DS_store files
+*.DS_Store
+
 # C extensions
 *.so
 
