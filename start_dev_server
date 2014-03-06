@@ -1,0 +1,7 @@
+#!/bin/bash
+python setup.py build
+python setup.py install
+#Collect static files (images, javascripts etc)
+python webserver/manage.py collectstatic --noinput
+#Start the webserver
+python webserver/manage.py runserver 0.0.0.0:8081

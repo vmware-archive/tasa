@@ -1,0 +1,4 @@
+recursive-include webserver *.html
+recursive-include webserver *.png
+recursive-include webserver *.js
+recursive-include webserver *.jpg

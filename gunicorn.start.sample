@@ -1,0 +1,24 @@
+#!/bin/bash
+LOGFILE=/home/vatsan/webserver_django_media/logs/gunicorn.log
+PIDFILE=/home/vatsan/webserver_django_media/run/gunicorn.pid
+SOURCE_DIR=/home/vatsan/code/webserver-gpsenti
+NUMWORKERS=5
+PORT=9191
+USER=vatsan
+GROUP=vatsan
+CURR_DIR = $(pwd)
+#Set the virtual-env to deploy
+source activate deploy
+echo `which python`
+set -o verbose
+cd $SOURCE_DIR
+#Install the package into the deploy virtual-env
+python setup.py build
+python setup.py install
+#Collect static files (images, javascripts etc)
+python webserver/manage.py collectstatic --noinput
+#Restore original working directory
+cd $CURR_DIR
+#Start gunicorn
+gunicorn webserver.wsgi:application --bind localhost:$PORT --workers $NUMWORKERS --timeout 300 --user $USER --group $GROUP --log-file $LOGFILE -p $PIDFILE --worker-class eventlet
+#gunicorn webserver.wsgi:application --bind localhost:$PORT --workers $NUMWORKERS --timeout 300 --user $USER --group $GROUP --worker-class eventlet 
