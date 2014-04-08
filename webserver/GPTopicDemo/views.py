@@ -84,6 +84,18 @@ def topic_graph_generator(suffix_id, num_topics):
 
     return json.dumps(topic_graph),topic_dict     
 
+def fetchTopicResultsList(suffix_id, num_topics):
+    '''
+       Fetch a list of the form [[topic_num, num_tweets, [word1, word2, word3....]], [topic_num, num_tweets, [word1, word2, word3....]]]
+    '''
+    topic_results_list = []
+    topic_results_list_sql = getTopicResults(suffix_id, num_topics)
+    executionStatus, rows = conn.fetchRows(topic_results_list_sql)
+    for r in rows:
+        topic_results_list.append([r.get('topic_num'), r.get('word_count'), r.get('word_allocs')])
+
+    return topic_results_list
+
 @csrf_exempt
 def topic_fetch(request):
     ''' Handles creation of a topic dashboard '''
@@ -147,7 +159,6 @@ def topicDashboardGenerator(search_term,suffix_id, num_topics):
     #5) Generate topic graph
     print 'Generating topic graph'
     topic_graph_sql = generateTopicGraph(search_term, suffix_id,num_topics)
-    #print '***topic_graph_sql:', topic_graph_sql
 
     executionStatus = conn.executeQuery(topic_graph_sql)
     if(executionStatus):
@@ -158,22 +169,7 @@ def topicDashboardGenerator(search_term,suffix_id, num_topics):
     print 'Building topic graph JSON'    
     topic_graph, topic_dict = topic_graph_generator(suffix_id, num_topics)
 
-    #6) Clean-up
-    cleanUp(suffix_id,num_topics)
-
-    #7)  Fetch the file from the server (You should have set-up password less authentication to the DCA to do this)
-    print 'Fetching topic allocations'
-    topic_results_file_remote='/data/vatsan/topic_demo_tempdir/topic_results_{suffix_id}.csv'.format(suffix_id=suffix_id)
-    topic_results_file_local='/tmp/topic_results_{suffix_id}.csv'.format(suffix_id=suffix_id)
-    fetch_cmd = 'scp {username}@{hostname}:{topic_results_file_remote} {topic_results_file_local}'.format(username=conn_dict['username'],hostname=conn_dict['hostname'],topic_results_file_remote=topic_results_file_remote,topic_results_file_local=topic_results_file_local)
-    os.system(fetch_cmd)
-
-    #8) Remove the file from the server (to prevent disk space overrun)
-    cmd = 'ssh {username}@{hostname} "rm -rf {topic_results_file_remote}"'.format(username=conn_dict['username'],hostname=conn_dict['hostname'],topic_results_file_remote=topic_results_file_remote)
-    print 'Removing temp file: ', cmd
-    os.system(cmd) 
-
-    #9) Return the topic_graph and the topic_cloud, both of which will be rendered through D3 on the client.
+    #6) Return the topic_graph and the topic_cloud, both of which will be rendered through D3 on the client.
     print 'Generating topic clouds'
 
     topic_cloud = '''<div> 
@@ -186,15 +182,10 @@ def topicDashboardGenerator(search_term,suffix_id, num_topics):
                   </div>
                '''
 
-    topic_cloud_dict = createTopicCloudDict(topic_results_file_local)
-    '''
-    word_freq_temp = []
-    for topic in topic_cloud_dict.keys():
-        wlist = topic_cloud_dict[topic]['word_freq_list']
-        for w in wlist:
-            word_freq_temp.append([str(w['word']),str(w['normalized_frequency'])])
-    open('/tmp/topic_cloud_dict.tsv','w').write('\n'.join([ '\t'.join(lst) for lst in word_freq_temp]))
-    '''
+    topic_cloud_dict = createTopicCloudDict(fetchTopicResultsList(suffix_id, num_topics))
+
+    #7) Clean-up
+    cleanUp(suffix_id,num_topics)
 
     topics_response_dict = {
                             "topic_graph":topic_graph,
@@ -214,13 +205,13 @@ def cleanUp(suffix_id, num_topics):
     if(executionStatus):
         print 'Clean-up error: ',executionStatus
 
-def createTopicCloudDict(topic_results_file_local):
+def createTopicCloudDict(topic_word_mappings):
     '''
        Generate D3.js Word Clouds to display the contents of the topic
     '''
     TOPIC_CLOUD_PREFIX = 'topic_cloud_{topic_num}'
     #topic_word_mappings is of the form [topic_num, num_words, {words as a list}]
-    topic_word_mappings = parseFile(topic_results_file_local,{})
+    #topic_word_mappings = parseFile(topic_results_file_local,{})
     topic_word_mappings = filterTopOverlappingTokens(10,topic_word_mappings)
     topic_cloud_dict = {}
     for triplet in topic_word_mappings:
@@ -267,7 +258,7 @@ def createTopicCloudTableD3(topic_cloud_dict,topic_dict):
         tbl.append(
             TR.format(
                    TD.format(content=topic_num,bgcolor=cell_bgcolor)+
-                   TD_WITH_ID.format(id=topic_cloud_dict[str(topic_num)]['id'],content='',bgcolor=cell_bgcolor)+
+                   TD_WITH_ID.format(id=topic_cloud_dict[topic_num]['id'],content='',bgcolor=cell_bgcolor)+
                    TD.format(content=num_tweets,bgcolor=cell_bgcolor)
             )
         )

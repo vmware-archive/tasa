@@ -331,14 +331,6 @@ def exportTopicAssignments(suffix_id,num_topics):
                         ) q3
                 ) distributed by (topic_num);
 
-                -- Display word cloud
-                copy 
-                (
-                        select *
-                        from topicdemo.twitter_wm_lda_{num_topics}topics_cloud_{suffix_id} 
-                )
-                to '/data/vatsan/topic_demo_tempdir/topic_results_{suffix_id}.csv'
-                with csv delimiter ';' ;   
     '''
     return sql.format(suffix_id=suffix_id,num_topics=num_topics)
 
@@ -573,6 +565,15 @@ def getNumTweetsPerTopic(suffix_id, num_topics):
              group by label
     '''
     return sql.format(suffix_id=suffix_id, num_topics=num_topics)
+
+
+def getTopicResults(suffix_id, num_topics):
+    '''
+       Return the topic allocation results of the form || topic_num | word_count | word_allocs || 
+    '''
+    sql = '''select topic_num, word_count, word_allocs from  topicdemo.twitter_wm_lda_{num_topics}topics_cloud_{suffix_id};'''
+    return sql.format(suffix_id=suffix_id, num_topics=num_topics) 
+
 
 def getCleanUpQuery(suffix_id,num_topics):
      '''
