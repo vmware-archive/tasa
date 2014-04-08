@@ -24,6 +24,9 @@ Pre-requisites
 	2) You should also have django installed on your machine.
 	3) You should also be able to connect to the Analytics DCA (which means you should be within GP's LAN).
 	4) Add the environment variable 'export DJANGO_SETTINGS_MODULE=webserver.settings' to your bashrc.
+        5) Set the environment variable DATA_FOLDER in your ~/.bashrc to point to your MEDIA_ROOT for Django
+                example: 
+                        export DATA_FOLDER = /tmp/django_media_root
 
 Installation
 =============

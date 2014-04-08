@@ -104,7 +104,7 @@ setup(
     include_package_data=True,
     license='LICENSE.txt',
     description='A a django webserver to run datascience demos',
-    long_description=open('README.txt').read(),
+    long_description=open('README.md').read(),
     install_requires=[
         "Django >= 1.6"
     ],
