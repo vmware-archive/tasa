@@ -1,0 +1,13 @@
+#!/bin/bash -e
+pushd "$(dirname $0)/tasa"
+rake
+RAILS_ENV=production rake compile
+popd
+
+rsync -avz -e ssh ~/workspace/nlpdemo pivot@10.64.7.2:code
+ssh pivot@10.64.7.2 <<BASH
+killall -u pivot python
+cd ~/code/nlpdemo
+source activate py2.7
+./start_dev_server </dev/null &>~/log.txt &
+BASH
