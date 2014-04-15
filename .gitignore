@@ -57,3 +57,9 @@ coverage.xml
 
 # Sphinx documentation
 docs/_build/
+
+# UI Ignores
+/ui/.bundle
+/ui/log
+/ui/tmp
+/ui/.idea
