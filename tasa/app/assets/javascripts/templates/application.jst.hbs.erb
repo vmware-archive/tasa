@@ -4,3 +4,9 @@
   Data Labs and
   <%= image_tag 'pivotal_labs.png', class: 'logo pivotal-labs-logo-header', alt: 'Pivotal Labs' %>
 </h1>
+
+<form class="query" onsubmit="event.preventDefault()">
+  <input class="query-input" name="query" placeholder="Type to search" autocomplete="off">
+  <span class="de-emphasize help-text">Press enter when done</span>
+  <span class="de-emphasize info-text">Tweets from July 1 - 31 of 2013</span>
+</form>

@@ -3,23 +3,44 @@
   src: font-url('open-sans/OpenSans-Light.ttf') format('truetype');
 }
 
-body {
+* {
   font-family: 'Open Sans', serif;
-  font-weight: 300;
+}
 
+body {
+  position: relative;
+  margin: 0;
+  font-weight: 300;
   background-color: #242742;
   background-image: image-url('data_lake.jpg');
   background-repeat: no-repeat;
   background-size: 100% auto;
+
+  $hide-top-offset: -15vw;
+  &.has-query {
+    top: $hide-top-offset;
+    background-position: 0 $hide-top-offset;
+  }
+}
+
+::-webkit-input-placeholder {
+  color: inherit;
+}
+
+$query-text-color: #eaefda;
+
+.de-emphasize {
+  color: rgba(255, 255, 255, 0.5);
 }
 
 .page-header {
+  margin: 0;
+  position: absolute;
+  top: 10vh;
+  width: 100%;
   font-size: 25px;
   font-weight: inherit;
   text-align: center;
-  position: absolute;
-  top: 10vw;
-  width: 100%;
 }
 
 .logo {
@@ -37,4 +58,38 @@ body {
   width: 280px;
   position: relative;
   top: -3px;
+}
+
+.query {
+  position: absolute;
+  top: 32vw;
+  width: 100%;
+  text-align: center;
+  color: $query-text-color;
+}
+
+.query-input {
+  width: 100%;
+  background: none;
+  border: 0;
+  text-align: center;
+  font-size: 40px;
+  color: $query-text-color;
+  &:focus {
+    outline: 0;
+  }
+}
+
+.info-text {
+  display: none;
+  .has-query & {
+    display: inherit;
+  }
+}
+
+.help-text {
+  display: none;
+  .query-input:focus ~ & {
+    display: inherit;
+  }
 }
