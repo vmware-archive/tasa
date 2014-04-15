@@ -59,7 +59,9 @@ coverage.xml
 docs/_build/
 
 # UI Ignores
-/ui/.bundle
-/ui/log
-/ui/tmp
-/ui/.idea
+/tasa/.bundle
+/tasa/log
+/tasa/tmp
+/tasa/.idea
+/tasa/public/assets
+/webserver/common/static/tasa

@@ -1,0 +1,1 @@
+Rails.application.config.assets.precompile += Dir[Rails.root.join('vendor/assets/fonts/**/*')].select(&File.method(:file?))

@@ -67,6 +67,8 @@ STATIC_ROOT = os.environ['DATA_FOLDER']+'/static/'
 # Example: "http://media.lawrence.com/static/"
 STATIC_URL = '/static/'
 
+TASA_ROOT = os.environ['DATA_FOLDER']+'/tasa/'
+
 # URL prefix for admin static files -- CSS, JavaScript and images.
 # Make sure to use a trailing slash.
 # Examples: "http://foo.com/static/admin/", "/static/admin/".

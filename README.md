@@ -36,17 +36,17 @@ Installation
   		sudo python setup.py build
   		sudo python setup.py install
 
-        2) You'll also have to create a config file to connect to your backend database.
-           Create a file in your home directory : ~/.dbconn.config  
-           that should look like so (without the "______") :
-                ____________________
-                [db_connection]
-                user = gpadmin
-                password = XXXXX
-                hostname = 127.0.0.1 (or the IP of your DB server)
-                port = 5432 (the port# of your DB)
-                database = vatsandb (the database you wish to connect to)
-                ____________________
+    2) You'll also have to create a config file to connect to your backend database.
+       Create a file in your home directory : ~/.dbconn.config
+       that should look like so (without the "______") :
+            ____________________
+            [db_connection]
+            user = gpadmin
+            password = XXXXX
+            hostname = 127.0.0.1 (or the IP of your DB server)
+            port = 5432 (the port# of your DB)
+            database = vatsandb (the database you wish to connect to)
+            ____________________
 
 
 Starting the webserver
@@ -72,3 +72,13 @@ Code Organization
 
 	All relevant Intellectual Property associated with this demo is under $NLPDEMO_HOME/nlpdemo/webserver
         There is a module for topic analysis and one for sentiment analysis.
+
+New UI Code
+===========
+
+    Before starting the server, the UI assets need to be compiled:
+    ```bash
+    cd tasa
+    RAILS_ENV=production rake compile
+    ```
+    Note that Ruby 2.1.1 is required to compile the assets.
