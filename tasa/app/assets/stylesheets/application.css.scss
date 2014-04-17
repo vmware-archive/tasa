@@ -1,6 +1,17 @@
+@function base-color($opacity: 1) {
+  @return rgba(234, 239, 217, $opacity);
+}
+
+@import 'graph';
+
 @font-face {
   font-family: 'Open Sans';
   src: font-url('open-sans/OpenSans-Light.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Open Sans Condensed';
+  src: font-url('open-sans-condensed/OpenSans-CondBold.ttf') format('truetype');
 }
 
 * {
@@ -9,14 +20,15 @@
 
 body {
   position: relative;
-  margin: 0;
+  padding-top: 45vw;
+
   font-weight: 300;
-  background-color: #242742;
+  background-color: #242643;
   background-image: image-url('data_lake.jpg');
   background-repeat: no-repeat;
   background-size: 100% auto;
 
-  $hide-top-offset: -15vw;
+  $hide-top-offset: -20vw;
   &.has-query {
     top: $hide-top-offset;
     background-position: 0 $hide-top-offset;
@@ -27,16 +39,23 @@ body {
   color: inherit;
 }
 
-$query-text-color: #eaefda;
+%show-only-with-query {
+  display: none;
+  .has-query & {
+    display: inherit;
+  }
+}
 
 .de-emphasize {
   color: rgba(255, 255, 255, 0.5);
+  fill: rgba(255, 255, 255, 0.5);
+  stroke: rgba(255, 255, 255, 0.25);
 }
 
 .page-header {
   margin: 0;
   position: absolute;
-  top: 10vh;
+  top: 10vw;
   width: 100%;
   font-size: 25px;
   font-weight: inherit;
@@ -62,10 +81,10 @@ $query-text-color: #eaefda;
 
 .query {
   position: absolute;
-  top: 32vw;
+  top: 31vw;
   width: 100%;
   text-align: center;
-  color: $query-text-color;
+  color: base-color();
 }
 
 .query-input {
@@ -74,17 +93,14 @@ $query-text-color: #eaefda;
   border: 0;
   text-align: center;
   font-size: 40px;
-  color: $query-text-color;
+  color: base-color();
   &:focus {
     outline: 0;
   }
 }
 
 .info-text {
-  display: none;
-  .has-query & {
-    display: inherit;
-  }
+  @extend %show-only-with-query;
 }
 
 .help-text {
@@ -92,4 +108,11 @@ $query-text-color: #eaefda;
   .query-input:focus ~ & {
     display: inherit;
   }
+}
+.graphs {
+  @extend %show-only-with-query;
+  padding: 0 45px;
+  min-height: 56vh;
+  box-sizing: border-box;
+  width: 80%;
 }

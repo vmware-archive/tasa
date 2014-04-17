@@ -6,6 +6,7 @@ require 'capybara/rails'
 require 'capybara/poltergeist'
 # Capybara.default_driver = :poltergeist
 Capybara.default_driver = :selenium
+Capybara.default_wait_time = 60
 
 Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
 
