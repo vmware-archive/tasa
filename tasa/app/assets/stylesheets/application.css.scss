@@ -1,6 +1,9 @@
 @function base-color($opacity: 1) {
   @return rgba(234, 239, 217, $opacity);
 }
+@function background-color($opacity: 1) {
+  @return rgba(36, 38, 67, $opacity);
+}
 
 @import 'graph';
 
@@ -20,17 +23,21 @@
 
 body {
   position: relative;
+  margin: 0;
   padding-top: 45vw;
 
   font-weight: 300;
-  background-color: #242643;
-  background-image: image-url('data_lake.jpg');
-  background-repeat: no-repeat;
-  background-size: 100% auto;
+
+  background:
+    image-url('data_lake.jpg') center top / 100% auto no-repeat,
+    background-color();
+
+  -webkit-transition: all 500ms ease-in;
+  transition: all 500ms ease-in;
 
   $hide-top-offset: -20vw;
   &.has-query {
-    top: $hide-top-offset;
+    margin-top: $hide-top-offset;
     background-position: 0 $hide-top-offset;
   }
 }
@@ -85,6 +92,14 @@ body {
   width: 100%;
   text-align: center;
   color: base-color();
+  background-color: background-color(0);
+
+  &.sticky {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1;
+  }
 }
 
 .query-input {
@@ -112,7 +127,7 @@ body {
 .graphs {
   @extend %show-only-with-query;
   padding: 0 45px;
-  min-height: 56vh;
+  min-height: 100vh;
   box-sizing: border-box;
   width: 80%;
 }
