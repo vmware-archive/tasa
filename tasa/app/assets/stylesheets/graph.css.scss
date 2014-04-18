@@ -66,6 +66,10 @@ line {
 .total-tweets {
   position: relative;
   padding: 0 40px;
+
+  h2 {
+    margin-left: -40px;
+  }
 }
 
 .graphs .detail {
@@ -77,6 +81,8 @@ line {
     padding-bottom: 10px;
     -webkit-transform: translate(-50%, -100%);
     left: 0;
+
+    text-shadow: 2px 2px 5px background-color();
   }
 
   .item.right {
@@ -102,7 +108,6 @@ line {
   .tweets {
     font-family: "Open Sans Condensed";
     font-size: 50px;
-    font-weight: 600;
   }
 }
 

@@ -1,15 +1,21 @@
 @function base-color($opacity: 1) {
-  @return rgba(234, 239, 217, $opacity);
+  @return rgba(234, 239, 235, $opacity);
 }
 @function background-color($opacity: 1) {
   @return rgba(36, 38, 67, $opacity);
 }
 
 @import 'graph';
+@import 'cloud';
 
 @font-face {
   font-family: 'Open Sans';
   src: font-url('open-sans/OpenSans-Light.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Open Sans Bold';
+  src: font-url('open-sans/OpenSans-Bold.ttf') format('truetype');
 }
 
 @font-face {
@@ -143,10 +149,14 @@ h2 {
 
 .graphs {
   @extend %show-only-with-query;
-  padding: 0 45px;
+  padding: 0 25px 0 35px;
   min-height: 200vh;
   box-sizing: border-box;
   width: 80%;
+
+  > article + article {
+    margin-top: 40px;
+  }
 }
 
 .drilldown {
@@ -179,10 +189,6 @@ h2 {
   color: base-color();
   font-size: 12px;
 
-  .display-name {
-    font-weight: 600;
-  }
-
   .username {
     color: base-color(.5);
 
@@ -194,6 +200,7 @@ h2 {
   .text {
     margin-top: 2px;
     margin-bottom: 0;
+    color: base-color(.8);
   }
 
   &::-webkit-scrollbar {

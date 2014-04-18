@@ -4,6 +4,7 @@
 //= require handlebars.runtime
 //= require backbone
 //= require rickshaw_with_d3
+//= require d3.layout.cloud
 //= require templates/application
 //= require templates/sidebar_tweets
 (function() {
@@ -24,13 +25,19 @@
        model: Backbone.Model.extend({
          parse: function(attrs) {
            _.each(attrs, function(value, key) {
-             attrs[key] = _.unescape(eval('"' + value + '"'));
+             attrs[key] = _.unescape(decodeURIComponent(eval('"' + value.replace(/"/g,"%22") + '"')));
            });
            return attrs;
          }
        }),
-       url: function(){ return '/gp/tasa/relevant_tweets/?sr_trm='  + query.get('query');}
-     }))()
+       url: function() { return '/gp/tasa/relevant_tweets/?sr_trm='  + query.get('query'); }
+     }))(),
+
+     adjectives = new (Backbone.Collection.extend({
+       url: function() { return '/gp/senti/acloud/q?sr_trm=' + query.get('query'); },
+       parse: function(response) { return response.adjective_cloud; },
+       comparator: 'normalized_frequency'
+     }))
    ;
 
   $('body').html(JST['templates/application']);
@@ -48,7 +55,7 @@
       queryThreshold = queryNode.offset().top,
       drilldownThreshold = $('.drilldown').offset().top,
       contentTop = $('.graphs').offset().top,
-      start = queryThreshold,
+      start = queryThreshold + 130,
       finish = contentTop - queryNode.outerHeight() + 30
     ;
     $(window).scroll(function() {
@@ -63,7 +70,7 @@
 
   query.on('change:query', function(query, value) {
     $('body').toggleClass('has-query', Boolean(value));
-    _.invoke([totalTweets, sideBarTweets], 'fetch', {reset: true});
+    _.invoke([totalTweets, sideBarTweets, adjectives], 'fetch', {reset: true});
   });
 
   var graph;
@@ -98,7 +105,7 @@
         element: $('.total-tweets .x-axis')[0],
         graph: graph,
         orientation: 'bottom',
-        tickFormat: function(i) { return d3.time.format.utc('%b %e')(totalTweets.at(i).get('posted_date')); }
+        tickFormat: function(i) { return d3.time.format.utc('%B %e')(totalTweets.at(i).get('posted_date')); }
       });
 
       new Rickshaw.Graph.HoverDetail({
@@ -106,7 +113,7 @@
         formatter: function(series, i, tweets) {
           var point = totalTweets.at(i);
           return '' +
-            '<span class="date">' + d3.time.format.utc('%b %e')(point.get('posted_date')) + '</span>' +
+            '<span class="date">' + d3.time.format.utc('%B %e')(point.get('posted_date')) + '</span>' +
             '<span class="tweets">' + point.get('num_tweets') + '</span>' +
             '<span class="units">tweets</span>'
           ;
@@ -118,6 +125,50 @@
     graph.render();
   });
 
+  adjectives.on('reset', function() {
+    $('.tag-cloud svg').remove();
+    var
+      filtered_words = _.map(_.invoke(adjectives.last(100), 'toJSON'), function(d) {
+        return {
+          text: d.word
+            .replace(/[!"&()*+,-\.\/:;<=>?\[\\\]^`\{|\}~]+/g,"")
+            .replace(/[\s\u3031-\u3035\u309b\u309c\u30a0\u30fc\uff70]+/g,""),
+          size: 5+ d.normalized_frequency * 150
+        };
+      }),
+      width = $('.adjectives').width(),
+      height = 300;
+
+    d3.layout.cloud()
+      .size([width, height])
+      .words(filtered_words)
+      .text(function(d) { return d.text; })
+      .padding(5)
+      .rotate(0)
+      .font('Open Sans')
+      .fontSize(function(d) { return d.size; })
+      .spiral('rectangular')
+      .on('end', draw)
+      .start();
+
+    /* The argument to the draw function is the "words" attribute which was set during initialization of the d3 cloud layout.*/
+    function draw(words) {
+      d3.select(".adjectives .tag-cloud")
+        .append("svg")
+          .attr("width", width)
+          .attr("height", height)
+          .append("g")
+            .attr("transform", "translate("+width/2+","+height/2+")")
+            .selectAll("text")
+              .data(words).enter()
+                .append("text")
+                  .style("font-size", function(d) { return d.size + "px"; })
+                  .attr("transform", function(d) { return "translate(" + [d.x, d.y] + ")"; })
+                  .text(function(d) { return d.text; })
+      ;
+    }
+  });
+  
   sideBarTweets.on('reset', function() {
     $('.drilldown').html(JST['templates/sidebar_tweets']({tweets: sideBarTweets.toJSON()}));
   });

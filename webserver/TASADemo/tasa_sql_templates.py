@@ -23,7 +23,7 @@ def getTop20RelevantTweetsSQL(search_term):
                            t3.image,
                            row_number() OVER (ORDER BY score DESC) AS _n_
                     FROM gptext.search(
-                                TABLE(SELECT 1 SCATTER BY 1),
+                                TABLE(SELECT 1 SCATTER BY 1), 
                                 'vatsandb.topicdemo.tweet_dataset',
                                 '{search_term}',
                                 null,
@@ -57,10 +57,10 @@ def getTop20RelevantTweetsRangeSQL(search_term,min_timestamp,max_timestamp):
                            t3.image,
                            row_number() OVER (ORDER BY score DESC) AS _n_
                     FROM gptext.search(
-                                TABLE(SELECT 1 SCATTER BY 1),
+                                TABLE(SELECT 1 SCATTER BY 1), 
                                 'vatsandb.topicdemo.tweet_dataset',
                                 '{search_term}',
-                                '{{postedtime:[{min_timestamp}+8HOURS TO {max_timestamp}+8HOURS]}}',
+                                '{{postedtime:[{min_timestamp} TO {max_timestamp}]}}',
                                 'score desc') AS t1,
                          topicdemo.tweet_dataset AS t2,
                          sentimentdemo.actor_info AS t3
@@ -76,7 +76,7 @@ def getTop20RelevantTweetsRangeSentSQL(search_term,min_timestamp,max_timestamp,s
     '''
        Top 20 Relevant Tweets (by score descending) for a given time range and sentiment
        min_timestamp and max_timestamp to be of format: YYYY-MM-DDTHH:MM:SSZ (i.e. 2013-07-01T00:00:00Z)
-       sentiment: 'negative','positive', or 'neutral'
+       sentiment: 'negative','positive', or 'neutral' 
        Columns: displayname, preferredusername, body, image
     '''
     sql = '''
@@ -102,10 +102,10 @@ def getTop20RelevantTweetsRangeSentSQL(search_term,min_timestamp,max_timestamp,s
 		                       WHEN t4.median_sentiment_index < -1 THEN 'negative'
 		                       WHEN t4.median_sentiment_index BETWEEN -1 AND 1 THEN 'neutral'
 		                  END AS sentiment
-		           FROM gptext.search(TABLE(SELECT 1 SCATTER BY 1),
+		           FROM gptext.search(TABLE(SELECT 1 SCATTER BY 1), 
 			                      'vatsandb.topicdemo.tweet_dataset',
 			                      '{search_term}',
-                                              '{{postedtime:[{min_timestamp}+8HOURS TO {max_timestamp}+8HOURS]}}',
+                                              '{{postedtime:[{min_timestamp} TO {max_timestamp}]}}',
 			                      'score desc') AS t1,
 		                topicdemo.tweet_dataset AS t2,
 		                sentimentdemo.actor_info AS t3,
@@ -118,7 +118,7 @@ def getTop20RelevantTweetsRangeSentSQL(search_term,min_timestamp,max_timestamp,s
             ORDER BY score DESC
          '''
     return sql.format(search_term=search_term, min_timestamp=min_timestamp, max_timestamp=max_timestamp, sentiment=sentiment)
-
+ 
 
 def getCountOfRelevantTweetsSQL(search_term):
     '''
@@ -133,10 +133,10 @@ def getCountOfRelevantTweetsSQL(search_term):
 def getCountOfRelevantTweetsRangeSQL(search_term, min_timestamp, max_timestamp):
     '''
        Grab the count of relevant tweets within date range
-       min_timestamp and max_timestamp to be of format: YYYY-MM-DDTHH:MM:SSZ (i.e. 2013-07-01T00:00:00Z)
+       min_timestamp and max_timestamp to be of format: YYYY-MM-DDTHH:MM:SSZ (i.e. 2013-07-01T00:00:00Z) 
     '''
     sql = '''
-             SELECT * FROM gptext.search_count('vatsandb.topicdemo.tweet_dataset','{search_term}','{{postedtime:[{min_timestamp}+8HOURS TO {max_timestamp}+8HOURS]}}')
+             SELECT * FROM gptext.search_count('vatsandb.topicdemo.tweet_dataset','{search_term}','{{postedtime:[{min_timestamp} TO {max_timestamp}]}}')
           '''
     return sql.format(search_term=search_term,min_timestamp=min_timestamp,max_timestamp=max_timestamp)
 
@@ -162,7 +162,7 @@ def getStatsRelevantTweetsSQL(search_term,min_timestamp,max_timestamp):
                              TABLE(SELECT 1 SCATTER BY 1),
 	                     'vatsandb.topicdemo.tweet_dataset',
                              '{search_term}',
-                             '{{postedtime:[{min_timestamp}+8HOURS TO {max_timestamp}+8HOURS]}}'
+                             '{{postedtime:[{min_timestamp} TO {max_timestamp}]}}'
                            ) t1,
                          topicdemo.tweet_dataset t2,
                          sentimentdemo.training_data_scored t3
@@ -170,3 +170,50 @@ def getStatsRelevantTweetsSQL(search_term,min_timestamp,max_timestamp):
              ) q
           '''
     return sql.format(search_term=search_term, min_timestamp=min_timestamp, max_timestamp=max_timestamp)
+
+def getDayHourHeatMapSQL(search_term):
+    '''
+       Return rows of the form "day", "hour", "number of matching tweets"
+    '''
+    sql = '''
+                select day_of_week,
+                       hour_of_day,
+                       count(tweet_id) as num_tweets,
+                       avg(median_sentiment_index) as mean_sentiment_index,
+                       count(tweet_id) FILTER (WHERE median_sentiment_index > 1) AS positive_count,
+                       count(tweet_id) FILTER (WHERE median_sentiment_index < -1) AS negative_count,
+                       count(tweet_id) FILTER (WHERE median_sentiment_index BETWEEN -1 AND 1) AS neutral_count
+                from
+                (
+                       select t1.*,
+                              t2.tweet_id,
+                              t2.postedtime,
+                              t3.median_sentiment_index,
+                              extract(DOW from t2.postedtime) as day_of_week,
+                              extract(HOUR from t2.postedtime) as hour_of_day
+                       from gptext.search (
+                              TABLE(select * from topicdemo.tweet_dataset),
+                              'vatsandb.topicdemo.tweet_dataset',
+                              '{search_term}',
+                              null
+                            ) t1,
+                            topicdemo.tweet_dataset t2,
+                            sentimentdemo.training_data_scored t3
+                       where t1.id = t2.id and t2.tweet_id = t3.id and t3.median_sentiment_index IS NOT NULL
+                )q
+                group by day_of_week, hour_of_day
+                order by day_of_week, hour_of_day
+    '''
+    return sql.format(search_term=search_term)
+
+def dayhour_hmap(request):
+    '''
+        Return a Day-Hour heatmap of tweets for the search term
+    '''
+    search_term = request.REQUEST[SEARCH_TERM]
+    sql = getDayHourHeatMapSQL(search_term)
+    executionStatus, rows = conn.fetchRows(sql)  
+    hmap_lst = [{'day':r.get('day_of_week'),'hour':r.get('hour_of_day'),'num_tweets':r.get('num_tweets'), 'msi':r.get('mean_sentiment_index'), 'positive':r.get('positive_count'),'negative':r.get('negative_count'),'neutral':r.get('neutral_count')} for r in rows]
+    response_dict = {'hmap':hmap_lst}
+
+    return HttpResponse(json.dumps(response_dict),content_type='application/json')
