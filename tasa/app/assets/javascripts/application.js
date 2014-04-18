@@ -20,11 +20,11 @@
        parse: function(response) { return response.tseries; },
        toJSON: function() { return this.map(function(model, i) { return _.extend(model.toJSON(), {x: i}); }); }
      }))(),
-     sideBarTweets = window.sidebarTweets = new (Backbone.Collection.extend({
+     sideBarTweets = new (Backbone.Collection.extend({
        model: Backbone.Model.extend({
          parse: function(attrs) {
            _.each(attrs, function(value, key) {
-             attrs[key] = eval('"' + value + '"');
+             attrs[key] = _.unescape(eval('"' + value + '"'));
            });
            return attrs;
          }
