@@ -11,6 +11,7 @@ from webserver.TASADemo.tasa_sql_templates import *
 
 SEARCH_TERM = 'sr_trm'
 TIMESTAMP = 'ts'
+SENTIMENT = 'snt'
 
 conn = DBConnect()
 
@@ -34,8 +35,30 @@ def relevant_tweets_for_day(request):
     sql = getTop20RelevantTweetsRangeSQL(search_term, timestamp.strftime('%Y-%m-%dT%H:%M:%SZ'), (timestamp + datetime.timedelta(days=1)).strftime('%Y-%m-%dT%H:%M:%SZ'))
     _, rows = conn.fetchRows(sql)
 
-    print(rows)
     tweets = [{'display_name': tweet[0], 'username': tweet[1], 'text': tweet[2], 'profile_image': tweet[3]} for tweet in rows]
+    print(tweets)
+
+    return HttpResponse(json.dumps(tweets), content_type='application/json')
+
+
+def relevant_tweets_for_day_and_sentiment(request):
+    search_term = request.REQUEST[SEARCH_TERM]
+    timestamp = datetime.date.fromtimestamp(int(request.REQUEST[TIMESTAMP]) / 1000)
+    sentiment = request.REQUEST[SENTIMENT]
+
+    print(search_term,
+          timestamp.strftime('%Y-%m-%dT%H:%M:%SZ'),
+          (timestamp + datetime.timedelta(days=1)).strftime('%Y-%m-%dT%H:%M:%SZ'),
+          sentiment
+    )
+    sql = getTop20RelevantTweetsRangeSentSQL(search_term,
+                                             timestamp.strftime('%Y-%m-%dT%H:%M:%SZ'),
+                                             (timestamp + datetime.timedelta(days=1)).strftime('%Y-%m-%dT%H:%M:%SZ'),
+                                             sentiment
+    )
+    _, rows = conn.fetchRows(sql)
+
+    tweets = [{'display_name': tweet[1], 'username': tweet[2], 'text': tweet[3], 'profile_image': tweet[4]} for tweet in rows]
     print(tweets)
 
     return HttpResponse(json.dumps(tweets), content_type='application/json')

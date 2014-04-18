@@ -12,6 +12,7 @@ urlpatterns = patterns('',
     #Mapping for the TASA Queries
     url(r'^gp/tasa/relevant_tweets/','webserver.TASADemo.views.relevant_tweets', name='relevant_tweets'),
     url(r'^gp/tasa/relevant_tweets_for_day/','webserver.TASADemo.views.relevant_tweets_for_day', name='relevant_tweets_for_day'),
+    url(r'^gp/tasa/relevant_tweets_for_day_and_sentiment/','webserver.TASADemo.views.relevant_tweets_for_day_and_sentiment', name='relevant_tweets_for_day_and_sentiment'),
 
     #Mapping for media files - images/icons etc
     url(r'^images/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.MEDIA_ROOT}),
