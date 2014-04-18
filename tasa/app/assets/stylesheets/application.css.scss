@@ -59,6 +59,14 @@ body {
   stroke: rgba(255, 255, 255, 0.25);
 }
 
+
+h2 {
+  color: $chart-title-color;
+  font-size: 25px;
+  margin: 0;
+  margin-bottom: 20px;
+}
+
 .page-header {
   margin: 0;
   position: absolute;
@@ -90,6 +98,8 @@ body {
   position: absolute;
   top: 31vw;
   width: 100%;
+  height: 77px;
+  overflow: hidden;
   text-align: center;
   color: base-color();
   background-color: background-color(0);
@@ -104,6 +114,8 @@ body {
 
 .query-input {
   width: 100%;
+  margin: 0;
+  padding: 0;
   background: none;
   border: 0;
   text-align: center;
@@ -124,10 +136,67 @@ body {
     display: inherit;
   }
 }
+
+.content {
+  position: relative;
+}
+
 .graphs {
   @extend %show-only-with-query;
   padding: 0 45px;
-  min-height: 100vh;
+  min-height: 200vh;
   box-sizing: border-box;
   width: 80%;
+}
+
+.drilldown {
+  @extend %show-only-with-query;
+  box-sizing: border-box;
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 20%;
+  margin-top: -77px;
+  padding-top: 77px;
+
+  &.sticky {
+    position: fixed;
+    top: 77px;
+    bottom: 0;
+    overflow-y: auto;
+  }
+
+  ol {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  li + li {
+    margin-top: 10px;
+  }
+
+  color: base-color();
+  font-size: 12px;
+
+  .display-name {
+    font-weight: 600;
+  }
+
+  .username {
+    color: base-color(.5);
+
+    &:before {
+      content: '@';
+    }
+  }
+
+  .text {
+    margin-top: 2px;
+    margin-bottom: 0;
+  }
+
+  &::-webkit-scrollbar {
+    width: 0 !important;
+  }
 }

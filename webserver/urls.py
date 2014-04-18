@@ -6,11 +6,13 @@ import os
 # from django.contrib import admin
 # admin.autodiscover()
 
-print(settings.TASA_ROOT)
-print(settings.STATIC_ROOT)
 urlpatterns = patterns('',
     #Mapping for new UI code
     url(r'^tasa/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.STATIC_ROOT + 'tasa/'}),
+    #Mapping for the TASA Queries
+    url(r'^gp/tasa/relevant_tweets/','webserver.TASADemo.views.relevant_tweets', name='relevant_tweets'),
+    url(r'^gp/tasa/relevant_tweets_for_day/','webserver.TASADemo.views.relevant_tweets_for_day', name='relevant_tweets_for_day'),
+
     #Mapping for media files - images/icons etc
     url(r'^images/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.MEDIA_ROOT}),
     url(r'^stat/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.STATIC_ROOT}),    

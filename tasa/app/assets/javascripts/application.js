@@ -5,6 +5,7 @@
 //= require backbone
 //= require rickshaw_with_d3
 //= require templates/application
+//= require templates/sidebar_tweets
 (function() {
   'use strict';
    var
@@ -18,6 +19,17 @@
        url: function() { return '/gp/topic/ts/q?sr_trm=' + query.get('query'); },
        parse: function(response) { return response.tseries; },
        toJSON: function() { return this.map(function(model, i) { return _.extend(model.toJSON(), {x: i}); }); }
+     }))(),
+     sideBarTweets = window.sidebarTweets = new (Backbone.Collection.extend({
+       model: Backbone.Model.extend({
+         parse: function(attrs) {
+           _.each(attrs, function(value, key) {
+             attrs[key] = eval('"' + value + '"');
+           });
+           return attrs;
+         }
+       }),
+       url: function(){ return '/gp/tasa/relevant_tweets/?sr_trm='  + query.get('query');}
      }))()
    ;
 
@@ -33,23 +45,25 @@
   $('body').one('webkitTransitionEnd', function() {
     var
       queryNode =  $('.query'),
-      threshold = queryNode.offset().top,
+      queryThreshold = queryNode.offset().top,
+      drilldownThreshold = $('.drilldown').offset().top,
       contentTop = $('.graphs').offset().top,
-      start = threshold,
+      start = queryThreshold,
       finish = contentTop - queryNode.outerHeight() + 30
-      ;
+    ;
     $(window).scroll(function() {
       var scrollTop = $('body').scrollTop(),
-        opacity = Math.min(Math.max((scrollTop - start) / (finish - start), 0), 0.99)
-        ;
-      queryNode.toggleClass('sticky',  scrollTop > threshold);
+          opacity = Math.min(Math.max((scrollTop - start) / (finish - start), 0), 0.99)
+      ;
+      queryNode.toggleClass('sticky',  scrollTop > queryThreshold);
+      $('.drilldown').toggleClass('sticky',  scrollTop > drilldownThreshold);
       queryNode.css('background-color', queryNode.css('background-color').replace(/[\d.]+(?=\))/, opacity));
     });
   });
 
   query.on('change:query', function(query, value) {
     $('body').toggleClass('has-query', Boolean(value));
-    totalTweets.fetch({reset: true});
+    _.invoke([totalTweets, sideBarTweets], 'fetch', {reset: true});
   });
 
   var graph;
@@ -102,5 +116,9 @@
 
     graph.series[0].data = totalTweets.toJSON();
     graph.render();
+  });
+
+  sideBarTweets.on('reset', function() {
+    $('.drilldown').html(JST['templates/sidebar_tweets']({tweets: sideBarTweets.toJSON()}));
   });
 })();
