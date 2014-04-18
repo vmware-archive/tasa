@@ -71,7 +71,7 @@ feature 'Application' do
       {username: "JustJame5", text: "Faculty, office working, acrobats", display_name: "James LaBello"},
       {username: "KENSHI0504", text: "I like acrobat!!!", display_name: "KENSHI@アクロバット"},
       {username: "specialistSHY", text: "@ned_cleo heeeoooool... acrobatic moves...", display_name: "Falling In Joda"},
-      {username: "HappyLikeSiao", text: "acrobatic diving &gt; Junho!!!!!!! ♥♥", display_name: "KhunRina❤"},
+      {username: "HappyLikeSiao", text: "acrobatic diving > Junho!!!!!!! ♥♥", display_name: "KhunRina❤"},
       {username: "chaisebanks", text: "@SpaceKid_K with that acrobatic cheese lol", display_name: "Banks"},
       {username: "Kitkatkaye", text: "Acrobatic morning y'all! :-D", display_name: "Mrs. A®"},
       {username: "CeliaO2", text: "Acrobat reader http://t.co/5zQUCsqXlO", display_name: "Celia O."},
