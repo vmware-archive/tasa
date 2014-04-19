@@ -21,23 +21,24 @@
        parse: function(response) { return response.tseries; },
        toJSON: function() { return this.map(function(model, i) { return _.extend(model.toJSON(), {x: i}); }); }
      }))(),
-     sideBarTweets = new (Backbone.Collection.extend({
-       model: Backbone.Model.extend({
-         parse: function(attrs) {
-           _.each(attrs, function(value, key) {
-             attrs[key] = _.unescape(decodeURIComponent(eval('"' + value.replace(/"/g,"%22") + '"')));
+     sideBarTweets = new Backbone.Collection(),
+     sideBar = new (Backbone.Model.extend({
+       url: function() { return '/gp/tasa/relevant_tweets/?sr_trm='  + query.get('query'); },
+       parse: function(attrs) {
+         this.set('totalTweets', attrs.count);
+         _.each(attrs.tweets, function(tweet) {
+           _.forIn(tweet, function(value, key) {
+             tweet[key] = _.unescape(decodeURIComponent(eval('"' + value.replace(/"/g,"%22") + '"')));
            });
-           return attrs;
-         }
-       }),
-       url: function() { return '/gp/tasa/relevant_tweets/?sr_trm='  + query.get('query'); }
+         });
+         sideBarTweets.reset(attrs.tweets);
+       }
      }))(),
-
      adjectives = new (Backbone.Collection.extend({
        url: function() { return '/gp/senti/acloud/q?sr_trm=' + query.get('query'); },
        parse: function(response) { return response.adjective_cloud; },
        comparator: 'normalized_frequency'
-     }))
+     }))()
    ;
 
   $('body').html(JST['templates/application']);
@@ -70,7 +71,7 @@
 
   query.on('change:query', function(query, value) {
     $('body').toggleClass('has-query', Boolean(value));
-    _.invoke([totalTweets, sideBarTweets, adjectives], 'fetch', {reset: true});
+    _.invoke([totalTweets, sideBar, adjectives], 'fetch', {reset: true});
   });
 
   var graph;
@@ -168,8 +169,8 @@
       ;
     }
   });
-  
+
   sideBarTweets.on('reset', function() {
-    $('.drilldown').html(JST['templates/sidebar_tweets']({tweets: sideBarTweets.toJSON()}));
+    $('.drilldown').html(JST['templates/sidebar_tweets']({tweets: sideBarTweets.toJSON(), totalTweets: sideBar.get('totalTweets')}));
   });
 })();

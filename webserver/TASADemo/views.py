@@ -25,7 +25,15 @@ def relevant_tweets(request):
     tweets = [{'display_name': tweet[0], 'username': tweet[1], 'text': tweet[2], 'profile_image': tweet[3]} for tweet in rows]
     print(tweets)
 
-    return HttpResponse(json.dumps(tweets), content_type='application/json')
+    _, count = conn.fetchRows(getCountOfRelevantTweetsSQL(search_term))
+    print("Count: ", count[0][0])
+
+    response = {
+        "tweets": tweets,
+        'count': count[0][0]
+    }
+
+    return HttpResponse(json.dumps(response), content_type='application/json')
 
 def relevant_tweets_for_day(request):
     search_term = request.REQUEST[SEARCH_TERM]
