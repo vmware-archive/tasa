@@ -75,6 +75,7 @@ def getAdjectivesCloud(search_term):
     '''
     return sql.format(search_term=search_term)
 
+
 def getDayHourHeatMapSQL(search_term):
     '''
        Return rows of the form "day", "hour", "number of matching tweets"
@@ -83,7 +84,10 @@ def getDayHourHeatMapSQL(search_term):
                 select day_of_week,
                        hour_of_day,
                        count(tweet_id) as num_tweets,
-                       avg(median_sentiment_index) as mean_sentiment_index
+                       avg(median_sentiment_index) as mean_sentiment_index,
+                       count(tweet_id) FILTER (WHERE median_sentiment_index > 1) AS positive_count,
+                       count(tweet_id) FILTER (WHERE median_sentiment_index < -1) AS negative_count,
+                       count(tweet_id) FILTER (WHERE median_sentiment_index BETWEEN -1 AND 1) AS neutral_count
                 from
                 (
                        select t1.*,
@@ -106,7 +110,6 @@ def getDayHourHeatMapSQL(search_term):
                 order by day_of_week, hour_of_day
     '''
     return sql.format(search_term=search_term)
-
 
 def sentimentNERTaggerSql(search_term):
     '''

@@ -42,8 +42,8 @@ def dayhour_hmap(request):
     '''
     search_term = request.REQUEST[SEARCH_TERM]
     sql = getDayHourHeatMapSQL(search_term)
-    executionStatus, rows = conn.fetchRows(sql)  
-    hmap_lst = [{'day':r.get('day_of_week'),'hour':r.get('hour_of_day'),'num_tweets':r.get('num_tweets'), 'msi':r.get('mean_sentiment_index')} for r in rows]
+    executionStatus, rows = conn.fetchRows(sql)
+    hmap_lst = [{'day':r.get('day_of_week'),'hour':r.get('hour_of_day'),'num_tweets':r.get('num_tweets'), 'msi':r.get('mean_sentiment_index'), 'positive':r.get('positive_count'),'negative':r.get('negative_count'),'neutral':r.get('neutral_count')} for r in rows]
     response_dict = {'hmap':hmap_lst}
 
     return HttpResponse(json.dumps(response_dict),content_type='application/json')
