@@ -11,9 +11,8 @@ feature 'Application' do
     page.fill_in(:query, with: 'Acrobatics')
     page.find('.query-input').native.send_keys(:return)
 
+    expect(page).to have_no_css('.spinner')
     expect(page).to have_content('Tweets from June 30 - July 31 of 2013')
-    expect(page).to have_css('.rickshaw_graph')
-    expect(page).to have_css('.drilldown ol')
 
     actual = page.evaluate_script <<-JS
       _.map(d3.select('.total-tweets .graph path').data()[0], function(point) {
@@ -82,8 +81,14 @@ feature 'Application' do
     expect(actual).to eq(expected)
     page.find('.drilldown').should have_content('279 Total Tweets')
 
-    actual = page.evaluate_script '$(".tag-cloud").text()'
-    expected = "acrobaticfreefirstamazinggreatfullgoodaerialprofessional#acrobaticrealmorechinesegayquietfinallastoldmanycutelongbadcoolfabulousbetterhardmagicredexcellentnormalhotbestfunnyawesomesexynewnextlivingflippinghalfbakedstupidlittledrunkenlivemuchsurebrutalrapidsignificantownexclusiveentertainingsonicbrilliantdevastatinghardworkingjumpydivingempty29yearsupersonichighflyingperfectcharismaticokhispanicsafeaweinspiringromanticexistentialverbalniceintellectualinterestingfuntraditionaldirtyexceptionalattractivebusyasiantalentedfurtherleftproawarefewdeceasedupsideeasyfirsteveroffensiveslightdefensivedarnfuturehilarioustightselflessautomatic"
-    expect(actual).to eq(expected)
+    actual = page.all('.tag-cloud text').map(&:text)
+    expected = %w[acrobatic aerial good full great first amazing free professional #acrobatic real more chinese many
+      cute gay bad quiet last final old long much cool live brutal hot best excellent funny awesome new sexy next living
+      flipping halfbaked stupid little drunken normal red magic hard fabulous better sure tight slight defensive own
+      future automatic rapid significant brilliant exclusive entertaining sonic jumpy diving supersonic devastating
+      hardworking highflying perfect ok charismatic hispanic empty 29year safe aweinspiring romantic existential verbal
+      nice intellectual attractive busy fun traditional interesting dirty exceptional asian few talented further left
+      pro deceased upside easy aware firstever offensive hilarious selfless darn]
+    actual.should =~ expected
   end
 end
