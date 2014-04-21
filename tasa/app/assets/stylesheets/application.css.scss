@@ -7,6 +7,7 @@
 
 @import 'graph';
 @import 'cloud';
+@import 'loader';
 
 @font-face {
   font-family: 'Open Sans';
@@ -162,6 +163,10 @@ h2 {
   }
 }
 
+.graph-content, .tag-cloud {
+  height: 350px;
+}
+
 .drilldown {
   @extend %show-only-with-query;
   box-sizing: border-box;
@@ -216,5 +221,9 @@ h2 {
 
   .drilldown-overview {
     margin-bottom: 20px;
+  }
+
+  .drilldown-content {
+    min-height: 600px;
   }
 }

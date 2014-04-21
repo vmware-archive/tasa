@@ -1,0 +1,93 @@
+$amplitude: 100%;
+
+@-webkit-keyframes right {
+  0%   { top: 120%; opacity: 0; }
+  30%  { opacity: 1; }
+  85%  { opacity: 1; }
+  100% { top: -20%; opacity: 0; }
+}
+
+@-webkit-keyframes left {
+  0%   { top: 120%; opacity: 0; }
+  30%  { opacity: 1; }
+  85%  { opacity: 1; }
+  100% { top: -20%; opacity: 0; }
+}
+
+@-moz-keyframes right {
+  0%   { top: 120%; opacity: 0; }
+  30%  { opacity: 1; }
+  85%  { opacity: 1; }
+  100% { top: -20%; opacity: 0; }
+}
+
+@-moz-keyframes left {
+  0%   { top: 120%; opacity: 0; }
+  30%  { opacity: 1; }
+  85%  { opacity: 1; }
+  100% { top: -20%; opacity: 0; }
+}
+
+@keyframes right {
+  0%   { top: 120%; opacity: 0; }
+  30%  { opacity: 1; }
+  85%  { opacity: 1; }
+  100% { top: -20%; opacity: 0; }
+}
+
+@keyframes left {
+  0%   { top: 120%; opacity: 0; }
+  30%  { opacity: 1; }
+  85%  { opacity: 1; }
+  100% { top: -20%; opacity: 0; }
+}
+
+@mixin spinner($margin: 10px 0px 4px 1px 20px 15px 0px, $opacity: .8 .4 .6 .8 .4 .6 .8, $frequency: 2s 2.2s 2.1s 2.3s 2.2s 2.1s 2s) {
+  position: relative;
+
+  .ball {
+    display: none;
+    width: 10px;
+    height: 10px;
+    margin: 10px 6%;
+    border-radius: 50px;
+    position: absolute;
+    border: 1px solid #fff;
+  }
+
+  @for $i from 1 to length($opacity) + 1 {
+    .ball:nth-child(#{$i}) {
+      display: block;
+      margin-top: nth($margin, $i);
+      padding-top: 0px;
+      left: 100% / length($opacity) * ($i - 1);
+      border-color: rgba(255, 255, 255, nth($opacity, $i));
+
+      @if $i % 2 == 0 {
+        -webkit-animation: left nth($frequency, $i) infinite ease-in;
+        -moz-animation: left nth($frequency, $i) infinite ease-in;
+        animation: left nth($frequency, $i) infinite ease-in;
+      } @else {
+        -webkit-animation: right nth($frequency, $i) infinite ease-in;
+        -moz-animation: right nth($frequency, $i) infinite ease-in;
+        animation: right nth($frequency, $i) infinite ease-in;
+      }
+    }
+  }
+}
+
+.total-tweets .graph-content {
+  @include spinner();
+}
+
+.sentiment .graph-content {
+  @include spinner($margin: 20px 1px 15px 0px 4px 10px 0px, $opacity: .8 .4 .8 .4 .6 .8 .6, $frequency: 2.1s 2.3s 2.1s 2s 2.2s 2.2s 2s);
+}
+
+.adjectives .tag-cloud {
+  @include spinner();
+}
+
+.drilldown-content {
+  @include spinner($margin: 0px 10px 4px, $opacity: .4 .8 .6 , $frequency: 4.4s 4s 4.2s);
+}
