@@ -53,6 +53,11 @@
         }
       });
 
+      new Rickshaw.Graph.Legend({
+        element: this.$('.legend')[0],
+        graph: graph
+      });
+
       graph.render();
     }
   });

@@ -11,7 +11,7 @@ feature 'Application' do
     page.fill_in(:query, with: 'Acrobatics')
     page.find('.query-input').native.send_keys(:return)
 
-    expect(page).to have_no_css('.spinner')
+    expect(page).to have_no_css('.ball')
     expect(page).to have_content('Tweets from June 30 - July 31 of 2013')
 
     actual = page.evaluate_script <<-JS
@@ -51,6 +51,56 @@ feature 'Application' do
       {posted_date: 1375167600000 - 25200000, y: 7},
       {posted_date: 1375254000000 - 25200000, y: 13}
     ].map(&:with_indifferent_access)
+    expect(actual).to eq(expected)
+
+    actual = page.evaluate_script <<-JS
+      (function() {
+        var positive = d3.select('.sentiment .graph path[stroke="#d9e021"]').data()[0];
+        var neutral = d3.select('.sentiment .graph path[stroke="rgba(255, 255, 255, 0.3)"]').data()[0];
+        var negative = d3.select('.sentiment .graph path[stroke="#e74d00"]').data()[0];
+
+        return _.map(positive, function(_, i) {
+          return {
+            posted_date: Number(positive[i].posted_date) / 1000,
+            positive_count: positive[i].y,
+            neutral_count: neutral[i].y,
+            negative_count: negative[i].y
+          };
+        });
+      })();
+    JS
+    expected = [
+      {posted_date: '2013-06-30', neutral_count: 1, negative_count: 3, positive_count: 1},
+      {posted_date: '2013-07-01', neutral_count: 2, negative_count: 2, positive_count: 0},
+      {posted_date: '2013-07-03', neutral_count: 1, negative_count: 0, positive_count: 2},
+      {posted_date: '2013-07-04', neutral_count: 0, negative_count: 1, positive_count: 1},
+      {posted_date: '2013-07-05', neutral_count: 0, negative_count: 1, positive_count: 0},
+      {posted_date: '2013-07-06', neutral_count: 0, negative_count: 0, positive_count: 3},
+      {posted_date: '2013-07-07', neutral_count: 0, negative_count: 1, positive_count: 0},
+      {posted_date: '2013-07-08', neutral_count: 0, negative_count: 1, positive_count: 3},
+      {posted_date: '2013-07-09', neutral_count: 0, negative_count: 0, positive_count: 1},
+      {posted_date: '2013-07-10', neutral_count: 1, negative_count: 0, positive_count: 1},
+      {posted_date: '2013-07-12', neutral_count: 0, negative_count: 1, positive_count: 0},
+      {posted_date: '2013-07-13', neutral_count: 0, negative_count: 1, positive_count: 3},
+      {posted_date: '2013-07-14', neutral_count: 0, negative_count: 3, positive_count: 2},
+      {posted_date: '2013-07-15', neutral_count: 0, negative_count: 3, positive_count: 4},
+      {posted_date: '2013-07-16', neutral_count: 0, negative_count: 1, positive_count: 1},
+      {posted_date: '2013-07-17', neutral_count: 0, negative_count: 1, positive_count: 2},
+      {posted_date: '2013-07-18', neutral_count: 1, negative_count: 1, positive_count: 2},
+      {posted_date: '2013-07-19', neutral_count: 0, negative_count: 0, positive_count: 2},
+      {posted_date: '2013-07-20', neutral_count: 0, negative_count: 1, positive_count: 2},
+      {posted_date: '2013-07-21', neutral_count: 0, negative_count: 1, positive_count: 2},
+      {posted_date: '2013-07-22', neutral_count: 0, negative_count: 1, positive_count: 2},
+      {posted_date: '2013-07-23', neutral_count: 0, negative_count: 0, positive_count: 2},
+      {posted_date: '2013-07-24', neutral_count: 0, negative_count: 0, positive_count: 3},
+      {posted_date: '2013-07-25', neutral_count: 0, negative_count: 1, positive_count: 5},
+      {posted_date: '2013-07-26', neutral_count: 1, negative_count: 2, positive_count: 0},
+      {posted_date: '2013-07-27', neutral_count: 0, negative_count: 1, positive_count: 3},
+      {posted_date: '2013-07-28', neutral_count: 0, negative_count: 1, positive_count: 1},
+      {posted_date: '2013-07-29', neutral_count: 1, negative_count: 1, positive_count: 3},
+      {posted_date: '2013-07-30', neutral_count: 0, negative_count: 1, positive_count: 0},
+      {posted_date: '2013-07-31', neutral_count: 1, negative_count: 0, positive_count: 4}
+    ].map!(&:with_indifferent_access).each {|point| point[:posted_date] = Time.zone.parse(point[:posted_date]).to_i }
     expect(actual).to eq(expected)
 
     actual = page.all('.drilldown ol li').map do |node|

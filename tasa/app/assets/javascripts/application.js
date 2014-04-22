@@ -23,7 +23,7 @@
       parse: function(response) { return response.tseries; },
       toJSON: function() {
         return [
-          {data: this.map(function(model, i) { return _.extend(model.toJSON(), {x: i}); }), color: '#fff'}
+          {name: 'Tweets', data: this.map(function(model, i) { return _.extend(model.toJSON(), {x: i}); }), color: '#fff'}
         ];
       }
     }))(),
@@ -56,9 +56,9 @@
       parse: function(response) { return response.multi_series; },
       toJSON: function() {
         return [
-          {data: this.map(function(model, i){ return {posted_date: model.get('posted_date'), x: i, y: model.get('positive_count')}}), color: '#d9e021'},
-          {data: this.map(function(model, i){ return {posted_date: model.get('posted_date'), x: i, y: model.get('neutral_count')}}), color: 'rgba(255, 255, 255, 0.3)'},
-          {data: this.map(function(model, i){ return {posted_date: model.get('posted_date'), x: i, y: model.get('negative_count')}}), color: '#e74d00'}
+          {name: 'Positive tweets', data: this.map(function(model, i){ return {posted_date: model.get('posted_date'), x: i, y: model.get('positive_count')}}), color: '#d9e021'},
+          {name: 'Negative tweets', data: this.map(function(model, i){ return {posted_date: model.get('posted_date'), x: i, y: model.get('negative_count')}}), color: '#e74d00'},
+          {name: 'Neutral tweets', data: this.map(function(model, i){ return {posted_date: model.get('posted_date'), x: i, y: model.get('neutral_count')}}), color: 'rgba(255, 255, 255, 0.3)'}
         ];
       }
     }))(),

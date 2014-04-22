@@ -4,6 +4,9 @@ require 'rspec/rails'
 
 require 'capybara/rails'
 require 'capybara/poltergeist'
+Capybara.register_driver :selenium do |app|
+  Capybara::Selenium::Driver.new(app, browser: :chrome)
+end
 # Capybara.default_driver = :poltergeist
 Capybara.default_driver = :selenium
 Capybara.default_wait_time = 60

@@ -112,3 +112,47 @@ line {
     display: none;
   }
 }
+
+.total-tweets .legend {
+  display: none;
+}
+
+.rickshaw_legend {
+  position: absolute;
+  bottom: 0;
+  padding: 0;
+  background: none;
+
+  ul {
+    margin: 0;
+    overflow: hidden;
+
+    .line {
+      clear: none;
+      float: right;
+    }
+  }
+
+  .line {
+    display: inline;
+    &:hover {
+      background: none;
+      cursor: default;
+    }
+
+    .swatch, .label {
+      vertical-align: middle;
+    }
+
+    .swatch {
+      border-radius: 0;
+      width: 30px;
+      height: 1px;
+    }
+
+    .label {
+      @extend .de-emphasize;
+      font-size: 11px;
+    }
+  }
+}
