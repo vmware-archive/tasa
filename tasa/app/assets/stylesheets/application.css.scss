@@ -39,11 +39,10 @@ body {
     image-url('data_lake.jpg') center top / 100% auto no-repeat,
     background-color();
 
-  -webkit-transition: all 500ms ease-in;
-  transition: all 500ms ease-in;
-
   $hide-top-offset: -20vw;
   &.has-query {
+    -webkit-transition: margin-top 500ms ease-in, background-position 500ms ease-in;
+    transition: margin-top 500ms ease-in, background-position 500ms ease-in;
     margin-top: $hide-top-offset;
     background-position: 0 $hide-top-offset;
   }
