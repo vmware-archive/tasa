@@ -8,11 +8,17 @@
       SpinnerView.prototype.render.call(this, options);
       if (options.loading) { return; }
 
+      var series = this.model.toJSON(),
+          max = _.max(_.map(this.model.invoke('omit', 'posted_date'), function(counts) {
+            return _.reduce(counts, function(sum, count) { return sum + count; }, 0);
+          }));
+
       var graph = new Rickshaw.Graph({
         element: this.$('.graph')[0],
         renderer: 'line',
         height: 300,
-        series: this.model.toJSON()
+        series: series,
+        max: max
       });
 
       new Rickshaw.Graph.Axis.Y({
