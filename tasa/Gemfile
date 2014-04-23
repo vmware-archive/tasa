@@ -13,6 +13,7 @@ gem 'lodash-rails'
 gem 'backbone-rails'
 gem 'rickshaw_rails'
 gem 'cal-heatmap-rails'
+gem 'bootstrap-sass'
 
 gem 'sass-rails', '>= 4.0.3'
 

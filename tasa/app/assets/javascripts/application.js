@@ -12,6 +12,7 @@
 //= require views/heatmap
 //= require views/tag_cloud
 //= require views/force
+//= require bootstrap/tooltip
 (function() {
   'use strict';
 

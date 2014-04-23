@@ -29,3 +29,7 @@
     &:nth-child(3) .swatch { @extend .t3; }
   }
 }
+
+.tooltip {
+  margin-left: 4px;
+}

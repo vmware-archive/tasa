@@ -45,10 +45,9 @@
         .append('circle')
           .attr('class', function(d) { return 'node t' + d.group; })
           .attr('r', 5)
-      ;
-
-      node.append('title')
-        .text(function(d) { return d.name; });
+          .attr('title', function(d) { return d.name; })
+          .attr('data-toggle', 'tooltip')
+        ;
 
       force.start();
       _.times(300, force.tick);
@@ -65,6 +64,8 @@
         .attr('cx', function(d) { return d.x; })
         .attr('cy', function(d) { return d.y; })
       ;
+
+      this.$('circle.node').tooltip({container: 'body', placement: 'top'});
     }
   });
 })();

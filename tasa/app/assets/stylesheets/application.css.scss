@@ -38,6 +38,10 @@
 @import 'force';
 @import 'loader';
 
+@import 'bootstrap/variables';
+@import 'bootstrap/mixins';
+@import 'bootstrap/tooltip';
+
 @font-face {
   font-family: 'Open Sans';
   src: font-url('open-sans/OpenSans-Light.ttf') format('truetype');
