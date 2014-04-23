@@ -103,6 +103,93 @@ feature 'Application' do
     ].map!(&:with_indifferent_access).each {|point| point[:posted_date] = Time.zone.parse(point[:posted_date]).to_i }
     expect(actual).to eq(expected)
 
+    actual = page.evaluate_script <<-JS
+      (function() {
+        var data = d3.selectAll('.graph-rect').data()
+            startDate = data[0].t;
+        return data.map(function(point) {
+          var hours = (point.t - startDate) / (1000 * 60 * 60),
+              day = Math.floor(hours / 24),
+              hour = hours - day * 24;
+          return point.v && {num_tweets: point.v, day: day, hour: hour};
+        }).filter(Boolean);
+      })();
+    JS
+    expected = [
+      {hour: 1, positive: 0, negative: 1, neutral: 0, num_tweets: 1, day: 0},
+      {hour: 3, positive: 1, negative: 0, neutral: 0, num_tweets: 1, day: 0},
+      {hour: 4, positive: 1, negative: 0, neutral: 0, num_tweets: 1, day: 0},
+      {hour: 10, positive: 0, negative: 2, neutral: 0, num_tweets: 2, day: 0},
+      {hour: 13, positive: 0, negative: 1, neutral: 0, num_tweets: 1, day: 0},
+      {hour: 14, positive: 1, negative: 0, neutral: 0, num_tweets: 1, day: 0},
+      {hour: 15, positive: 1, negative: 0, neutral: 0, num_tweets: 1, day: 0},
+      {hour: 16, positive: 0, negative: 1, neutral: 0, num_tweets: 1, day: 0},
+      {hour: 17, positive: 0, negative: 0, neutral: 1, num_tweets: 1, day: 0},
+      {hour: 18, positive: 1, negative: 1, neutral: 0, num_tweets: 2, day: 0},
+      {hour: 20, positive: 0, negative: 1, neutral: 0, num_tweets: 1, day: 0},
+      {hour: 22, positive: 0, negative: 1, neutral: 0, num_tweets: 1, day: 0},
+      {hour: 23, positive: 1, negative: 1, neutral: 0, num_tweets: 2, day: 0},
+      {hour: 0, positive: 1, negative: 1, neutral: 0, num_tweets: 2, day: 1},
+      {hour: 1, positive: 0, negative: 1, neutral: 0, num_tweets: 1, day: 1},
+      {hour: 2, positive: 1, negative: 0, neutral: 0, num_tweets: 1, day: 1},
+      {hour: 4, positive: 0, negative: 1, neutral: 0, num_tweets: 1, day: 1},
+      {hour: 7, positive: 1, negative: 2, neutral: 0, num_tweets: 3, day: 1},
+      {hour: 8, positive: 1, negative: 0, neutral: 0, num_tweets: 1, day: 1},
+      {hour: 10, positive: 0, negative: 0, neutral: 1, num_tweets: 1, day: 1},
+      {hour: 12, positive: 2, negative: 1, neutral: 0, num_tweets: 3, day: 1},
+      {hour: 13, positive: 1, negative: 1, neutral: 0, num_tweets: 2, day: 1},
+      {hour: 14, positive: 0, negative: 0, neutral: 1, num_tweets: 1, day: 1},
+      {hour: 16, positive: 1, negative: 0, neutral: 0, num_tweets: 1, day: 1},
+      {hour: 17, positive: 2, negative: 0, neutral: 0, num_tweets: 2, day: 1},
+      {hour: 18, positive: 1, negative: 1, neutral: 0, num_tweets: 2, day: 1},
+      {hour: 19, positive: 0, negative: 0, neutral: 1, num_tweets: 1, day: 1},
+      {hour: 23, positive: 1, negative: 0, neutral: 0, num_tweets: 1, day: 1},
+      {hour: 1, positive: 1, negative: 0, neutral: 0, num_tweets: 1, day: 2},
+      {hour: 5, positive: 0, negative: 1, neutral: 0, num_tweets: 1, day: 2},
+      {hour: 6, positive: 1, negative: 0, neutral: 0, num_tweets: 1, day: 2},
+      {hour: 16, positive: 1, negative: 1, neutral: 0, num_tweets: 2, day: 2},
+      {hour: 18, positive: 1, negative: 0, neutral: 0, num_tweets: 1, day: 2},
+      {hour: 0, positive: 1, negative: 0, neutral: 1, num_tweets: 2, day: 3},
+      {hour: 6, positive: 1, negative: 0, neutral: 0, num_tweets: 1, day: 3},
+      {hour: 7, positive: 0, negative: 1, neutral: 0, num_tweets: 1, day: 3},
+      {hour: 8, positive: 2, negative: 0, neutral: 0, num_tweets: 2, day: 3},
+      {hour: 9, positive: 1, negative: 0, neutral: 0, num_tweets: 1, day: 3},
+      {hour: 12, positive: 3, negative: 0, neutral: 0, num_tweets: 3, day: 3},
+      {hour: 13, positive: 1, negative: 0, neutral: 0, num_tweets: 1, day: 3},
+      {hour: 16, positive: 0, negative: 0, neutral: 1, num_tweets: 1, day: 3},
+      {hour: 17, positive: 1, negative: 0, neutral: 0, num_tweets: 1, day: 3},
+      {hour: 21, positive: 1, negative: 0, neutral: 1, num_tweets: 2, day: 3},
+      {hour: 23, positive: 1, negative: 0, neutral: 0, num_tweets: 1, day: 3},
+      {hour: 0, positive: 0, negative: 1, neutral: 0, num_tweets: 1, day: 4},
+      {hour: 1, positive: 1, negative: 0, neutral: 0, num_tweets: 1, day: 4},
+      {hour: 4, positive: 1, negative: 0, neutral: 0, num_tweets: 1, day: 4},
+      {hour: 6, positive: 1, negative: 0, neutral: 0, num_tweets: 1, day: 4},
+      {hour: 8, positive: 0, negative: 1, neutral: 0, num_tweets: 1, day: 4},
+      {hour: 9, positive: 0, negative: 1, neutral: 0, num_tweets: 1, day: 4},
+      {hour: 10, positive: 0, negative: 0, neutral: 1, num_tweets: 1, day: 4},
+      {hour: 12, positive: 2, negative: 0, neutral: 0, num_tweets: 2, day: 4},
+      {hour: 18, positive: 1, negative: 0, neutral: 0, num_tweets: 1, day: 4},
+      {hour: 22, positive: 2, negative: 0, neutral: 0, num_tweets: 2, day: 4},
+      {hour: 8, positive: 0, negative: 0, neutral: 1, num_tweets: 1, day: 5},
+      {hour: 12, positive: 0, negative: 1, neutral: 0, num_tweets: 1, day: 5},
+      {hour: 14, positive: 2, negative: 0, neutral: 0, num_tweets: 2, day: 5},
+      {hour: 15, positive: 0, negative: 1, neutral: 0, num_tweets: 1, day: 5},
+      {hour: 17, positive: 0, negative: 1, neutral: 0, num_tweets: 1, day: 5},
+      {hour: 18, positive: 0, negative: 1, neutral: 0, num_tweets: 1, day: 5},
+      {hour: 2, positive: 1, negative: 0, neutral: 0, num_tweets: 1, day: 6},
+      {hour: 4, positive: 1, negative: 0, neutral: 0, num_tweets: 1, day: 6},
+      {hour: 5, positive: 2, negative: 0, neutral: 0, num_tweets: 2, day: 6},
+      {hour: 7, positive: 1, negative: 0, neutral: 0, num_tweets: 1, day: 6},
+      {hour: 11, positive: 1, negative: 0, neutral: 0, num_tweets: 1, day: 6},
+      {hour: 12, positive: 1, negative: 0, neutral: 0, num_tweets: 1, day: 6},
+      {hour: 17, positive: 2, negative: 0, neutral: 0, num_tweets: 2, day: 6},
+      {hour: 18, positive: 1, negative: 1, neutral: 0, num_tweets: 2, day: 6},
+      {hour: 19, positive: 0, negative: 1, neutral: 0, num_tweets: 1, day: 6},
+      {hour: 20, positive: 1, negative: 0, neutral: 0, num_tweets: 1, day: 6},
+      {hour: 23, positive: 0, negative: 1, neutral: 0, num_tweets: 1, day: 6}
+    ].map(&:with_indifferent_access).map {|point| point.except(:positive, :negative, :neutral)}
+    expect(actual).to eq(expected)
+
     actual = page.all('.drilldown ol li').map do |node|
       {username: node.find('.username').text, text: node.find('.text').text}
     end
@@ -128,7 +215,8 @@ feature 'Application' do
       {username: "KutThroatDro", text: "Acrobat shit too many flips"},
       {username: "connor_blackmon", text: "RT @_cwade: Connors an acrobat wtf"}
     ]
-    expect(actual).to eq(expected)
+    expect(actual - expected).to have_at_most(3).items
+    expect(expected - actual).to have_at_most(3).items
     page.find('.drilldown').should have_content('279 Total Tweets')
 
     actual = page.all('.tag-cloud text').map(&:text)
@@ -139,6 +227,7 @@ feature 'Application' do
       hardworking highflying perfect ok charismatic hispanic empty 29year safe aweinspiring romantic existential verbal
       nice intellectual attractive busy fun traditional interesting dirty exceptional asian few talented further left
       pro deceased upside easy aware firstever offensive hilarious selfless darn]
-    actual.should =~ expected
+    expect(actual - expected).to have_at_most(5).items
+    expect(expected - actual).to have_at_most(5).items
   end
 end

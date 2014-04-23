@@ -25,3 +25,17 @@
   <li>11pm</li>
 </ol>
 <div class="heatmap"></div>
+<ul class="heatmap-legend">
+  {{#legend}}
+    {{#if @first}}
+      <li><span class="swatch"></span> <span>0 tweets</span></li>
+    {{else}}
+      {{#if @last}}
+        <li><span class="swatch"></span> <span>at most {{.}} tweets</span></li>
+        <li><span class="swatch"></span> <span>more than {{.}} tweets</span></li>
+      {{else}}
+        <li><span class="swatch"></span> <span>at most {{.}} tweets</span></li>
+      {{/if}}
+    {{/if}}
+  {{/legend}}
+</ul>

@@ -4,11 +4,17 @@
     template: 'templates/heatmap',
 
     render: function(options){
+      if (!this.loading) {
+        var data = this.model.toJSON(),
+            dataArray = _.chain(data).toArray().uniq().sortBy(Number).value(),
+            legend = [0].concat(_.map([0.2, 0.4, 0.6, 0.8], function(p) { return dataArray[Math.round((dataArray.length - 1) * p)]; }));
+        this.decorator = function() { return {legend: legend}; };
+      }
+
       SpinnerView.prototype.render.call(this, options);
       if (options.loading) { return; }
 
       var cellSize = this.$el.width() / 24 - 2 + .25 - 60/24,
-          data = this.model.toJSON(),
           labelWidth = 60;
 
       new CalHeatMap().init({
@@ -30,7 +36,8 @@
         subDomainDateFormat: function(date) {
           return (data[Number(date) / 1000] || 0) + ' Tweets';
         },
-        displayLegend: false
+        displayLegend: false,
+        legend: legend
       });
 
       this.$el.append('<style>.ch-tooltip {margin-top: ' + cellSize / 2 + 'px;' + ' margin-left: ' + (labelWidth - 2) + 'px;}</style>');

@@ -47,3 +47,63 @@
 .graph, .graph-legend rect {
   shape-rendering: auto;
 }
+
+.q1 {
+  background-color: base-color(.1);
+  fill: base-color(.1);
+}
+
+.q2 {
+  background-color: #dae289;
+  fill: #dae289;
+}
+
+.q3 {
+  background-color: #9cc069;
+  fill: #9cc069;
+}
+
+.q4 {
+  background-color: #669d45;
+  fill: #669d45;
+}
+
+.q5 {
+  background-color: #637939;
+  fill: #637939;
+}
+
+.q6 {
+  background-color: #3b6427;
+  fill: #3b6427;
+}
+
+.heatmap-legend {
+  padding: 0;
+  margin: 13px 0 0 60px;
+  list-style: none;
+
+  li {
+    display: inline-block;
+    color: base-color(.5);
+    font-size: 11px;
+    margin-right: 10px;
+
+    &:nth-child(1) .swatch { @extend .q1; }
+    &:nth-child(2) .swatch { @extend .q2; }
+    &:nth-child(3) .swatch { @extend .q3; }
+    &:nth-child(4) .swatch { @extend .q4; }
+    &:nth-child(5) .swatch { @extend .q5; }
+    &:nth-child(6) .swatch { @extend .q6; }
+
+    > * {
+      vertical-align: middle;
+    }
+
+    .swatch {
+      display: inline-block;
+      width: 11px;
+      height: 11px;
+    }
+  }
+}
