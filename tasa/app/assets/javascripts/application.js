@@ -4,10 +4,13 @@
 //= require handlebars.runtime
 //= require backbone
 //= require rickshaw_with_d3
+//= require cal-heatmap
 //= require d3.layout.cloud
 //= require_tree ./templates
 //= require views/spinner
 //= require views/time_series
+//= require views/heatmap
+//= require views/tag_cloud
 (function() {
   'use strict';
 
@@ -66,7 +69,18 @@
        url: function() { return '/gp/senti/acloud/q?sr_trm=' + query.get('query'); },
        parse: function(response) { return response.adjective_cloud; },
        comparator: 'normalized_frequency'
-     }))()
+     }))(),
+
+    heatmap = new (Backbone.Collection.extend({
+      url: function() { return '/gp/senti/hmap/q?sr_trm=' + query.get('query'); },
+      parse: function(response) { return response.hmap; },
+      toJSON: function() {
+        return this.reduce(function(result, model) {
+          result[new Date(2013, 5, 31) / 1000 + model.get('day') * 60 * 60 * 24 + model.get('hour') * 60 * 60] = model.get('num_tweets');
+          return result;
+        }, {});
+      }
+    }))()
    ;
 
   $('body').html(JST['templates/application']);
@@ -87,51 +101,14 @@
     el: $('.sentiment .graph-content'),
     model: sentiment
   });
-  var adjectivesView = new SpinnerView({
+  var heatmapView = new HeatmapView({
+    el: $('.tweet-activity .heatmap-content'),
+    model: heatmap
+  });
+
+  var adjectivesView = new TagCloudView({
     el: $('.adjectives .tag-cloud'),
-    model: adjectives,
-    render: function(options) {
-      SpinnerView.prototype.render.call(this, options);
-      if (options.loading) { return; }
-
-      var
-        filtered_words = _.map(_.invoke(adjectives.last(100), 'toJSON'), function(d) {
-          return {
-            text: d.word
-              .replace(/[!"&()*+,-\.\/:;<=>?\[\\\]^`\{|\}~]+/g,"")
-              .replace(/[\s\u3031-\u3035\u309b\u309c\u30a0\u30fc\uff70]+/g,""),
-            size: 5+ d.normalized_frequency * 150
-          };
-        }),
-        width = $('.adjectives').width(),
-        height = 300;
-
-      d3.layout.cloud()
-        .size([width, height])
-        .words(filtered_words)
-        .text(function(d) { return d.text; })
-        .padding(5)
-        .rotate(0)
-        .font('Open Sans')
-        .fontSize(function(d) { return d.size; })
-        .spiral('rectangular')
-        .on('end', function(words) {
-          d3.select('.adjectives .tag-cloud')
-            .append('svg')
-              .attr('width', width)
-              .attr('height', height)
-              .append('g')
-                .attr('transform', 'translate(' + width / 2 + ', ' + height / 2 + ')')
-                .selectAll('text')
-                .data(words).enter()
-                .append('text')
-                  .style('font-size', function(d) { return d.size + 'px'; })
-                  .attr('transform', function(d) { return 'translate(' + [d.x, d.y] + ')'; })
-                  .text(function(d) { return d.text; })
-          ;
-        })
-        .start();
-    }
+    model: adjectives
   });
 
   $('body').on('submit', '.query', function(e) {
@@ -162,6 +139,6 @@
 
   query.on('change:query', function(query, value) {
     $('body').toggleClass('has-query', Boolean(value));
-    _.invoke([totalTweets, sideBar, sentiment, adjectives], 'fetch', {reset: true});
+    _.invoke([totalTweets, sideBar, sentiment, heatmap, adjectives], 'fetch', {reset: true});
   });
 })();

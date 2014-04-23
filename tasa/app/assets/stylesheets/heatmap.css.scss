@@ -1,0 +1,49 @@
+@import 'cal-heatmap.css';
+
+.heatmap-content {
+  position: relative;
+
+  .x-axis {
+    margin: 0;
+    padding: 0;
+    color: base-color(.5);
+    font-size: 11px;
+    list-style: none;
+    display: table;
+    table-layout: fixed;
+    width: 100%;
+    padding-left: 59px;
+    box-sizing: border-box;
+    margin-bottom: 3px;
+
+    li {
+      display: table-cell;
+      text-align: center;
+    }
+  }
+
+  .graph-label {
+    font-size: 11px;
+    stroke: base-color(.2);
+  }
+}
+
+.heatmap {
+  position: relative;
+}
+
+.ch-tooltip {
+  width: inherit;
+}
+
+.graph-subdomain-group rect:hover {
+  stroke-width: 0;
+}
+
+.cal-heatmap-container {
+  opacity: 0.8;
+}
+
+.graph, .graph-legend rect {
+  shape-rendering: auto;
+}
