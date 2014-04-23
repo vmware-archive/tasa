@@ -84,12 +84,16 @@
   @include spinner($opacity: .8 .4 .8 .4 .6 .8 .6, $frequency: 2.1s 2.3s 2.1s 2s 2.2s 2.2s 2s, $delay: 2s 1.8s 1s .5s .2s 1.5s 0s);
 }
 
-.adjectives .tag-cloud {
+.heatmap-content {
   @include spinner();
 }
 
-.heatmap-content {
+.adjectives .tag-cloud {
   @include spinner($opacity: .8 .4 .8 .4 .6 .8 .6, $frequency: 2.1s 2.3s 2.1s 2s 2.2s 2.2s 2s, $delay: 2s 1.8s 1s .5s .2s 1.5s 0s);
+}
+
+.topic-cluster {
+  @include spinner();
 }
 
 .drilldown-content {

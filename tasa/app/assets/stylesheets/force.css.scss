@@ -1,0 +1,31 @@
+.link {
+  stroke: base-color(.1);
+  shape-rendering: auto;
+}
+
+.t1 {
+  background-color: red;
+  fill: red;
+}
+
+.t2 {
+  background-color: green;
+  fill: green;
+}
+
+.t3 {
+  background-color: blue;
+  fill: blue;
+}
+
+.force-legend {
+  .swatch {
+    border-radius: 100px;
+  }
+
+  li {
+    &:nth-child(1) .swatch { @extend .t1; }
+    &:nth-child(2) .swatch { @extend .t2; }
+    &:nth-child(3) .swatch { @extend .t3; }
+  }
+}

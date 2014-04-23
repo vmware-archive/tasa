@@ -11,6 +11,7 @@
 //= require views/time_series
 //= require views/heatmap
 //= require views/tag_cloud
+//= require views/force
 (function() {
   'use strict';
 
@@ -65,6 +66,12 @@
         ];
       }
     }))(),
+    force = new (Backbone.Model.extend({
+      url: function() { return '/gp/topic/fetch/q?num_topics=3&sr_trm=' + query.get('query'); },
+      parse: function(response) {
+        return JSON.parse(response.topic_graph);
+      }
+    }))(),
     adjectives = new (Backbone.Collection.extend({
        url: function() { return '/gp/senti/acloud/q?sr_trm=' + query.get('query'); },
        parse: function(response) { return response.adjective_cloud; },
@@ -105,10 +112,13 @@
     el: $('.tweet-activity .heatmap-content'),
     model: heatmap
   });
-
   var adjectivesView = new TagCloudView({
     el: $('.adjectives .tag-cloud'),
     model: adjectives
+  });
+  var forceView = new ForceView({
+    el: $('.topic-cluster .force'),
+    model: force
   });
 
   $('body').on('submit', '.query', function(e) {
@@ -139,6 +149,6 @@
 
   query.on('change:query', function(query, value) {
     $('body').toggleClass('has-query', Boolean(value));
-    _.invoke([totalTweets, sideBar, sentiment, heatmap, adjectives], 'fetch', {reset: true});
+    _.invoke([totalTweets, sideBar, sentiment, heatmap, adjectives, force], 'fetch', {reset: true});
   });
 })();

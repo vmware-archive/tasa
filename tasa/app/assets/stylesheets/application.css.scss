@@ -5,9 +5,37 @@
   @return rgba(36, 38, 67, $opacity);
 }
 
+.graph-title {
+  margin-bottom: 20px;
+}
+
+.graph-legend {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  li {
+    display: inline-block;
+    color: base-color(.5);
+    font-size: 11px;
+    margin-right: 10px;
+
+    > * {
+      vertical-align: middle;
+    }
+
+    .swatch {
+      display: inline-block;
+      width: 11px;
+      height: 11px;
+    }
+  }
+}
+
 @import 'graph';
 @import 'cloud';
 @import 'heatmap';
+@import 'force';
 @import 'loader';
 
 @font-face {
@@ -33,6 +61,7 @@ body {
   position: relative;
   margin: 0;
   padding-top: 45vw;
+  padding-bottom: 40px;
 
   font-weight: 300;
 
@@ -70,10 +99,6 @@ h2 {
   color: $chart-title-color;
   font-size: 25px;
   margin: 0;
-}
-
-.graph-title {
-  margin-bottom: 20px;
 }
 
 .page-header {
@@ -162,7 +187,7 @@ h2 {
   }
 }
 
-.graph-content, .tag-cloud {
+.graph-content, .tag-cloud, .force {
   min-height: 350px;
 }
 

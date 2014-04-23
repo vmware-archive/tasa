@@ -229,5 +229,8 @@ feature 'Application' do
       pro deceased upside easy aware firstever offensive hilarious selfless darn]
     expect(actual - expected).to have_at_most(5).items
     expect(expected - actual).to have_at_most(5).items
+
+    actual = page.evaluate_script("d3.selectAll('.node').data().length")
+    expect(actual).to eq(203)
   end
 end
