@@ -46,7 +46,11 @@
              tweet[key] = _.unescape(eval('"' + value.replace(/"/g, '\\x22').replace(/\r\n|\n/gm, '\\x0A') + '"'));
            });
          });
-         return _.extend({tweets: attrs.tweets}, attrs.counts);
+         return _.extend({tweets: attrs.tweets}, attrs.counts, {
+           positive_proportion: 100 * attrs.counts.positive / attrs.counts.total,
+           negative_proportion: 100 * attrs.counts.negative / attrs.counts.total,
+           neutral_proportion: 100 * attrs.counts.neutral / attrs.counts.total
+         });
        }
      }))(),
     sentiment = new (Backbone.Collection.extend({
@@ -112,11 +116,9 @@
     template: 'templates/sidebar_tweets',
     model: sideBar,
     decorator: function() {
-      return {
-        date: sideBar.has('posted_date') ? d3.time.format.utc('%B %d, %Y')(new Date(sideBar.get('posted_date'))) : 'June 30 - July 31, 2013',
-        tweets: sideBar.get('tweets'),
-        totalTweets: sideBar.get('total')
-      };
+      return _.extend(this.model.toJSON(), {
+        date: sideBar.has('posted_date') ? d3.time.format.utc('%B %d, %Y')(new Date(sideBar.get('posted_date'))) : 'June 30 - July 31, 2013'
+      });
     }
   });
   var totalTweetsView = new TimeSeriesView({
@@ -185,10 +187,14 @@
   });
 
   $('body').on('click', '.detail', function(e) {
-    sideBar.set('posted_date', $(e.currentTarget).find('[data-posted-date]').data('posted-date'));
+    sideBar.set({
+      posted_date: $(e.currentTarget).find('[data-posted-date]').data('posted-date'),
+      sentiment: $(e.currentTarget).find('[data-sentiment]').data('sentiment')
+    });
   });
 
-  sideBar.on('change:posted_date change:sentiment', function() {
+  sideBar.on('change', function(sideBar, options) {
+    if (options.xhr) { return; }
     sideBar.fetch();
   });
 })();

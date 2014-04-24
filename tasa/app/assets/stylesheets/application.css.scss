@@ -256,7 +256,7 @@ h2 {
     list-style: none;
   }
 
-  li + li {
+  .sidebar-tweet {
     margin-top: 10px;
   }
 
@@ -292,4 +292,60 @@ h2 {
   .drilldown-content {
     min-height: 600px;
   }
+
+  .drilldown-counts {
+    margin-top: 5px;
+    li {
+      margin-right: 3px;
+    }
+  }
+
+  .drilldown-breakdown {
+    font-size: 0;
+    margin: 5px 0;
+    width: 80%;
+    li {
+      height: 8px;
+    }
+  }
+}
+
+.list-inline {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  li {
+    display: inline-block;
+  }
+}
+
+$positive-color: #d9e021;
+$negative-color: #e74d00;
+$neutral-color: rgba(255, 255, 255, 0.3);
+
+.positive-proportion {
+  background-color: $positive-color;
+}
+.negative-proportion {
+  background-color: $negative-color;
+}
+.neutral-proportion {
+  background-color: $neutral-color;
+}
+
+.positive {
+  color: $positive-color;
+}
+
+.negative {
+  color: $negative-color;
+}
+
+.neutral {
+  color: $neutral-color;
+}
+
+.sentiment-title {
+  margin: 0;
+  text-transform: capitalize
 }

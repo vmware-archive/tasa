@@ -49,14 +49,15 @@
       new Rickshaw.Graph.HoverDetail({
         graph: graph,
         formatter: function(series, i, tweets) {
-          var postedDate = self.model.at(i).get('posted_date');
+          var postedDate = self.model.at(i).get('posted_date'),
+              sentiment = series.name.match(/(\w*)\s?[Tt]weets/)[1].toLowerCase();
           return '' +
-            '<div data-posted-date="' + Number(postedDate) + '" style="color:' + series.color + '">' +
+            '<div data-sentiment="' + sentiment + '" data-posted-date="' + Number(postedDate) + '" style="color:' + series.color + '">' +
               '<span class="date">' + d3.time.format.utc('%B %e')(postedDate) + '</span>' +
               '<span class="tweets">' + series.data[i].y + '</span>' +
               '<span class="units">tweets</span>' +
             '</div>'
-            ;
+          ;
         }
       });
 
