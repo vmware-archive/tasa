@@ -18,7 +18,7 @@
         renderer: 'line',
         height: 300,
         series: series,
-        max: max
+        max: max * 1.1
       });
 
       new Rickshaw.Graph.Axis.Y({
