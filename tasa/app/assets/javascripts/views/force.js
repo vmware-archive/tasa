@@ -14,7 +14,7 @@
       SpinnerView.prototype.render.call(this, options);
       if (options.loading) { return; }
 
-      var data = this.model.toJSON();
+      var data = this.model.pick('nodes', 'links');
       var $svg = this.$('svg');
       var width = $svg.width(),
           height = $svg.height();

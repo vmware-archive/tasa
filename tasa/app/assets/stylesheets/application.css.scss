@@ -191,12 +191,24 @@ h2 {
   }
 }
 
-.graph-content, .tag-cloud, .force {
+.graph-content, .force {
   min-height: 350px;
+}
+
+.tag-cloud {
+  min-height: 400px;
 }
 
 .heatmap-content {
   min-height: 240px;
+}
+
+.topic-cluster {
+  .force, .tag-cloud {
+    display: inline-block;
+    vertical-align: middle;
+    width: 50%;
+  }
 }
 
 .drilldown {

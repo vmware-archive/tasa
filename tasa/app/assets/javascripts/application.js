@@ -70,15 +70,25 @@
     force = new (Backbone.Model.extend({
       url: function() { return '/gp/topic/fetch/q?num_topics=3&sr_trm=' + query.get('query'); },
       parse: function(response) {
-        return JSON.parse(response.topic_graph);
+        var cloud = _.flatten(_.map(response.topic_cloud_d3, function(data, topic) {
+          data = _.last(_.sortBy(data.word_freq_list, 'normalized_frequency'), 5);
+          _.each(data, function(word) { word.topic = topic; });
+          return data;
+        }));
+        return _.extend(JSON.parse(response.topic_graph), {cloud: cloud});
+      },
+      toJSON: function() {
+        return this.get('cloud');
       }
     }))(),
     adjectives = new (Backbone.Collection.extend({
-       url: function() { return '/gp/senti/acloud/q?sr_trm=' + query.get('query'); },
-       parse: function(response) { return response.adjective_cloud; },
-       comparator: 'normalized_frequency'
+      url: function() { return '/gp/senti/acloud/q?sr_trm=' + query.get('query'); },
+      parse: function(response) { return response.adjective_cloud; },
+      comparator: 'normalized_frequency',
+      toJSON: function() {
+        return _.invoke(this.last(100), 'toJSON');
+      }
      }))(),
-
     heatmap = new (Backbone.Collection.extend({
       url: function() { return '/gp/senti/hmap/q?sr_trm=' + query.get('query'); },
       parse: function(response) { return response.hmap; },
@@ -119,6 +129,10 @@
   });
   var forceView = new ForceView({
     el: $('.topic-cluster .force'),
+    model: force
+  });
+  var topicCloudView = new TagCloudView({
+    el: $('.topic-cluster .tag-cloud'),
     model: force
   });
 
