@@ -115,9 +115,13 @@ h2 {
 }
 
 .page-footer {
+  @extend %show-only-with-query;
+  position: relative;
+  z-index: 2;
   margin-top: 40px;
   font-size: 15px;
   text-align: center;
+  background: background-color();
   color: base-color(.5);
 }
 
@@ -243,6 +247,7 @@ h2 {
     top: 77px;
     bottom: 0;
     overflow-y: auto;
+    padding-bottom: 100px;
   }
 
   ol {
