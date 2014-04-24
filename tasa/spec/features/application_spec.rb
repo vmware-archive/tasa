@@ -219,7 +219,7 @@ feature 'Application' do
     expect(expected - actual).to have_at_most(3).items
     page.find('.drilldown').should have_content('279 Total Tweets')
 
-    actual = page.all('.tag-cloud text').map(&:text)
+    actual = page.all('.adjectives .tag-cloud text').map(&:text)
     expected = %w[acrobatic aerial good full great first amazing free professional #acrobatic real more chinese many
       cute gay bad quiet last final old long much cool live brutal hot best excellent funny awesome new sexy next living
       flipping halfbaked stupid little drunken normal red magic hard fabulous better sure tight slight defensive own

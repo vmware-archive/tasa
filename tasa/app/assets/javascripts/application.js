@@ -166,4 +166,13 @@
     $('body').toggleClass('has-query', Boolean(value));
     _.invoke([totalTweets, sideBar, sentiment, heatmap, adjectives, force], 'fetch', {reset: true});
   });
+
+  $('body').on('click', '.t1,.t2,.t3', function(e) {
+    $('.topic-cluster')[0].dataset.selected = _.find(e.target.classList, function(className) { return className.match(/^t\d+$/); });
+    e.stopPropagation();
+  });
+
+  $('body').on('click', '.topic-cluster', function() {
+    delete $('.topic-cluster')[0].dataset.selected;
+  });
 })();

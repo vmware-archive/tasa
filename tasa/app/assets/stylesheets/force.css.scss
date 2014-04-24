@@ -33,3 +33,14 @@
 .tooltip {
   margin-left: 4px;
 }
+
+.topic-cluster {
+  &[data-selected] {
+    .t1, .t2, .t3 {
+      opacity: 0.3;
+    }
+  }
+  &[data-selected="t1"] .t1, &[data-selected="t2"] .t2, &[data-selected="t3"] .t3 {
+    opacity: 1;
+  }
+}
