@@ -65,7 +65,6 @@ body {
   position: relative;
   margin: 0;
   padding-top: 45vw;
-  padding-bottom: 40px;
 
   font-weight: 300;
 
@@ -115,21 +114,39 @@ h2 {
   text-align: center;
 }
 
+.page-footer {
+  margin-top: 40px;
+  font-size: 15px;
+  text-align: center;
+  color: base-color(.5);
+}
+
 .logo {
   vertical-align: middle;
-  margin: 0 8px;
+  position: relative;
 }
 
 .pivotal-logo-header {
+  margin: 0 8px;
   width: 120px;
-  position: relative;
   top: -7px;
 }
 
 .pivotal-labs-logo-header {
+  margin: 0 8px;
   width: 280px;
-  position: relative;
   top: -3px;
+}
+
+.pivotal-logo-footer {
+  margin: 0 4px;
+  height: 14px;
+  top: -2px;
+}
+
+.pivotal-labs-logo-footer {
+  height: 95px;
+  top: -1px;
 }
 
 .query {
