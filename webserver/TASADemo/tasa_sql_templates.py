@@ -80,8 +80,7 @@ def getTop20RelevantTweetsRangeSentSQL(search_term,min_timestamp,max_timestamp,s
        Columns: displayname, preferredusername, body, image
     '''
     sql = '''
-             SELECT postedtime,
-                    displayname,
+             SELECT displayname,
                     preferredusername,
                     body,
                     image,

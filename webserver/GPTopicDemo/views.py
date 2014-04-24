@@ -41,7 +41,7 @@ def augmentedTweet(body,topic):
     '''
        Add the topic identifier to the tweet body
     '''
-    return u'{body} : Topic-{topic}'.format(body=body,topic=str(topic))
+    return u'{body}'.format(body=body,topic=str(topic))
 
 def topic_graph_generator(suffix_id, num_topics):
     '''

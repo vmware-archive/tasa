@@ -49,9 +49,10 @@
       new Rickshaw.Graph.HoverDetail({
         graph: graph,
         formatter: function(series, i, tweets) {
+          var postedDate = self.model.at(i).get('posted_date');
           return '' +
-            '<div style="color:' + series.color + '">' +
-              '<span class="date">' + d3.time.format.utc('%B %e')(self.model.at(i).get('posted_date')) + '</span>' +
+            '<div data-posted-date="' + Number(postedDate) + '" style="color:' + series.color + '">' +
+              '<span class="date">' + d3.time.format.utc('%B %e')(postedDate) + '</span>' +
               '<span class="tweets">' + series.data[i].y + '</span>' +
               '<span class="units">tweets</span>' +
             '</div>'

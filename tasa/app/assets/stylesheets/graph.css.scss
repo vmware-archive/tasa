@@ -41,6 +41,12 @@ $chart-title-color: base-color(.8);
     fill: none;
     stroke: $chart-axis-color;
   }
+
+  .detail {
+    cursor: pointer;
+    pointer-events: auto;
+    -webkit-user-select: none;
+  }
 }
 
 line {

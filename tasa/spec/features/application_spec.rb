@@ -232,5 +232,11 @@ feature 'Application' do
 
     actual = page.evaluate_script("d3.selectAll('.node').data().length")
     expect(actual).to eq(203)
+
+    page.find('.total-tweets .graph svg > path').hover
+    details = page.find('.total-tweets .graph .detail .item')
+    details.click
+    expect(page.find('.drilldown')).to have_content(details.find('.date').text)
+    # expect(page.find('.drilldown')).to have_content(details.find('.tweets').text + ' Total Tweets')
   end
 end

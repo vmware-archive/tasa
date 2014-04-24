@@ -32,17 +32,21 @@
         ];
       }
     }))(),
-    sideBarTweets = new Backbone.Collection(),
     sideBar = new (Backbone.Model.extend({
-       url: function() { return '/gp/tasa/relevant_tweets/?sr_trm='  + query.get('query'); },
+       url: function() {
+         return '/gp/tasa/relevant_tweets/?' + $.param({
+           sr_trm: query.get('query'),
+           ts: this.get('posted_date'),
+           snt: this.get('sentiment')
+         });
+       },
        parse: function(attrs) {
-         this.set('totalTweets', attrs.count);
          _.each(attrs.tweets, function(tweet) {
            _.forIn(tweet, function(value, key) {
              tweet[key] = _.unescape(eval('"' + value.replace(/"/g, '\\x22').replace(/\r\n|\n/gm, '\\x0A') + '"'));
            });
          });
-         sideBarTweets.reset(attrs.tweets);
+         return _.extend({tweets: attrs.tweets}, attrs.counts);
        }
      }))(),
     sentiment = new (Backbone.Collection.extend({
@@ -108,7 +112,11 @@
     template: 'templates/sidebar_tweets',
     model: sideBar,
     decorator: function() {
-      return {tweets: sideBarTweets.toJSON(), totalTweets: sideBar.get('totalTweets')};
+      return {
+        date: sideBar.has('posted_date') ? d3.time.format.utc('%B %d, %Y')(new Date(sideBar.get('posted_date'))) : 'June 30 - July 31, 2013',
+        tweets: sideBar.get('tweets'),
+        totalTweets: sideBar.get('total')
+      };
     }
   });
   var totalTweetsView = new TimeSeriesView({
@@ -174,5 +182,13 @@
 
   $('body').on('click', '.topic-cluster', function() {
     delete $('.topic-cluster')[0].dataset.selected;
+  });
+
+  $('body').on('click', '.detail', function(e) {
+    sideBar.set('posted_date', $(e.currentTarget).find('[data-posted-date]').data('posted-date'));
+  });
+
+  sideBar.on('change:posted_date change:sentiment', function() {
+    sideBar.fetch();
   });
 })();
