@@ -15,7 +15,7 @@ def getMultiSeriesSentimentSQl(search_term):
           from
           (
                select tweet_id,
-                      postedtime::date as posted_date,
+                      (postedtime at time zone 'UTC')::date as posted_date,
                       case when median_sentiment_index > 1 then 1 else 0 end as positive,
                       case when median_sentiment_index < -1 then 1 else 0 end as negative,
                       case when median_sentiment_index between -1 and 1 then 1 else 0 end as neutral

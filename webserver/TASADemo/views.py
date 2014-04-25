@@ -22,7 +22,7 @@ def relevant_tweets(request):
     sentiment = request.REQUEST.get(SENTIMENT)
 
     if timestamp:
-        timestamp = datetime.date.fromtimestamp(int(timestamp) / 1000)
+        timestamp = datetime.datetime.utcfromtimestamp(int(timestamp) / 1000)
         min_timestamp = timestamp.strftime('%Y-%m-%dT%H:%M:%SZ')
         max_timestamp = (timestamp + datetime.timedelta(days=1)).strftime('%Y-%m-%dT%H:%M:%SZ')
 

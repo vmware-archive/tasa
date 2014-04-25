@@ -8,12 +8,12 @@ def numTweetsByDate(search_term, suffix_id):
         Return the number of tweets matching the search term for each date
     '''
     sql = '''
-          select posted_date, 
-                 count(id) as num_tweets 
+          select posted_date,
+                 count(id) as num_tweets
           from
           (
               select match.id,
-                     master.postedtime::date as posted_date
+                     (master.postedtime at time zone 'UTC')::date as posted_date
               from
               (
                   select id, 
@@ -30,5 +30,3 @@ def numTweetsByDate(search_term, suffix_id):
           group by posted_date
     '''
     return sql.format(search_term=search_term)
-
-

@@ -12,7 +12,7 @@ feature 'Application' do
     page.find('.query-input').native.send_keys(:return)
 
     expect(page).to have_no_css('.ball')
-    expect(page).to have_content('Tweets from June 30 - July 31 of 2013')
+    expect(page).to have_content('Tweets from July 1 - 31 of 2013')
 
     actual = page.evaluate_script <<-JS
       _.map(d3.select('.total-tweets .graph path').data()[0], function(point) {

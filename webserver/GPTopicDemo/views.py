@@ -4,7 +4,7 @@ from django.views.decorators.csrf import csrf_exempt
 from pkg_resources import resource_string
 from webserver.settings import MEDIA_ROOT
 import psycopg2
-import os,json,time
+import os,json,time,datetime,calendar
 from operator import itemgetter
 #Webserver module imports
 from webserver.common.dbconnector import DBConnect
@@ -17,7 +17,7 @@ NUM_TOPICS = 'num_topics'
 TOPIC_HTML_FORM = resource_string('webserver.common.resources.html','topic_input_page.html').encode('utf-8')
 
 conn = DBConnect()
-	
+
 @csrf_exempt
 def topic_home(request):
     '''Handles request that comes from a webpage (where a form is displayed for the user to enter the opinion string'''
@@ -32,8 +32,7 @@ def tweets_over_time(request):
     executionStatus, rows = conn.fetchRows(sql)
     dt_count_lst = [(r.get('posted_date'),r.get('num_tweets')) for r in rows]
     dt_count_lst = sorted(dt_count_lst,key=itemgetter(0),reverse=True)
-    dt_count_dict = {'tseries':[{'posted_date':str(elem[0]),'num_tweets':elem[1]} for elem in dt_count_lst]}
-    
+    dt_count_dict = {'tseries':[{'posted_date':calendar.timegm(elem[0].timetuple())*1000,'num_tweets':elem[1]} for elem in dt_count_lst]}
     print 'dt_count_lst:\n','\n'.join(['\t'.join([str(elem[0]),str(elem[1])]) for elem in dt_count_lst])
     return HttpResponse(json.dumps(dt_count_dict),content_type='application/json')
 

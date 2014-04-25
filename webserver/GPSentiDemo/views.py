@@ -6,7 +6,7 @@ from webserver.settings import MEDIA_ROOT
 from pkg_resources import resource_string
 #Python std lib imports
 import psycopg2
-import os, time, json
+import os, time, json, datetime, calendar
 from operator import itemgetter
 #Webserver related imports
 from webserver.common.dbconnector import DBConnect
@@ -16,7 +16,7 @@ SEARCH_TERM = 'sr_trm'
 SENTI_HTML_FORM = resource_string('webserver.common.resources.html','sentiment_input_page.html').encode('utf-8')
 
 conn = DBConnect()
-	
+
 @csrf_exempt
 def senti_home(request):
     '''Handles request that comes from a webpage (where a form is displayed for the user to enter the opinion string'''
@@ -30,7 +30,7 @@ def multi_series_sentiment_plot(request):
     executionStatus, rows = conn.fetchRows(sql)  
     dt_count_lst = [(r.get('posted_date'),r.get('positive_count'), r.get('negative_count'), r.get('neutral_count')) for r in rows]
     dt_count_lst = sorted(dt_count_lst,key=itemgetter(0),reverse=False)
-    dt_count_dict = {'multi_series':[{'posted_date':str(elem[0]),'positive_count':elem[1], 'negative_count':elem[2], 'neutral_count':elem[3]} for elem in dt_count_lst]}    
+    dt_count_dict = {'multi_series':[{'posted_date':calendar.timegm(elem[0].timetuple())*1000,'positive_count':elem[1], 'negative_count':elem[2], 'neutral_count':elem[3]} for elem in dt_count_lst]}
     print 'dt_count_lst:\n','\n'.join(['\t'.join([str(elem[0]),str(elem[1]), str(elem[2]), str(elem[3])]) for elem in dt_count_lst])
 
     return HttpResponse(json.dumps(dt_count_dict),content_type='application/json')    

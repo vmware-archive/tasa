@@ -117,7 +117,7 @@
     model: sideBar,
     decorator: function() {
       return _.extend(this.model.toJSON(), {
-        date: sideBar.has('posted_date') ? d3.time.format.utc('%B %d, %Y')(new Date(sideBar.get('posted_date'))) : 'June 30 - July 31, 2013'
+        date: sideBar.has('posted_date') ? d3.time.format.utc('%B %d, %Y')(new Date(sideBar.get('posted_date'))) : 'July 1 - 31, 2013'
       });
     }
   });
