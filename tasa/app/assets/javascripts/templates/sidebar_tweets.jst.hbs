@@ -1,7 +1,11 @@
 {{#if sentiment}}
   <h2>Sentiment Mapping</h2>
 {{else}}
-  <h2>Top 20 Tweets</h2>
+  {{#if adjective}}
+    <h2>Adjectives</h2>
+  {{else}}
+    <h2>Top 20 Tweets</h2>
+  {{/if}}
 {{/if}}
 
 
@@ -23,9 +27,8 @@
   <div class="de-emphasize drilldown-info">{{total}} Total Tweets </div>
 </div>
 
-{{#if sentiment}}
-  <h3 class="sentiment-title {{sentiment}}">top 20 {{sentiment}} tweets</h3>
-{{/if}}
+{{#if sentiment}}<h3 class="sidebar-subtitle {{sentiment}}">top 20 {{sentiment}} tweets</h3>{{/if}}
+{{#if adjective}}<h3 class="sidebar-subtitle {{adjective}}">top 20 {{adjective}} tweets</h3>{{/if}}
 <ol>
   {{#tweets}}
     <li class="sidebar-tweet">

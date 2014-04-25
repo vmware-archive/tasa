@@ -42,6 +42,7 @@
                   .attr('class', function(d) { return 't' + d.topic; })
                   .style('font-size', function(d) { return d.size + 'px'; })
                   .attr('transform', function(d) { return 'translate(' + [d.x, d.y] + ')'; })
+                  .attr('data-adjective', function(d) { return d.text; })
                   .text(function(d) { return d.text; })
           ;
         })

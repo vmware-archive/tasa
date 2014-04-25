@@ -36,6 +36,7 @@
        url: function() {
          return '/gp/tasa/relevant_tweets/?' + $.param({
            sr_trm: query.get('query'),
+           sr_adj: this.get('adjective'),
            ts: this.get('posted_date'),
            snt: this.get('sentiment')
          });
@@ -186,10 +187,11 @@
     delete $('.topic-cluster')[0].dataset.selected;
   });
 
-  $('body').on('click', '.detail', function(e) {
+  $('body').on('click', '.detail, .tag-cloud text', function(e) {
     sideBar.set({
       posted_date: $(e.currentTarget).find('[data-posted-date]').data('posted-date'),
-      sentiment: $(e.currentTarget).find('[data-sentiment]').data('sentiment')
+      sentiment: $(e.currentTarget).find('[data-sentiment]').data('sentiment'),
+      adjective: $(e.currentTarget).data('adjective')
     });
   });
 

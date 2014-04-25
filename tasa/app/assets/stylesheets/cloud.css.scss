@@ -3,3 +3,8 @@
   opacity: .8;
   text-anchor: middle;
 }
+
+.tag-cloud text {
+  cursor: pointer;
+  -webkit-user-select: none;
+}

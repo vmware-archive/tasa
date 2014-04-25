@@ -10,6 +10,7 @@ from webserver.common.dbconnector import DBConnect
 from webserver.TASADemo.tasa_sql_templates import *
 
 SEARCH_TERM = 'sr_trm'
+SEARCH_ADJECTIVE = 'sr_adj'
 TIMESTAMP = 'ts'
 SENTIMENT = 'snt'
 
@@ -18,8 +19,12 @@ conn = DBConnect()
 @csrf_exempt
 def relevant_tweets(request):
     search_term = request.REQUEST.get(SEARCH_TERM)
+    search_adjective = request.REQUEST.get(SEARCH_ADJECTIVE)
     timestamp = request.REQUEST.get(TIMESTAMP)
     sentiment = request.REQUEST.get(SENTIMENT)
+
+    if search_adjective:
+        search_term = '(%s AND %s)' % (search_term, search_adjective)
 
     if timestamp:
         timestamp = datetime.datetime.utcfromtimestamp(int(timestamp) / 1000)
