@@ -1,14 +1,4 @@
-{{#if sentiment}}
-  <h2>Sentiment Mapping</h2>
-{{else}}
-  {{#if adjective}}
-    <h2>Adjectives</h2>
-  {{else}}
-    <h2>Top 20 Tweets</h2>
-  {{/if}}
-{{/if}}
-
-
+<h2>{{title}}</h2>
 <div class='drilldown-overview'>
   <div class="de-emphasize drilldown-info">{{date}}</div>
   {{#if sentiment}}
@@ -27,8 +17,7 @@
   <div class="de-emphasize drilldown-info">{{total}} Total Tweets </div>
 </div>
 
-{{#if sentiment}}<h3 class="sidebar-subtitle {{sentiment}}">top 20 {{sentiment}} tweets</h3>{{/if}}
-{{#if adjective}}<h3 class="sidebar-subtitle {{adjective}}">top 20 {{adjective}} tweets</h3>{{/if}}
+{{#type}}<h3 class="sidebar-subtitle {{.}}">top 20 {{.}} tweets</h3>{{/type}}
 <ol>
   {{#tweets}}
     <li class="sidebar-tweet">

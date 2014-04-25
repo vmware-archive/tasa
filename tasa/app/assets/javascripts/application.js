@@ -118,7 +118,12 @@
     model: sideBar,
     decorator: function() {
       return _.extend(this.model.toJSON(), {
-        date: sideBar.has('posted_date') ? d3.time.format.utc('%B %d, %Y')(new Date(sideBar.get('posted_date'))) : 'July 1 - 31, 2013'
+        date: sideBar.has('posted_date') && d3.time.format.utc('%B %d, %Y')(new Date(sideBar.get('posted_date'))) ||
+              'July 1 - 31, 2013',
+        title: this.model.has('sentiment') && 'Sentiment Mapping' ||
+               this.model.has('adjective') && 'Adjectives' ||
+               'Top 20 Tweets',
+        type: this.model.get('sentiment') || this.model.get('adjective')
       });
     }
   });
