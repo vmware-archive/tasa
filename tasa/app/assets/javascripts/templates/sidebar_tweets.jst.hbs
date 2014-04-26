@@ -17,7 +17,7 @@
   <div class="de-emphasize drilldown-info">{{total}} Total Tweets </div>
 </div>
 
-{{#type}}<h3 class="sidebar-subtitle {{.}}">top 20 {{.}} tweets</h3>{{/type}}
+{{#if subtitle}}<h3 class="sidebar-subtitle {{sentiment}}">{{subtitle}}</h3>{{/if}}
 <ol>
   {{#tweets}}
     <li class="sidebar-tweet">

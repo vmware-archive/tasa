@@ -73,6 +73,7 @@
 
 .ch-tooltip {
   width: inherit;
+  font-size: 18px;
 }
 
 .cal-heatmap-container {
@@ -83,34 +84,41 @@
   shape-rendering: auto;
 }
 
+$q1-color: base-color(.1);
+$q2-color: #606171;
+$q3-color: #848583;
+$q4-color: #a6a68c;
+$q5-color: #c5c78d;
+$q6-color: #e5e584;
+
 .q1 {
-  background-color: base-color(.1);
-  fill: base-color(.1);
+  background-color: $q1-color;
+  fill: $q1-color;
 }
 
 .q2 {
-  background-color: #dae289;
-  fill: #dae289;
+  background-color: $q2-color;
+  fill: $q2-color;
 }
 
 .q3 {
-  background-color: #9cc069;
-  fill: #9cc069;
+  background-color: $q3-color;
+  fill: $q3-color;
 }
 
 .q4 {
-  background-color: #669d45;
-  fill: #669d45;
+  background-color: $q4-color;
+  fill: $q4-color;
 }
 
 .q5 {
-  background-color: #637939;
-  fill: #637939;
+  background-color: $q5-color;
+  fill: $q5-color;
 }
 
 .q6 {
-  background-color: #3b6427;
-  fill: #3b6427;
+  background-color: $q6-color;
+  fill: $q6-color;
 }
 
 .heatmap-legend {

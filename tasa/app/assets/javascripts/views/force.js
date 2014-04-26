@@ -40,14 +40,23 @@
         .append('line')
           .attr('class', 'link');
 
+      var color = d3svg.selectAll('.color')
+        .data(data.nodes).enter()
+        .append('circle')
+        .attr('class', function(d) { return 'color t' + d.group; })
+        .attr('r', 3)
+      ;
       var node = d3svg.selectAll('.node')
         .data(data.nodes).enter()
         .append('circle')
-          .attr('class', function(d) { return 'node t' + d.group; })
-          .attr('r', 5)
-          .attr('title', function(d) { return d.name; })
-          .attr('data-toggle', 'tooltip')
-        ;
+        .attr('class', function(d) { return 'node'; })
+        .attr('fill', 'transparent')
+        .attr('r', 6)
+        .attr('data-toggle', 'tooltip')
+        .attr('title', function(d) { return d.name; })
+        .attr('data-topic', function(d) { return d.group })
+      ;
+
 
       force.start();
       _.times(300, force.tick);
@@ -61,6 +70,10 @@
       ;
 
       node
+        .attr('cx', function(d) { return d.x; })
+        .attr('cy', function(d) { return d.y; })
+      ;
+      color
         .attr('cx', function(d) { return d.x; })
         .attr('cy', function(d) { return d.y; })
       ;

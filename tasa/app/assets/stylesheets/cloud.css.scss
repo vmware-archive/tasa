@@ -1,7 +1,10 @@
 .tag-cloud {
   fill: base-color();
-  opacity: .8;
   text-anchor: middle;
+}
+
+.adjectives .tag-cloud {
+  opacity: .8;
 }
 
 .tag-cloud text {

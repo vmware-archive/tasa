@@ -50,6 +50,8 @@ GEM
     erubis (2.7.0)
     execjs (2.0.2)
     ffi (1.9.3)
+    font-awesome-rails (4.0.3.2)
+      railties (>= 3.2, < 5.0)
     handlebars_assets (0.15)
       execjs (>= 1.2.9)
       multi_json
@@ -192,6 +194,7 @@ DEPENDENCIES
   cal-heatmap-rails
   capybara
   database_cleaner
+  font-awesome-rails
   handlebars_assets
   jasmine-jquery-rails
   jasmine-rails

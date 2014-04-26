@@ -28,7 +28,7 @@
       parse: function(response) { return response.tseries; },
       toJSON: function() {
         return [
-          {name: 'Tweets', data: this.map(function(model, i) { return _.extend(model.toJSON(), {x: i}); }), color: '#fff'}
+          {name: 'Tweets', data: this.map(function(model, i) { return _.extend(model.toJSON(), {x: i}); }), color: 'rgba(234, 239, 235, .8)'}
         ];
       }
     }))(),
@@ -70,9 +70,9 @@
       parse: function(response) { return response.multi_series; },
       toJSON: function() {
         return [
-          {name: 'Positive tweets', data: this.map(function(model, i){ return {posted_date: model.get('posted_date'), x: i, y: model.get('positive_count')}}), color: '#d9e021'},
-          {name: 'Negative tweets', data: this.map(function(model, i){ return {posted_date: model.get('posted_date'), x: i, y: model.get('negative_count')}}), color: '#e74d00'},
-          {name: 'Neutral tweets', data: this.map(function(model, i){ return {posted_date: model.get('posted_date'), x: i, y: model.get('neutral_count')}}), color: 'rgba(255, 255, 255, 0.3)'}
+          {name: 'Positive tweets', data: this.map(function(model, i){ return {posted_date: model.get('posted_date'), x: i, y: model.get('positive_count')}}), color: '#80a55d'},
+          {name: 'Negative tweets', data: this.map(function(model, i){ return {posted_date: model.get('posted_date'), x: i, y: model.get('negative_count')}}), color: '#ce522c'},
+          {name: 'Neutral tweets', data: this.map(function(model, i){ return {posted_date: model.get('posted_date'), x: i, y: model.get('neutral_count')}}), color: 'rgba(234, 239, 235, .3)'}
         ];
       }
     }))(),
@@ -95,7 +95,7 @@
       parse: function(response) { return response.adjective_cloud; },
       comparator: 'normalized_frequency',
       toJSON: function() {
-        return _.invoke(this.last(100), 'toJSON');
+        return _.invoke(this.last(64), 'toJSON');
       }
      }))(),
     heatmap = new (Backbone.Collection.extend({
@@ -120,10 +120,12 @@
       return _.extend(this.model.toJSON(), {
         date: sideBar.has('posted_date') && d3.time.format.utc('%B %d, %Y')(new Date(sideBar.get('posted_date'))) ||
               'July 1 - 31, 2013',
-        title: this.model.has('sentiment') && 'Sentiment Mapping' ||
-               this.model.has('adjective') && 'Adjectives' ||
+        title: this.model.get('sentiment') && 'Sentiment Mapping' ||
+               this.model.get('adjective') && 'Adjectives' ||
                'Top 20 Tweets',
-        type: this.model.get('sentiment') || this.model.get('adjective')
+        subtitle: this.model.get('sentiment') && 'Top 20 ' + this.model.get('sentiment') + ' tweets' ||
+                  this.model.get('adjective') && 'Top 20 tweets for "' + this.model.get('adjective') + '"' ||
+                  ''
       });
     }
   });
@@ -183,8 +185,8 @@
     _.invoke([totalTweets, sideBar, sentiment, heatmap, adjectives, force], 'fetch', {reset: true});
   });
 
-  $('body').on('click', '.t1,.t2,.t3', function(e) {
-    $('.topic-cluster')[0].dataset.selected = _.find(e.target.classList, function(className) { return className.match(/^t\d+$/); });
+  $('body').on('click', '[data-topic]', function(e) {
+    $('.topic-cluster')[0].dataset.selected = $(e.currentTarget).data('topic');
     e.stopPropagation();
   });
 

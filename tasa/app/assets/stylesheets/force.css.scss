@@ -7,19 +7,23 @@
   cursor: pointer;
 }
 
+$t1-color: #d33a34;
+$t2-color: #6ac356;
+$t3-color: #009bd5;
+
 .t1 {
-  background-color: red;
-  fill: red;
+  background-color: $t1-color;
+  fill: $t1-color;
 }
 
 .t2 {
-  background-color: green;
-  fill: green;
+  background-color: $t2-color;
+  fill: $t2-color;
 }
 
 .t3 {
-  background-color: blue;
-  fill: blue;
+  background-color: $t3-color;
+  fill: $t3-color;
 }
 
 .force-legend {
@@ -36,6 +40,16 @@
 
 .tooltip {
   margin-left: 4px;
+  .tooltip-inner {
+    @extend .fa;
+    @extend .fa-twitter;
+    color: #bbb;
+    font-size: 16px;
+    &:before {
+      color: #55acee;
+      margin-right: 5px;
+    }
+  }
 }
 
 .topic-cluster {
@@ -44,7 +58,7 @@
       opacity: 0.3;
     }
   }
-  &[data-selected="t1"] .t1, &[data-selected="t2"] .t2, &[data-selected="t3"] .t3 {
+  &[data-selected="1"] .t1, &[data-selected="2"] .t2, &[data-selected="3"] .t3 {
     opacity: 1;
   }
 }

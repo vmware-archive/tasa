@@ -32,15 +32,16 @@
   }
 }
 
+@import 'font-awesome';
+@import 'bootstrap/variables';
+@import 'bootstrap/mixins';
+@import 'bootstrap/tooltip';
+
 @import 'graph';
 @import 'cloud';
 @import 'heatmap';
 @import 'force';
 @import 'loader';
-
-@import 'bootstrap/variables';
-@import 'bootstrap/mixins';
-@import 'bootstrap/tooltip';
 
 @font-face {
   font-family: 'Open Sans';
@@ -55,6 +56,11 @@
 @font-face {
   font-family: 'Open Sans Condensed';
   src: font-url('open-sans-condensed/OpenSans-CondBold.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Open Sans Condensed Light';
+  src: font-url('open-sans-condensed/OpenSans-CondLight.ttf') format('truetype');
 }
 
 * {
@@ -202,13 +208,13 @@ h2 {
 
 .graphs {
   @extend %show-only-with-query;
-  padding: 0 25px 0 35px;
+  padding: 0 65px;
   min-height: 200vh;
   box-sizing: border-box;
   width: 80%;
 
   > article + article {
-    margin-top: 40px;
+    margin-top: 150px;
   }
 }
 
@@ -217,7 +223,7 @@ h2 {
 }
 
 .tag-cloud {
-  min-height: 400px;
+  min-height: 300px;
 }
 
 .heatmap-content {
@@ -230,6 +236,11 @@ h2 {
     vertical-align: middle;
     width: 50%;
   }
+
+  .tag-cloud {
+    width: 30%;
+    margin: 0 10%;
+  }
 }
 
 .drilldown {
@@ -238,6 +249,9 @@ h2 {
   position: absolute;
   top: 0;
   right: 0;
+  height: 500px;
+  overflow-y: auto;
+
   width: 20%;
   margin-top: -77px;
   padding-top: 77px;
@@ -245,9 +259,11 @@ h2 {
   &.sticky {
     position: fixed;
     top: 77px;
-    bottom: 0;
-    overflow-y: auto;
     padding-bottom: 100px;
+  }
+
+  h2 {
+    font-size: 18px;
   }
 
   ol {
@@ -258,6 +274,10 @@ h2 {
 
   .sidebar-tweet {
     margin-top: 10px;
+    opacity: 0.6;
+    &:hover {
+      opacity: 1;
+    }
   }
 
   color: base-color();
@@ -319,8 +339,8 @@ h2 {
   }
 }
 
-$positive-color: #d9e021;
-$negative-color: #e74d00;
+$positive-color: #80a55d;
+$negative-color: #ce522c;
 $neutral-color: rgba(255, 255, 255, 0.3);
 
 .positive-proportion {
@@ -333,6 +353,12 @@ $neutral-color: rgba(255, 255, 255, 0.3);
   background-color: $neutral-color;
 }
 
+.sidebar-subtitle {
+  margin: 0;
+  text-transform: capitalize;
+  color: base-color(0.8);
+}
+
 .positive {
   color: $positive-color;
 }
@@ -343,9 +369,4 @@ $neutral-color: rgba(255, 255, 255, 0.3);
 
 .neutral {
   color: $neutral-color;
-}
-
-.sidebar-subtitle {
-  margin: 0;
-  text-transform: capitalize
 }

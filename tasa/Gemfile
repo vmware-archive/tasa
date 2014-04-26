@@ -14,6 +14,7 @@ gem 'backbone-rails'
 gem 'rickshaw_rails'
 gem 'cal-heatmap-rails'
 gem 'bootstrap-sass'
+gem 'font-awesome-rails'
 
 gem 'sass-rails', '>= 4.0.3'
 
