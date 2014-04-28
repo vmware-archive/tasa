@@ -594,3 +594,83 @@ def getCleanUpQuery(suffix_id,num_topics):
            drop table if exists topicdemo.twitter_wm_lda_{num_topics}_nodes_with_centroids_{suffix_id};
      '''
      return sql.format(suffix_id=suffix_id,num_topics=num_topics)
+
+def getTweetIdToBodyDictQuery(search_term):
+    '''
+        Provide drill-down capabilities for the topic cloud
+    '''
+    tweetid_to_body_dict_sql = '''
+        	select relevant.id,
+                   relevant.score,
+        	       master.body
+        	from
+        	(
+        		select s.id,
+        		       s.score
+        		from gptext.search(
+        		   TABLE(select * from topicdemo.tweet_dataset),
+        		   'vatsandb.topicdemo.tweet_dataset',
+        		   '{search_term}',
+        		   null
+        		) s
+        		order by score desc
+        		limit {relevant_rows_limit}
+        	) relevant,
+        	topicdemo.tweet_dataset master
+        	where relevant.id = master.id
+    '''
+    return tweetid_to_body_dict_sql.format(search_term=search_term, relevant_rows_limit=relevant_rows_limit)
+
+def getTopicDrilldownDictQuery(search_term, suffix_id, num_topics):
+    '''
+       Provide drill down capability by returning [word, topic_num, tweet_id] tuples
+    '''
+    topic_drilldown_query = '''
+        	with tweetid_to_body_map
+        	as
+        	(
+        		select relevant.id,
+        		       relevant.score,
+        		       master.body
+        		from
+        		(
+        			select s.id,
+        			       s.score
+        			from gptext.search(
+        			   TABLE(select * from topicdemo.tweet_dataset),
+        			   'vatsandb.topicdemo.tweet_dataset',
+        			   '{search_term}',
+        			   null
+        			) s
+        			order by score desc
+        			limit {relevant_rows_limit}
+        		) relevant,
+        		topicdemo.tweet_dataset master
+        		where relevant.id = master.id
+        	)
+        	select word,
+        	       topic_num,
+        	       id,
+                   rank
+        	from
+        	(
+        		select t2.term as word,
+        		       t1.topic_num,
+        		       t1.id,
+        		       rank() over(partition by t2.term, t1.topic_num order by t3.score desc)
+        		from
+        		(
+        		       select id,
+        			          unnest((topics).topics) as topic_num,
+        			          unnest(contents) as word_int
+        		       from topicdemo.twitter_wm_lda_mdl_{num_topics}topics_result_{suffix_id}
+        		) t1,
+        		topicdemo.tweet_dataset_terms_lookup_{suffix_id} t2,
+        		tweetid_to_body_map t3
+        		where t1.word_int = t2.idx and
+        		      t1.id = t3.id
+        	) tbl
+        	where rank < 20
+            order by word, topic_num, rank
+    '''
+    return topic_drilldown_query.format(search_term=search_term, num_topics=num_topics, suffix_id=suffix_id, relevant_rows_limit=relevant_rows_limit)

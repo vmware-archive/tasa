@@ -183,13 +183,19 @@ def topicDashboardGenerator(search_term,suffix_id, num_topics):
 
     topic_cloud_dict = createTopicCloudDict(fetchTopicResultsList(suffix_id, num_topics))
 
-    #7) Clean-up
+    #7) Topic Drill Down
+    tweetid_to_body_dict, topic_drilldown_dict = getTopicCloudDrillDown(search_term, suffix_id, num_topics)
+
+
+    #8) Clean-up
     cleanUp(suffix_id,num_topics)
 
     topics_response_dict = {
                             "topic_graph":topic_graph,
                             "topic_cloud_d3":topic_cloud_dict,
-                            "topic_cloud_d3_table":createTopicCloudTableD3(topic_cloud_dict,topic_dict)
+                            "topic_cloud_d3_table":createTopicCloudTableD3(topic_cloud_dict,topic_dict),
+                            "tweetid_to_body_dict":tweetid_to_body_dict,
+                            "topic_drilldown_dict":topic_drilldown_dict
                            }
 
     return HttpResponse(json.dumps(topics_response_dict),content_type='application/json')
@@ -273,3 +279,43 @@ def unexpectedErrorMessage(msg):
                 </div>
     '''.format(msg)
     return HttpResponse(uError)
+
+def getTopicCloudDrillDown(search_term, suffix_id, num_topics):
+    '''
+        Provide drill-down capabilities for the topic cloud
+    '''
+    topic_drilldown_dict = {}
+    tweetid_to_body_dict = {}
+
+    #Step-1: Construct a tweetid_to_tweet_body dict, which holds the values for the top-1000 tweets for the given search term.
+    executionStatus, rows = conn.fetchRows(getTweetIdToBodyDictQuery(search_term))
+    if(executionStatus):
+        print 'Execution Status: ',executionStatus
+        cleanUp(suffix_id,num_topics)
+        return unexpectedErrorMessage(executionStatus)
+
+    for r in rows:
+        tweetid_to_body_dict[r.get('id')]={'score':r.get('score'),'body':r.get('body')}
+
+    #Step-2: Return dict of the form {word: {topic_num: [tweetid_rank1, tweetid_rank2, ...]}}
+    executionStatus, rows = conn.fetchRows(getTopicDrilldownDictQuery(search_term, suffix_id, num_topics))
+    if(executionStatus):
+        print 'Execution Status: ',executionStatus
+        cleanUp(suffix_id,num_topics)
+        return unexpectedErrorMessage(executionStatus)
+
+    for r in rows:
+        #Each row is a tuple of the form ['word','topic_num','id','rank']
+        word = r.get('word')
+        topic_num = r.get('topic_num')
+        id = r.get('id')
+        rank = r.get('rank')
+        if(topic_drilldown_dict.has_key(word)):
+            if(topic_drilldown_dict[word].has_key(topic_num)):
+                topic_drilldown_dict[word][topic_num].append(id)
+            else:
+                topic_drilldown_dict[word][topic_num]=[id]
+        else:
+            topic_drilldown_dict[word]={topic_num:[id]}
+
+    return (tweetid_to_body_dict, topic_drilldown_dict)
