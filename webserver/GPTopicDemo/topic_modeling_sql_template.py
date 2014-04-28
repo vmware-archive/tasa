@@ -602,7 +602,8 @@ def getTweetIdToBodyDictQuery(search_term):
     tweetid_to_body_dict_sql = '''
         	select relevant.id,
                    relevant.score,
-        	       master.body
+        	       master.body,
+        	       actor.preferredusername
         	from
         	(
         		select s.id,
@@ -616,8 +617,9 @@ def getTweetIdToBodyDictQuery(search_term):
         		order by score desc
         		limit {relevant_rows_limit}
         	) relevant,
-        	topicdemo.tweet_dataset master
-        	where relevant.id = master.id
+        	topicdemo.tweet_dataset master,
+        	sentimentdemo.actor_info actor
+        	WHERE relevant.id = master.id AND master.tweet_id = actor.tweet_id
     '''
     return tweetid_to_body_dict_sql.format(search_term=search_term, relevant_rows_limit=relevant_rows_limit)
 

@@ -295,7 +295,7 @@ def getTopicCloudDrillDown(search_term, suffix_id, num_topics):
         return unexpectedErrorMessage(executionStatus)
 
     for r in rows:
-        tweetid_to_body_dict[r.get('id')]={'score':r.get('score'),'body':r.get('body')}
+        tweetid_to_body_dict[r.get('id')]={'score':r.get('score'),'text':r.get('body'), 'username':r.get('preferredusername')}
 
     #Step-2: Return dict of the form {word: {topic_num: [tweetid_rank1, tweetid_rank2, ...]}}
     executionStatus, rows = conn.fetchRows(getTopicDrilldownDictQuery(search_term, suffix_id, num_topics))

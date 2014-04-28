@@ -84,7 +84,10 @@
           _.each(data, function(word) { word.topic = topic; });
           return data;
         }));
-        return _.extend(JSON.parse(response.topic_graph), {cloud: cloud});
+        return _.extend(JSON.parse(response.topic_graph), {
+          cloud: cloud,
+          tweets: response.tweetid_to_body_dict,
+          topic_words: response.topic_drilldown_dict});
       },
       toJSON: function() {
         return this.get('cloud');
@@ -202,12 +205,23 @@
     sideBar.set({
       posted_date: $(e.currentTarget).find('[data-posted-date]').data('posted-date'),
       sentiment: $(e.currentTarget).find('[data-sentiment]').data('sentiment'),
-      adjective: $(e.currentTarget).data('adjective')
+      adjective: $(e.currentTarget).data('adjective'),
+      topic: $(e.currentTarget).data('topic')
     });
   });
 
   sideBar.on('change', function(sideBar, options) {
     if (options.xhr) { return; }
-    sideBar.fetch();
+
+    if (sideBar.get('adjective') && sideBar.get('topic')) {
+      var ids = _.result(force.get('topic_words')[sideBar.get('adjective')], sideBar.get('topic')) || [];
+      sideBar.set({
+        tweets: _.values(_.pick(force.get('tweets'), ids)),
+        counts: {total: ids.length}
+      });
+      sideBar.trigger('sync');
+    } else {
+      sideBar.fetch();
+    }
   });
 })();
