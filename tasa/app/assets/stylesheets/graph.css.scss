@@ -162,3 +162,11 @@ line {
     }
   }
 }
+
+.weekend {
+  fill: base-color(.1);
+  text {
+    fill: base-color(.4);
+    font-size: 11px;
+  }
+}
