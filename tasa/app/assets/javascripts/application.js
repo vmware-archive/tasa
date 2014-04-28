@@ -187,9 +187,12 @@
     });
   });
 
+  var xhrRequests;
   query.on('change:query', function(query, value) {
+    _.invoke(xhrRequests, 'abort');
+    sideBar.clear({silent: true});
     $('body').toggleClass('has-query', Boolean(value));
-    _.invoke([totalTweets, sideBar, sentiment, heatmap, adjectives, force], 'fetch', {reset: true});
+    xhrRequests = _.invoke([totalTweets, sideBar, sentiment, heatmap, adjectives, force], 'fetch', {reset: true});
   });
 
   $('body').on('click', '[data-topic]', function(e) {
