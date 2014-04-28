@@ -38,13 +38,12 @@ $t3-color: #009bd5;
   }
 }
 
-.tooltip {
-  margin-left: 4px;
+.force-tooltip {
+  margin-left: 5px;
+  margin-top: 2px;
   .tooltip-inner {
     @extend .fa;
     @extend .fa-twitter;
-    color: #bbb;
-    font-size: 16px;
     &:before {
       color: #55acee;
       margin-right: 5px;

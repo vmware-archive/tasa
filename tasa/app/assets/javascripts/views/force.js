@@ -78,7 +78,10 @@
         .attr('cy', function(d) { return d.y; })
       ;
 
-      this.$('circle.node').tooltip({container: 'body', placement: 'top'});
+      this.$('circle.node')
+        .tooltip({container: 'body', placement: 'top'})
+        .on('shown.bs.tooltip', function() { $('.tooltip').addClass('force-tooltip'); })
+      ;
     }
   });
 })();

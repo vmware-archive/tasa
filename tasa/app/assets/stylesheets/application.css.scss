@@ -104,6 +104,11 @@ body {
   stroke: rgba(255, 255, 255, 0.25);
 }
 
+.tooltip {
+  color: #bbb;
+  font-size: 16px;
+}
+
 h2 {
   color: $chart-title-color;
   font-size: 25px;

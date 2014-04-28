@@ -7,6 +7,7 @@
       if (options.loading) { return; }
 
       var
+        self = this,
         data = this.model.toJSON(),
         width = this.$el.width(),
         height = 300
@@ -16,7 +17,7 @@
         word.text = word.word
           .replace(/[!"&()*+,-\.\/:;<=>?\[\\\]^`\{|\}~]+/g, "")
           .replace(/[\s\u3031-\u3035\u309b\u309c\u30a0\u30fc\uff70]+/g, "");
-      }, this);
+      });
 
       var el = this.el,
           frequencies = _.pluck(data, 'normalized_frequency'),
@@ -46,11 +47,21 @@
                   .attr('transform', function(d) { return 'translate(' + [d.x, d.y] + ')'; })
                   .attr('data-topic', function(d) { return d.topic; })
                   .attr('data-adjective', function(d) { return d.text; })
+                  .attr('data-toggle', 'tooltip')
+                  .attr('title', function(d) {
+                    var total = _.reduce(_.pluck(data, 'normalized_frequency'), function(sum, freq){return sum+freq;}, 0);
+                    return 'Used in ' + (100 * d.normalized_frequency / total).toFixed(2) + '% of tweets';
+                  })
                   .append('tspan')
                     .style('font-size', function(d) { return d.size + 'px'; })
                     .style('font-family', 'Open Sans')
                     .style('opacity', function(d) { return Math.sqrt(d.normalized_frequency); })
                     .text(function(d) { return d.text; })
+          ;
+
+          self.$('text')
+            .tooltip({container: 'body', placement: 'top'})
+            .on('shown.bs.tooltip', function() { $('.tooltip').addClass('cloud-tooltip'); })
           ;
         })
         .start();
