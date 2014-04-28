@@ -127,6 +127,10 @@
                   this.model.get('adjective') && 'Top 20 tweets for "' + this.model.get('adjective') + '"' ||
                   ''
       });
+    },
+    render: function() {
+      SpinnerView.prototype.render.apply(this, arguments);
+      this.$el.parent().scrollTop(0);
     }
   });
   var totalTweetsView = new TimeSeriesView({
