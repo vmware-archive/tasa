@@ -56,7 +56,7 @@ def tweets(request):
     _, tweet_ids_by_date = conn.fetchRows(getTopTweetIdsSQL(search_term))
     _, tweets_by_id = conn.fetchRows(getTopTweetDataSQL(search_term))
 
-    tweet_ids_by_date = dict([(str(calendar.timegm(r.get('posted_date').timetuple()) * 1000), r.get('id_arr')) for r in tweet_ids_by_date])
+    tweet_ids_by_date = dict([(str(calendar.timegm(r.get('posted_date').timetuple()) * 1000), r.get('tweet_ids')) for r in tweet_ids_by_date])
     tweets_by_id = dict([(str(r.get('id')), {'username': r.get('preferredusername'), 'text': r.get('body')}) for r in tweets_by_id])
 
     return HttpResponse(json.dumps({'tweet_ids_by_date': tweet_ids_by_date, 'tweets_by_id': tweets_by_id}), content_type='application/json')

@@ -40,27 +40,24 @@ def getTop20RelevantTweetsSQL(search_term):
 
 def getTopTweetIdsSQL(search_term):
     return '''
-    	select posted_date,
-    	       array_agg(id order by rank) as id_arr
-    	from
-    	(
-    	      select t1.id,
-    	             t1.score,
-    		     t2.postedtime::date as posted_date,
-    		     rank() over (partition by (t2.postedtime at time zone 'UTC')::date order by t1.score desc) as rank
-    	      from gptext.search(
-    		     TABLE(select * from topicdemo.tweet_dataset),
-    		     'vatsandb.topicdemo.tweet_dataset',
-    		     '{search_term}',
-    		     null
-    		   ) t1,
-    		   topicdemo.tweet_dataset t2
-    		   where t1.id = t2.id
-    	)q
-    	where rank < 20
-    	group by posted_date
+        select posted_date, array_agg(id) as tweet_ids
+        from (
+            select t1.id,
+                   t1.score,
+                   (t2.postedtime at time zone 'UTC')::date as posted_date,
+                   row_number() over (partition by (t2.postedtime at time zone 'UTC')::date order by score desc) as index
+            from gptext.search(
+                     TABLE(select * from topicdemo.tweet_dataset),
+                     'vatsandb.topicdemo.tweet_dataset',
+                     '{search_term}',
+                     null
+                 ) t1,
+                 topicdemo.tweet_dataset t2
+            where t1.id = t2.id
+        ) search
+        where index <= 20
+        group by posted_date
     '''.format(search_term=search_term)
-
 
 def getTopTweetDataSQL(search_term):
     return '''
@@ -89,20 +86,20 @@ def getTopTweetDataSQL(search_term):
         		select id
         		from
         		(
-        		      select t1.id,
-        			         t1.score,
-        			         t2.postedtime::date as posted_date,
-        			         rank() over (partition by (t2.postedtime at time zone 'UTC')::date order by t1.score desc) as rank
-        		      from gptext.search(
-            			     TABLE(select * from topicdemo.tweet_dataset),
-            			     'vatsandb.topicdemo.tweet_dataset',
-            			     '{search_term}',
-            			     null
-        			   ) t1,
-        			   topicdemo.tweet_dataset t2
-        			   where t1.id = t2.id
+                    select t1.id,
+                           t1.score,
+                           (t2.postedtime at time zone 'UTC')::date as posted_date,
+                           row_number() over (partition by (t2.postedtime at time zone 'UTC')::date order by score desc) as index
+                    from gptext.search(
+                             TABLE(select * from topicdemo.tweet_dataset),
+                             'vatsandb.topicdemo.tweet_dataset',
+                             '{search_term}',
+                             null
+                         ) t1,
+                         topicdemo.tweet_dataset t2
+                    where t1.id = t2.id
         		)q
-        		where rank < 20
+        		where index <= 20
                 group by id
     	    ) tbl1,
     	    id_to_attributes_map
