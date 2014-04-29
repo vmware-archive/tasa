@@ -10,7 +10,7 @@
         self = this,
         data = this.model.toJSON(),
         width = this.$el.width(),
-        height = 300
+        height = 400
       ;
 
       _.each(data, function(word) {

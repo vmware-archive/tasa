@@ -80,7 +80,7 @@
       url: function() { return '/gp/topic/fetch/q?num_topics=3&sr_trm=' + query.get('query'); },
       parse: function(response) {
         var cloud = _.flatten(_.map(response.topic_cloud_d3, function(data, topic) {
-          data = _.last(_.sortBy(data.word_freq_list, 'normalized_frequency'), 5);
+          data = _.last(_.sortBy(data.word_freq_list, 'normalized_frequency'), 10);
           _.each(data, function(word) { word.topic = topic; });
           return data;
         }));
