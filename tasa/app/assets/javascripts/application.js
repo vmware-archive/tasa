@@ -191,6 +191,7 @@
   var xhrRequests;
   query.on('change:query', function(query, value) {
     _.invoke(xhrRequests, 'abort');
+    _.result(sidebarXhrRequest, 'abort');
     sideBar.clear({silent: true});
     $('body').toggleClass('has-query', Boolean(value));
     xhrRequests = _.invoke([totalTweets, sideBar, sentiment, heatmap, adjectives, force], 'fetch', {reset: true});
@@ -214,6 +215,7 @@
     });
   });
 
+  var sidebarXhrRequest;
   sideBar.on('change', function(sideBar, options) {
     if (options.xhr) { return; }
 
@@ -225,7 +227,8 @@
       });
       sideBar.trigger('sync');
     } else {
-      sideBar.fetch();
+      _.result(sidebarXhrRequest, 'abort');
+      sidebarXhrRequest = sideBar.fetch();
     }
   });
 })();
