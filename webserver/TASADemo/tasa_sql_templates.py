@@ -38,6 +38,78 @@ def getTop20RelevantTweetsSQL(search_term):
     return sql.format(search_term=search_term)
 
 
+def getTopTweetIdsSQL(search_term):
+    return '''
+    	select posted_date,
+    	       array_agg(id order by rank) as id_arr
+    	from
+    	(
+    	      select t1.id,
+    	             t1.score,
+    		     t2.postedtime::date as posted_date,
+    		     rank() over (partition by (t2.postedtime at time zone 'UTC')::date order by t1.score desc) as rank
+    	      from gptext.search(
+    		     TABLE(select * from topicdemo.tweet_dataset),
+    		     'vatsandb.topicdemo.tweet_dataset',
+    		     '{search_term}',
+    		     null
+    		   ) t1,
+    		   topicdemo.tweet_dataset t2
+    		   where t1.id = t2.id
+    	)q
+    	where rank < 20
+    	group by posted_date
+    '''.format(search_term=search_term)
+
+
+def getTopTweetDataSQL(search_term):
+    return '''
+        	with id_to_attributes_map
+        	as
+        	(
+        		select t1.id,
+        		       t3.displayname,
+        		       t3.preferredusername,
+        		       t2.body,
+        		       t3.image
+        		from gptext.search(
+        			     TABLE(select * from topicdemo.tweet_dataset),
+        			     'vatsandb.topicdemo.tweet_dataset',
+        			     '{search_term}',
+        			     null
+        		     ) t1,
+        		     topicdemo.tweet_dataset t2,
+        		     sentimentdemo.actor_info t3
+        		where t1.id = t2.id and
+        		      t2.tweet_id = t3.tweet_id
+            )
+            select id_to_attributes_map.*
+            from
+            (
+        		select id
+        		from
+        		(
+        		      select t1.id,
+        			         t1.score,
+        			         t2.postedtime::date as posted_date,
+        			         rank() over (partition by (t2.postedtime at time zone 'UTC')::date order by t1.score desc) as rank
+        		      from gptext.search(
+            			     TABLE(select * from topicdemo.tweet_dataset),
+            			     'vatsandb.topicdemo.tweet_dataset',
+            			     '{search_term}',
+            			     null
+        			   ) t1,
+        			   topicdemo.tweet_dataset t2
+        			   where t1.id = t2.id
+        		)q
+        		where rank < 20
+                group by id
+    	    ) tbl1,
+    	    id_to_attributes_map
+    	    where tbl1.id = id_to_attributes_map.id
+    '''.format(search_term=search_term)
+
+
 def getTop20RelevantTweetsRangeSQL(search_term,min_timestamp,max_timestamp):
     '''
        Top 20 Relevant Tweets (by score descending) for a given date range
@@ -117,7 +189,7 @@ def getTop20RelevantTweetsRangeSentSQL(search_term,min_timestamp,max_timestamp,s
             ORDER BY score DESC
          '''
     return sql.format(search_term=search_term, min_timestamp=min_timestamp, max_timestamp=max_timestamp, sentiment=sentiment)
- 
+
 
 def getCountOfRelevantTweetsSQL(search_term):
     '''

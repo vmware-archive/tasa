@@ -4,7 +4,7 @@ from django.views.decorators.csrf import csrf_exempt
 from pkg_resources import resource_string
 from webserver.settings import MEDIA_ROOT
 import psycopg2
-import os, json, time, datetime
+import os, json, time, datetime, calendar
 from operator import itemgetter
 from webserver.common.dbconnector import DBConnect
 from webserver.TASADemo.tasa_sql_templates import *
@@ -48,3 +48,15 @@ def relevant_tweets(request):
     counts = dict(zip(('total', 'mean_sentiment_index', 'positive', 'negative', 'neutral'), count_rows[0]))
 
     return HttpResponse(json.dumps({'tweets': tweets, 'counts': counts}), content_type='application/json')
+
+@csrf_exempt
+def tweets(request):
+    search_term = request.REQUEST.get(SEARCH_TERM)
+
+    _, tweet_ids_by_date = conn.fetchRows(getTopTweetIdsSQL(search_term))
+    _, tweets_by_id = conn.fetchRows(getTopTweetDataSQL(search_term))
+
+    tweet_ids_by_date = dict([(str(calendar.timegm(r.get('posted_date').timetuple()) * 1000), r.get('id_arr')) for r in tweet_ids_by_date])
+    tweets_by_id = dict([(str(r.get('id')), {'username': r.get('preferredusername'), 'text': r.get('body')}) for r in tweets_by_id])
+
+    return HttpResponse(json.dumps({'tweet_ids_by_date': tweet_ids_by_date, 'tweets_by_id': tweets_by_id}), content_type='application/json')
