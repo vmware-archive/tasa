@@ -124,6 +124,7 @@
         date: sideBar.has('posted_date') && d3.time.format.utc('%B %d, %Y')(new Date(sideBar.get('posted_date'))) ||
               'July 1 - 31, 2013',
         title: this.model.get('sentiment') && 'Sentiment Mapping' ||
+               this.model.get('topic') && 'Topic Words' ||
                this.model.get('adjective') && 'Adjectives' ||
                'Top 20 Tweets',
         subtitle: this.model.get('sentiment') && 'Top 20 ' + this.model.get('sentiment') + ' tweets' ||
