@@ -188,6 +188,97 @@ def getTop20RelevantTweetsRangeSentSQL(search_term,min_timestamp,max_timestamp,s
     return sql.format(search_term=search_term, min_timestamp=min_timestamp, max_timestamp=max_timestamp, sentiment=sentiment)
 
 
+def getTopTweetIdsWithSentimentSQL(search_term):
+    return '''
+        select posted_date,
+               sentiment,
+               array_agg(id) as tweet_ids
+        from (
+            select id,
+                   score,
+                   row_number() over(partition by posted_date, sentiment order by score desc) as index,
+                   posted_date,
+                   sentiment
+            from (
+                select t1.id,
+    	               t1.score,
+                       (t2.postedtime at time zone 'UTC')::date as posted_date,
+                       case when t3.median_sentiment_index > 1 then 'positive'
+    		                when t3.median_sentiment_index < -1 then 'negative'
+    		                else 'neutral'
+    	               end as sentiment
+                from
+                    gptext.search(
+      			        TABLE(select * from topicdemo.tweet_dataset),
+      			        'vatsandb.topicdemo.tweet_dataset',
+      			        '{search_term}',
+      			        null
+    	            ) t1,
+                    topicdemo.tweet_dataset t2,
+                    sentimentdemo.training_data_scored t3
+                where t1.id = t2.id and t2.tweet_id = t3.id and t3.median_sentiment_index IS NOT NULL
+            ) q1
+        ) q2
+        where index <= 20
+        group by posted_date, sentiment
+    '''.format(search_term=search_term)
+
+def getTopTweetDataWithSentimentSQL(search_term):
+    return '''
+        with id_to_attributes_map
+        as (
+            select t1.id,
+                   t3.displayname,
+                   t3.preferredusername,
+                   t2.body,
+                   t3.image
+            from
+                gptext.search(
+                    TABLE(select * from topicdemo.tweet_dataset),
+                    'vatsandb.topicdemo.tweet_dataset',
+                    '{search_term}',
+                    null
+                ) t1,
+                topicdemo.tweet_dataset t2,
+                sentimentdemo.actor_info t3
+            where t1.id = t2.id and t2.tweet_id = t3.tweet_id
+        )
+        select id_to_attributes_map.*
+        from (
+            select id
+            from (
+                select id,
+                       score,
+                       row_number() over(partition by posted_date, sentiment order by score desc) as index,
+                       posted_date,
+                       sentiment
+                from (
+                    select t1.id,
+                           t1.score,
+                           (t2.postedtime at time zone 'UTC')::date as posted_date,
+                           case when t3.median_sentiment_index > 1 then 'positive'
+                                when t3.median_sentiment_index < -1 then 'negative'
+                                else 'neutral'
+                           end as sentiment
+                    from
+                        gptext.search(
+                            TABLE(select * from topicdemo.tweet_dataset),
+                            'vatsandb.topicdemo.tweet_dataset',
+                            '{search_term}',
+                            null
+                        ) t1,
+                        topicdemo.tweet_dataset t2,
+                        sentimentdemo.training_data_scored t3
+                    where t1.id = t2.id and t2.tweet_id = t3.id and t3.median_sentiment_index IS NOT NULL
+                ) q1
+            ) q2
+            where index <= 20
+            group by id
+        ) tbl1,
+        id_to_attributes_map
+        where tbl1.id = id_to_attributes_map.id
+    '''.format(search_term=search_term)
+
 def getCountOfRelevantTweetsSQL(search_term):
     '''
        Grab the count of relevant tweets
