@@ -27,7 +27,7 @@ def relevant_tweets(request):
         search_term = '(%s AND %s)' % (search_term, search_adjective)
 
     if timestamp:
-        timestamp = datetime.datetime.utcfromtimestamp(int(timestamp) / 1000)
+        timestamp = datetime.datetime.utcfromtimestamp(int(timestamp) / 1000 + time.localtime().tm_isdst * 60 * 60)
         min_timestamp = timestamp.strftime('%Y-%m-%dT%H:%M:%SZ')
         max_timestamp = (timestamp + datetime.timedelta(days=1)).strftime('%Y-%m-%dT%H:%M:%SZ')
 
