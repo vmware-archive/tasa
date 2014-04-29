@@ -1,0 +1,1514 @@
+{"hmap": [
+  {
+    "hour": 0.0,
+    "positive": 8,
+    "negative": 0,
+    "neutral": 0,
+    "msi": 33.200791418815,
+    "num_tweets": 8,
+    "day": 0.0
+  },
+  {
+    "hour": 1.0,
+    "positive": 7,
+    "negative": 0,
+    "neutral": 0,
+    "msi": 44.8106317139931,
+    "num_tweets": 7,
+    "day": 0.0
+  },
+  {
+    "hour": 2.0,
+    "positive": 6,
+    "negative": 1,
+    "neutral": 1,
+    "msi": 84.1026882853914,
+    "num_tweets": 8,
+    "day": 0.0
+  },
+  {
+    "hour": 3.0,
+    "positive": 3,
+    "negative": 1,
+    "neutral": 2,
+    "msi": 3.37904508452083,
+    "num_tweets": 6,
+    "day": 0.0
+  },
+  {
+    "hour": 4.0,
+    "positive": 4,
+    "negative": 4,
+    "neutral": 0,
+    "msi": 12.2525182225831,
+    "num_tweets": 8,
+    "day": 0.0
+  },
+  {
+    "hour": 5.0,
+    "positive": 7,
+    "negative": 1,
+    "neutral": 0,
+    "msi": 48.0038999490363,
+    "num_tweets": 8,
+    "day": 0.0
+  },
+  {
+    "hour": 6.0,
+    "positive": 6,
+    "negative": 2,
+    "neutral": 0,
+    "msi": 11.3178765654531,
+    "num_tweets": 8,
+    "day": 0.0
+  },
+  {
+    "hour": 7.0,
+    "positive": 6,
+    "negative": 2,
+    "neutral": 0,
+    "msi": 51.9039642173994,
+    "num_tweets": 8,
+    "day": 0.0
+  },
+  {
+    "hour": 8.0,
+    "positive": 4,
+    "negative": 3,
+    "neutral": 1,
+    "msi": 33.9083343673165,
+    "num_tweets": 8,
+    "day": 0.0
+  },
+  {
+    "hour": 9.0,
+    "positive": 12,
+    "negative": 3,
+    "neutral": 2,
+    "msi": 58.4452276902879,
+    "num_tweets": 17,
+    "day": 0.0
+  },
+  {
+    "hour": 10.0,
+    "positive": 3,
+    "negative": 4,
+    "neutral": 0,
+    "msi": 15.9591612366886,
+    "num_tweets": 7,
+    "day": 0.0
+  },
+  {
+    "hour": 11.0,
+    "positive": 15,
+    "negative": 3,
+    "neutral": 0,
+    "msi": 59.7278721484605,
+    "num_tweets": 18,
+    "day": 0.0
+  },
+  {
+    "hour": 12.0,
+    "positive": 10,
+    "negative": 0,
+    "neutral": 1,
+    "msi": 48.7730780947789,
+    "num_tweets": 11,
+    "day": 0.0
+  },
+  {
+    "hour": 13.0,
+    "positive": 9,
+    "negative": 6,
+    "neutral": 1,
+    "msi": 11.8108503735138,
+    "num_tweets": 16,
+    "day": 0.0
+  },
+  {
+    "hour": 14.0,
+    "positive": 11,
+    "negative": 2,
+    "neutral": 3,
+    "msi": 41.6172272945692,
+    "num_tweets": 16,
+    "day": 0.0
+  },
+  {
+    "hour": 15.0,
+    "positive": 12,
+    "negative": 3,
+    "neutral": 2,
+    "msi": 20.4052512378236,
+    "num_tweets": 17,
+    "day": 0.0
+  },
+  {
+    "hour": 16.0,
+    "positive": 10,
+    "negative": 4,
+    "neutral": 1,
+    "msi": 14.0385321980746,
+    "num_tweets": 15,
+    "day": 0.0
+  },
+  {
+    "hour": 17.0,
+    "positive": 11,
+    "negative": 4,
+    "neutral": 1,
+    "msi": 33.9243642009439,
+    "num_tweets": 16,
+    "day": 0.0
+  },
+  {
+    "hour": 18.0,
+    "positive": 12,
+    "negative": 8,
+    "neutral": 1,
+    "msi": 12.7335215594566,
+    "num_tweets": 21,
+    "day": 0.0
+  },
+  {
+    "hour": 19.0,
+    "positive": 10,
+    "negative": 4,
+    "neutral": 3,
+    "msi": 22.255724619651,
+    "num_tweets": 17,
+    "day": 0.0
+  },
+  {
+    "hour": 20.0,
+    "positive": 16,
+    "negative": 10,
+    "neutral": 1,
+    "msi": 22.6753206552808,
+    "num_tweets": 27,
+    "day": 0.0
+  },
+  {
+    "hour": 21.0,
+    "positive": 23,
+    "negative": 6,
+    "neutral": 1,
+    "msi": 30.2343662313964,
+    "num_tweets": 30,
+    "day": 0.0
+  },
+  {
+    "hour": 22.0,
+    "positive": 11,
+    "negative": 3,
+    "neutral": 2,
+    "msi": 24.5369166399696,
+    "num_tweets": 16,
+    "day": 0.0
+  },
+  {
+    "hour": 23.0,
+    "positive": 13,
+    "negative": 7,
+    "neutral": 1,
+    "msi": 16.7281221563831,
+    "num_tweets": 21,
+    "day": 0.0
+  },
+  {
+    "hour": 0.0,
+    "positive": 11,
+    "negative": 3,
+    "neutral": 0,
+    "msi": 40.7883795156136,
+    "num_tweets": 14,
+    "day": 1.0
+  },
+  {
+    "hour": 1.0,
+    "positive": 6,
+    "negative": 3,
+    "neutral": 1,
+    "msi": 23.2917761531146,
+    "num_tweets": 10,
+    "day": 1.0
+  },
+  {
+    "hour": 2.0,
+    "positive": 10,
+    "negative": 2,
+    "neutral": 2,
+    "msi": 27.7453496091057,
+    "num_tweets": 14,
+    "day": 1.0
+  },
+  {
+    "hour": 3.0,
+    "positive": 7,
+    "negative": 1,
+    "neutral": 0,
+    "msi": 47.3019505414913,
+    "num_tweets": 8,
+    "day": 1.0
+  },
+  {
+    "hour": 4.0,
+    "positive": 5,
+    "negative": 3,
+    "neutral": 1,
+    "msi": 37.0926641731072,
+    "num_tweets": 9,
+    "day": 1.0
+  },
+  {
+    "hour": 5.0,
+    "positive": 6,
+    "negative": 4,
+    "neutral": 0,
+    "msi": 10.028239847078,
+    "num_tweets": 10,
+    "day": 1.0
+  },
+  {
+    "hour": 6.0,
+    "positive": 9,
+    "negative": 1,
+    "neutral": 2,
+    "msi": 37.0633874441679,
+    "num_tweets": 12,
+    "day": 1.0
+  },
+  {
+    "hour": 7.0,
+    "positive": 3,
+    "negative": 5,
+    "neutral": 1,
+    "msi": 14.0348218174808,
+    "num_tweets": 9,
+    "day": 1.0
+  },
+  {
+    "hour": 8.0,
+    "positive": 12,
+    "negative": 1,
+    "neutral": 0,
+    "msi": 57.3958925713458,
+    "num_tweets": 13,
+    "day": 1.0
+  },
+  {
+    "hour": 9.0,
+    "positive": 15,
+    "negative": 3,
+    "neutral": 0,
+    "msi": 56.7170608885492,
+    "num_tweets": 18,
+    "day": 1.0
+  },
+  {
+    "hour": 10.0,
+    "positive": 19,
+    "negative": 1,
+    "neutral": 2,
+    "msi": 29.3043643996664,
+    "num_tweets": 22,
+    "day": 1.0
+  },
+  {
+    "hour": 11.0,
+    "positive": 23,
+    "negative": 7,
+    "neutral": 2,
+    "msi": 30.1911846359547,
+    "num_tweets": 32,
+    "day": 1.0
+  },
+  {
+    "hour": 12.0,
+    "positive": 19,
+    "negative": 6,
+    "neutral": 3,
+    "msi": 38.4355419910902,
+    "num_tweets": 28,
+    "day": 1.0
+  },
+  {
+    "hour": 13.0,
+    "positive": 8,
+    "negative": 8,
+    "neutral": 2,
+    "msi": 22.153100148756,
+    "num_tweets": 18,
+    "day": 1.0
+  },
+  {
+    "hour": 14.0,
+    "positive": 13,
+    "negative": 2,
+    "neutral": 1,
+    "msi": 30.0092712515769,
+    "num_tweets": 16,
+    "day": 1.0
+  },
+  {
+    "hour": 15.0,
+    "positive": 12,
+    "negative": 9,
+    "neutral": 1,
+    "msi": 39.1567803571213,
+    "num_tweets": 22,
+    "day": 1.0
+  },
+  {
+    "hour": 16.0,
+    "positive": 14,
+    "negative": 4,
+    "neutral": 2,
+    "msi": 38.5549709120982,
+    "num_tweets": 20,
+    "day": 1.0
+  },
+  {
+    "hour": 17.0,
+    "positive": 28,
+    "negative": 4,
+    "neutral": 2,
+    "msi": 44.4658422474458,
+    "num_tweets": 34,
+    "day": 1.0
+  },
+  {
+    "hour": 18.0,
+    "positive": 15,
+    "negative": 3,
+    "neutral": 1,
+    "msi": 64.7036455459313,
+    "num_tweets": 19,
+    "day": 1.0
+  },
+  {
+    "hour": 19.0,
+    "positive": 16,
+    "negative": 4,
+    "neutral": 1,
+    "msi": 37.2002300051354,
+    "num_tweets": 21,
+    "day": 1.0
+  },
+  {
+    "hour": 20.0,
+    "positive": 21,
+    "negative": 5,
+    "neutral": 1,
+    "msi": 41.7562864947006,
+    "num_tweets": 27,
+    "day": 1.0
+  },
+  {
+    "hour": 21.0,
+    "positive": 21,
+    "negative": 7,
+    "neutral": 0,
+    "msi": 22.2600440631204,
+    "num_tweets": 28,
+    "day": 1.0
+  },
+  {
+    "hour": 22.0,
+    "positive": 11,
+    "negative": 0,
+    "neutral": 0,
+    "msi": 64.2950276485382,
+    "num_tweets": 11,
+    "day": 1.0
+  },
+  {
+    "hour": 23.0,
+    "positive": 9,
+    "negative": 3,
+    "neutral": 0,
+    "msi": 37.5480526239178,
+    "num_tweets": 12,
+    "day": 1.0
+  },
+  {
+    "hour": 0.0,
+    "positive": 9,
+    "negative": 0,
+    "neutral": 0,
+    "msi": 52.6589067589056,
+    "num_tweets": 9,
+    "day": 2.0
+  },
+  {
+    "hour": 1.0,
+    "positive": 7,
+    "negative": 2,
+    "neutral": 1,
+    "msi": 15.9490665897444,
+    "num_tweets": 10,
+    "day": 2.0
+  },
+  {
+    "hour": 2.0,
+    "positive": 1,
+    "negative": 0,
+    "neutral": 0,
+    "msi": 17.8376038273,
+    "num_tweets": 1,
+    "day": 2.0
+  },
+  {
+    "hour": 3.0,
+    "positive": 9,
+    "negative": 1,
+    "neutral": 1,
+    "msi": 66.7387128505009,
+    "num_tweets": 11,
+    "day": 2.0
+  },
+  {
+    "hour": 4.0,
+    "positive": 4,
+    "negative": 0,
+    "neutral": 2,
+    "msi": 34.7538984819752,
+    "num_tweets": 6,
+    "day": 2.0
+  },
+  {
+    "hour": 5.0,
+    "positive": 8,
+    "negative": 1,
+    "neutral": 0,
+    "msi": 56.6258145406167,
+    "num_tweets": 9,
+    "day": 2.0
+  },
+  {
+    "hour": 6.0,
+    "positive": 6,
+    "negative": 3,
+    "neutral": 1,
+    "msi": 28.5629767002498,
+    "num_tweets": 10,
+    "day": 2.0
+  },
+  {
+    "hour": 7.0,
+    "positive": 8,
+    "negative": 3,
+    "neutral": 1,
+    "msi": 26.6955960235461,
+    "num_tweets": 12,
+    "day": 2.0
+  },
+  {
+    "hour": 8.0,
+    "positive": 11,
+    "negative": 3,
+    "neutral": 1,
+    "msi": 30.5520426646853,
+    "num_tweets": 15,
+    "day": 2.0
+  },
+  {
+    "hour": 9.0,
+    "positive": 13,
+    "negative": 4,
+    "neutral": 3,
+    "msi": 22.0991876558987,
+    "num_tweets": 20,
+    "day": 2.0
+  },
+  {
+    "hour": 10.0,
+    "positive": 13,
+    "negative": 6,
+    "neutral": 1,
+    "msi": 20.5040774067762,
+    "num_tweets": 20,
+    "day": 2.0
+  },
+  {
+    "hour": 11.0,
+    "positive": 8,
+    "negative": 8,
+    "neutral": 2,
+    "msi": 34.0793169017103,
+    "num_tweets": 18,
+    "day": 2.0
+  },
+  {
+    "hour": 12.0,
+    "positive": 12,
+    "negative": 8,
+    "neutral": 7,
+    "msi": 12.2474966390156,
+    "num_tweets": 27,
+    "day": 2.0
+  },
+  {
+    "hour": 13.0,
+    "positive": 13,
+    "negative": 1,
+    "neutral": 5,
+    "msi": 35.1005761415598,
+    "num_tweets": 19,
+    "day": 2.0
+  },
+  {
+    "hour": 14.0,
+    "positive": 12,
+    "negative": 5,
+    "neutral": 2,
+    "msi": 37.4101498819406,
+    "num_tweets": 19,
+    "day": 2.0
+  },
+  {
+    "hour": 15.0,
+    "positive": 16,
+    "negative": 10,
+    "neutral": 1,
+    "msi": 41.381861670485,
+    "num_tweets": 27,
+    "day": 2.0
+  },
+  {
+    "hour": 16.0,
+    "positive": 13,
+    "negative": 5,
+    "neutral": 3,
+    "msi": 12.6328678091814,
+    "num_tweets": 21,
+    "day": 2.0
+  },
+  {
+    "hour": 17.0,
+    "positive": 15,
+    "negative": 5,
+    "neutral": 4,
+    "msi": 50.9347738014489,
+    "num_tweets": 24,
+    "day": 2.0
+  },
+  {
+    "hour": 18.0,
+    "positive": 6,
+    "negative": 2,
+    "neutral": 1,
+    "msi": 64.0725060091247,
+    "num_tweets": 9,
+    "day": 2.0
+  },
+  {
+    "hour": 19.0,
+    "positive": 13,
+    "negative": 2,
+    "neutral": 1,
+    "msi": 10.2948923198985,
+    "num_tweets": 16,
+    "day": 2.0
+  },
+  {
+    "hour": 20.0,
+    "positive": 15,
+    "negative": 3,
+    "neutral": 0,
+    "msi": 30.3751558507661,
+    "num_tweets": 18,
+    "day": 2.0
+  },
+  {
+    "hour": 21.0,
+    "positive": 18,
+    "negative": 3,
+    "neutral": 0,
+    "msi": 33.5973065670033,
+    "num_tweets": 21,
+    "day": 2.0
+  },
+  {
+    "hour": 22.0,
+    "positive": 13,
+    "negative": 8,
+    "neutral": 2,
+    "msi": 24.7861894089182,
+    "num_tweets": 23,
+    "day": 2.0
+  },
+  {
+    "hour": 23.0,
+    "positive": 11,
+    "negative": 4,
+    "neutral": 0,
+    "msi": 28.8316192785287,
+    "num_tweets": 15,
+    "day": 2.0
+  },
+  {
+    "hour": 0.0,
+    "positive": 9,
+    "negative": 3,
+    "neutral": 1,
+    "msi": 43.0106611007791,
+    "num_tweets": 13,
+    "day": 3.0
+  },
+  {
+    "hour": 1.0,
+    "positive": 6,
+    "negative": 3,
+    "neutral": 0,
+    "msi": 34.6680046353956,
+    "num_tweets": 9,
+    "day": 3.0
+  },
+  {
+    "hour": 2.0,
+    "positive": 3,
+    "negative": 1,
+    "neutral": 1,
+    "msi": 10.5732711685396,
+    "num_tweets": 5,
+    "day": 3.0
+  },
+  {
+    "hour": 3.0,
+    "positive": 3,
+    "negative": 2,
+    "neutral": 2,
+    "msi": 3.99081166864729,
+    "num_tweets": 7,
+    "day": 3.0
+  },
+  {
+    "hour": 4.0,
+    "positive": 3,
+    "negative": 1,
+    "neutral": 0,
+    "msi": 44.1532416597075,
+    "num_tweets": 4,
+    "day": 3.0
+  },
+  {
+    "hour": 5.0,
+    "positive": 7,
+    "negative": 2,
+    "neutral": 0,
+    "msi": 12.9284688898724,
+    "num_tweets": 9,
+    "day": 3.0
+  },
+  {
+    "hour": 6.0,
+    "positive": 10,
+    "negative": 2,
+    "neutral": 1,
+    "msi": 52.0951676676441,
+    "num_tweets": 13,
+    "day": 3.0
+  },
+  {
+    "hour": 7.0,
+    "positive": 3,
+    "negative": 4,
+    "neutral": 2,
+    "msi": 27.1727600263464,
+    "num_tweets": 9,
+    "day": 3.0
+  },
+  {
+    "hour": 8.0,
+    "positive": 6,
+    "negative": 4,
+    "neutral": 2,
+    "msi": 40.5430285540131,
+    "num_tweets": 12,
+    "day": 3.0
+  },
+  {
+    "hour": 9.0,
+    "positive": 11,
+    "negative": 5,
+    "neutral": 1,
+    "msi": 40.2328393291072,
+    "num_tweets": 17,
+    "day": 3.0
+  },
+  {
+    "hour": 10.0,
+    "positive": 17,
+    "negative": 4,
+    "neutral": 1,
+    "msi": 53.5948011811909,
+    "num_tweets": 22,
+    "day": 3.0
+  },
+  {
+    "hour": 11.0,
+    "positive": 17,
+    "negative": 7,
+    "neutral": 0,
+    "msi": 37.9381042135317,
+    "num_tweets": 24,
+    "day": 3.0
+  },
+  {
+    "hour": 12.0,
+    "positive": 9,
+    "negative": 2,
+    "neutral": 1,
+    "msi": 18.1830241722866,
+    "num_tweets": 12,
+    "day": 3.0
+  },
+  {
+    "hour": 13.0,
+    "positive": 16,
+    "negative": 5,
+    "neutral": 1,
+    "msi": 26.733223281372,
+    "num_tweets": 22,
+    "day": 3.0
+  },
+  {
+    "hour": 14.0,
+    "positive": 12,
+    "negative": 2,
+    "neutral": 1,
+    "msi": 50.5409960919459,
+    "num_tweets": 15,
+    "day": 3.0
+  },
+  {
+    "hour": 15.0,
+    "positive": 12,
+    "negative": 8,
+    "neutral": 3,
+    "msi": 34.7580303130986,
+    "num_tweets": 23,
+    "day": 3.0
+  },
+  {
+    "hour": 16.0,
+    "positive": 12,
+    "negative": 4,
+    "neutral": 3,
+    "msi": 29.4716457073906,
+    "num_tweets": 19,
+    "day": 3.0
+  },
+  {
+    "hour": 17.0,
+    "positive": 12,
+    "negative": 4,
+    "neutral": 1,
+    "msi": 42.3752255965235,
+    "num_tweets": 17,
+    "day": 3.0
+  },
+  {
+    "hour": 18.0,
+    "positive": 9,
+    "negative": 4,
+    "neutral": 3,
+    "msi": 20.5854806767081,
+    "num_tweets": 16,
+    "day": 3.0
+  },
+  {
+    "hour": 19.0,
+    "positive": 71,
+    "negative": 7,
+    "neutral": 3,
+    "msi": 28.8270529493664,
+    "num_tweets": 81,
+    "day": 3.0
+  },
+  {
+    "hour": 20.0,
+    "positive": 21,
+    "negative": 4,
+    "neutral": 2,
+    "msi": 18.7567538844794,
+    "num_tweets": 27,
+    "day": 3.0
+  },
+  {
+    "hour": 21.0,
+    "positive": 13,
+    "negative": 6,
+    "neutral": 4,
+    "msi": 18.277901449847,
+    "num_tweets": 23,
+    "day": 3.0
+  },
+  {
+    "hour": 22.0,
+    "positive": 19,
+    "negative": 4,
+    "neutral": 2,
+    "msi": 8.55908589735314,
+    "num_tweets": 25,
+    "day": 3.0
+  },
+  {
+    "hour": 23.0,
+    "positive": 12,
+    "negative": 5,
+    "neutral": 2,
+    "msi": 22.5059901696698,
+    "num_tweets": 19,
+    "day": 3.0
+  },
+  {
+    "hour": 0.0,
+    "positive": 10,
+    "negative": 4,
+    "neutral": 0,
+    "msi": 57.1221539608343,
+    "num_tweets": 14,
+    "day": 4.0
+  },
+  {
+    "hour": 1.0,
+    "positive": 8,
+    "negative": 3,
+    "neutral": 0,
+    "msi": 34.1921495806827,
+    "num_tweets": 11,
+    "day": 4.0
+  },
+  {
+    "hour": 2.0,
+    "positive": 12,
+    "negative": 2,
+    "neutral": 0,
+    "msi": 19.3051961819061,
+    "num_tweets": 14,
+    "day": 4.0
+  },
+  {
+    "hour": 3.0,
+    "positive": 3,
+    "negative": 0,
+    "neutral": 0,
+    "msi": 105.465017431167,
+    "num_tweets": 3,
+    "day": 4.0
+  },
+  {
+    "hour": 4.0,
+    "positive": 7,
+    "negative": 0,
+    "neutral": 0,
+    "msi": 95.0672460377136,
+    "num_tweets": 7,
+    "day": 4.0
+  },
+  {
+    "hour": 5.0,
+    "positive": 10,
+    "negative": 0,
+    "neutral": 1,
+    "msi": 79.3469694936598,
+    "num_tweets": 11,
+    "day": 4.0
+  },
+  {
+    "hour": 6.0,
+    "positive": 11,
+    "negative": 3,
+    "neutral": 0,
+    "msi": 73.5988184848229,
+    "num_tweets": 14,
+    "day": 4.0
+  },
+  {
+    "hour": 7.0,
+    "positive": 12,
+    "negative": 3,
+    "neutral": 0,
+    "msi": 71.2774224426503,
+    "num_tweets": 15,
+    "day": 4.0
+  },
+  {
+    "hour": 8.0,
+    "positive": 9,
+    "negative": 3,
+    "neutral": 1,
+    "msi": 43.9481597084198,
+    "num_tweets": 13,
+    "day": 4.0
+  },
+  {
+    "hour": 9.0,
+    "positive": 5,
+    "negative": 5,
+    "neutral": 1,
+    "msi": 10.5590663544817,
+    "num_tweets": 11,
+    "day": 4.0
+  },
+  {
+    "hour": 10.0,
+    "positive": 7,
+    "negative": 4,
+    "neutral": 0,
+    "msi": 21.48352530492,
+    "num_tweets": 11,
+    "day": 4.0
+  },
+  {
+    "hour": 11.0,
+    "positive": 11,
+    "negative": 0,
+    "neutral": 1,
+    "msi": 39.7461348626391,
+    "num_tweets": 12,
+    "day": 4.0
+  },
+  {
+    "hour": 12.0,
+    "positive": 7,
+    "negative": 6,
+    "neutral": 0,
+    "msi": 23.0650755134767,
+    "num_tweets": 13,
+    "day": 4.0
+  },
+  {
+    "hour": 13.0,
+    "positive": 7,
+    "negative": 2,
+    "neutral": 0,
+    "msi": 41.4715599394456,
+    "num_tweets": 9,
+    "day": 4.0
+  },
+  {
+    "hour": 14.0,
+    "positive": 5,
+    "negative": 2,
+    "neutral": 1,
+    "msi": 36.1314811262004,
+    "num_tweets": 8,
+    "day": 4.0
+  },
+  {
+    "hour": 15.0,
+    "positive": 9,
+    "negative": 5,
+    "neutral": 0,
+    "msi": 46.7653481637904,
+    "num_tweets": 14,
+    "day": 4.0
+  },
+  {
+    "hour": 16.0,
+    "positive": 8,
+    "negative": 2,
+    "neutral": 0,
+    "msi": 14.84135667504,
+    "num_tweets": 10,
+    "day": 4.0
+  },
+  {
+    "hour": 17.0,
+    "positive": 4,
+    "negative": 4,
+    "neutral": 1,
+    "msi": 4.28480586124033,
+    "num_tweets": 9,
+    "day": 4.0
+  },
+  {
+    "hour": 18.0,
+    "positive": 10,
+    "negative": 3,
+    "neutral": 1,
+    "msi": 26.0841877145816,
+    "num_tweets": 14,
+    "day": 4.0
+  },
+  {
+    "hour": 19.0,
+    "positive": 10,
+    "negative": 3,
+    "neutral": 0,
+    "msi": 28.865264118102,
+    "num_tweets": 13,
+    "day": 4.0
+  },
+  {
+    "hour": 20.0,
+    "positive": 12,
+    "negative": 1,
+    "neutral": 1,
+    "msi": 27.3769812599729,
+    "num_tweets": 14,
+    "day": 4.0
+  },
+  {
+    "hour": 21.0,
+    "positive": 4,
+    "negative": 3,
+    "neutral": 0,
+    "msi": 41.5619709281786,
+    "num_tweets": 7,
+    "day": 4.0
+  },
+  {
+    "hour": 22.0,
+    "positive": 11,
+    "negative": 1,
+    "neutral": 1,
+    "msi": 19.8585320361875,
+    "num_tweets": 13,
+    "day": 4.0
+  },
+  {
+    "hour": 23.0,
+    "positive": 8,
+    "negative": 4,
+    "neutral": 0,
+    "msi": 17.6045234144462,
+    "num_tweets": 12,
+    "day": 4.0
+  },
+  {
+    "hour": 0.0,
+    "positive": 7,
+    "negative": 0,
+    "neutral": 1,
+    "msi": 28.4555501387921,
+    "num_tweets": 8,
+    "day": 5.0
+  },
+  {
+    "hour": 1.0,
+    "positive": 4,
+    "negative": 2,
+    "neutral": 0,
+    "msi": 61.43986006981,
+    "num_tweets": 6,
+    "day": 5.0
+  },
+  {
+    "hour": 2.0,
+    "positive": 1,
+    "negative": 0,
+    "neutral": 1,
+    "msi": 6.000819570346,
+    "num_tweets": 2,
+    "day": 5.0
+  },
+  {
+    "hour": 3.0,
+    "positive": 4,
+    "negative": 1,
+    "neutral": 0,
+    "msi": 40.198932523528,
+    "num_tweets": 5,
+    "day": 5.0
+  },
+  {
+    "hour": 4.0,
+    "positive": 4,
+    "negative": 2,
+    "neutral": 0,
+    "msi": 40.8555308703167,
+    "num_tweets": 6,
+    "day": 5.0
+  },
+  {
+    "hour": 5.0,
+    "positive": 9,
+    "negative": 0,
+    "neutral": 2,
+    "msi": 16.4453111939034,
+    "num_tweets": 11,
+    "day": 5.0
+  },
+  {
+    "hour": 6.0,
+    "positive": 7,
+    "negative": 2,
+    "neutral": 0,
+    "msi": 34.9174783216689,
+    "num_tweets": 9,
+    "day": 5.0
+  },
+  {
+    "hour": 7.0,
+    "positive": 7,
+    "negative": 2,
+    "neutral": 3,
+    "msi": 56.573479541955,
+    "num_tweets": 12,
+    "day": 5.0
+  },
+  {
+    "hour": 8.0,
+    "positive": 10,
+    "negative": 1,
+    "neutral": 2,
+    "msi": 72.2558686151073,
+    "num_tweets": 13,
+    "day": 5.0
+  },
+  {
+    "hour": 9.0,
+    "positive": 14,
+    "negative": 5,
+    "neutral": 5,
+    "msi": 22.0108365878724,
+    "num_tweets": 24,
+    "day": 5.0
+  },
+  {
+    "hour": 10.0,
+    "positive": 7,
+    "negative": 1,
+    "neutral": 1,
+    "msi": 38.8004029286237,
+    "num_tweets": 9,
+    "day": 5.0
+  },
+  {
+    "hour": 11.0,
+    "positive": 7,
+    "negative": 4,
+    "neutral": 1,
+    "msi": 55.3814095381397,
+    "num_tweets": 12,
+    "day": 5.0
+  },
+  {
+    "hour": 12.0,
+    "positive": 8,
+    "negative": 2,
+    "neutral": 0,
+    "msi": 61.960005888149,
+    "num_tweets": 10,
+    "day": 5.0
+  },
+  {
+    "hour": 13.0,
+    "positive": 15,
+    "negative": 6,
+    "neutral": 5,
+    "msi": 24.0828005144797,
+    "num_tweets": 26,
+    "day": 5.0
+  },
+  {
+    "hour": 14.0,
+    "positive": 15,
+    "negative": 4,
+    "neutral": 2,
+    "msi": 35.5329550655203,
+    "num_tweets": 21,
+    "day": 5.0
+  },
+  {
+    "hour": 15.0,
+    "positive": 14,
+    "negative": 2,
+    "neutral": 2,
+    "msi": 19.2227719517375,
+    "num_tweets": 18,
+    "day": 5.0
+  },
+  {
+    "hour": 16.0,
+    "positive": 8,
+    "negative": 1,
+    "neutral": 1,
+    "msi": 26.0382004830972,
+    "num_tweets": 10,
+    "day": 5.0
+  },
+  {
+    "hour": 17.0,
+    "positive": 11,
+    "negative": 3,
+    "neutral": 2,
+    "msi": 47.2781373036457,
+    "num_tweets": 16,
+    "day": 5.0
+  },
+  {
+    "hour": 18.0,
+    "positive": 19,
+    "negative": 3,
+    "neutral": 2,
+    "msi": 56.2239065824177,
+    "num_tweets": 24,
+    "day": 5.0
+  },
+  {
+    "hour": 19.0,
+    "positive": 8,
+    "negative": 1,
+    "neutral": 0,
+    "msi": 73.2927849645044,
+    "num_tweets": 9,
+    "day": 5.0
+  },
+  {
+    "hour": 20.0,
+    "positive": 6,
+    "negative": 5,
+    "neutral": 0,
+    "msi": 21.8933674713363,
+    "num_tweets": 11,
+    "day": 5.0
+  },
+  {
+    "hour": 21.0,
+    "positive": 16,
+    "negative": 1,
+    "neutral": 1,
+    "msi": 35.4358127110945,
+    "num_tweets": 18,
+    "day": 5.0
+  },
+  {
+    "hour": 22.0,
+    "positive": 13,
+    "negative": 2,
+    "neutral": 1,
+    "msi": 22.7224167829107,
+    "num_tweets": 16,
+    "day": 5.0
+  },
+  {
+    "hour": 23.0,
+    "positive": 12,
+    "negative": 2,
+    "neutral": 1,
+    "msi": 37.4887421942234,
+    "num_tweets": 15,
+    "day": 5.0
+  },
+  {
+    "hour": 0.0,
+    "positive": 5,
+    "negative": 5,
+    "neutral": 3,
+    "msi": 12.5923369212828,
+    "num_tweets": 13,
+    "day": 6.0
+  },
+  {
+    "hour": 1.0,
+    "positive": 5,
+    "negative": 3,
+    "neutral": 3,
+    "msi": 20.5831703683417,
+    "num_tweets": 11,
+    "day": 6.0
+  },
+  {
+    "hour": 2.0,
+    "positive": 5,
+    "negative": 4,
+    "neutral": 0,
+    "msi": 49.1491520320511,
+    "num_tweets": 9,
+    "day": 6.0
+  },
+  {
+    "hour": 3.0,
+    "positive": 9,
+    "negative": 2,
+    "neutral": 0,
+    "msi": 58.5635927562736,
+    "num_tweets": 11,
+    "day": 6.0
+  },
+  {
+    "hour": 4.0,
+    "positive": 7,
+    "negative": 1,
+    "neutral": 0,
+    "msi": 44.8239400542631,
+    "num_tweets": 8,
+    "day": 6.0
+  },
+  {
+    "hour": 5.0,
+    "positive": 9,
+    "negative": 3,
+    "neutral": 2,
+    "msi": 24.5690855619636,
+    "num_tweets": 14,
+    "day": 6.0
+  },
+  {
+    "hour": 6.0,
+    "positive": 5,
+    "negative": 1,
+    "neutral": 0,
+    "msi": 13.4831594758191,
+    "num_tweets": 6,
+    "day": 6.0
+  },
+  {
+    "hour": 7.0,
+    "positive": 8,
+    "negative": 0,
+    "neutral": 0,
+    "msi": 51.6221152141811,
+    "num_tweets": 8,
+    "day": 6.0
+  },
+  {
+    "hour": 8.0,
+    "positive": 10,
+    "negative": 9,
+    "neutral": 2,
+    "msi": 8.31176248123357,
+    "num_tweets": 21,
+    "day": 6.0
+  },
+  {
+    "hour": 9.0,
+    "positive": 13,
+    "negative": 2,
+    "neutral": 1,
+    "msi": 37.0048102661398,
+    "num_tweets": 16,
+    "day": 6.0
+  },
+  {
+    "hour": 10.0,
+    "positive": 11,
+    "negative": 8,
+    "neutral": 1,
+    "msi": 13.9285368808741,
+    "num_tweets": 20,
+    "day": 6.0
+  },
+  {
+    "hour": 11.0,
+    "positive": 16,
+    "negative": 3,
+    "neutral": 1,
+    "msi": 42.1123395714947,
+    "num_tweets": 20,
+    "day": 6.0
+  },
+  {
+    "hour": 12.0,
+    "positive": 12,
+    "negative": 3,
+    "neutral": 3,
+    "msi": 39.201815800559,
+    "num_tweets": 18,
+    "day": 6.0
+  },
+  {
+    "hour": 13.0,
+    "positive": 18,
+    "negative": 1,
+    "neutral": 1,
+    "msi": 41.8458360640956,
+    "num_tweets": 20,
+    "day": 6.0
+  },
+  {
+    "hour": 14.0,
+    "positive": 5,
+    "negative": 2,
+    "neutral": 0,
+    "msi": 12.2364037565219,
+    "num_tweets": 7,
+    "day": 6.0
+  },
+  {
+    "hour": 15.0,
+    "positive": 11,
+    "negative": 4,
+    "neutral": 2,
+    "msi": 10.2843466881009,
+    "num_tweets": 17,
+    "day": 6.0
+  },
+  {
+    "hour": 16.0,
+    "positive": 3,
+    "negative": 4,
+    "neutral": 1,
+    "msi": 17.0223479807839,
+    "num_tweets": 8,
+    "day": 6.0
+  },
+  {
+    "hour": 17.0,
+    "positive": 19,
+    "negative": 2,
+    "neutral": 0,
+    "msi": 69.3605940061918,
+    "num_tweets": 21,
+    "day": 6.0
+  },
+  {
+    "hour": 18.0,
+    "positive": 12,
+    "negative": 5,
+    "neutral": 0,
+    "msi": 37.1691490703035,
+    "num_tweets": 17,
+    "day": 6.0
+  },
+  {
+    "hour": 19.0,
+    "positive": 10,
+    "negative": 3,
+    "neutral": 0,
+    "msi": 44.6235704684254,
+    "num_tweets": 13,
+    "day": 6.0
+  },
+  {
+    "hour": 20.0,
+    "positive": 10,
+    "negative": 0,
+    "neutral": 2,
+    "msi": 56.8055870286253,
+    "num_tweets": 12,
+    "day": 6.0
+  },
+  {
+    "hour": 21.0,
+    "positive": 10,
+    "negative": 7,
+    "neutral": 1,
+    "msi": 35.4529765413864,
+    "num_tweets": 18,
+    "day": 6.0
+  },
+  {
+    "hour": 22.0,
+    "positive": 7,
+    "negative": 6,
+    "neutral": 0,
+    "msi": 21.6918486046508,
+    "num_tweets": 13,
+    "day": 6.0
+  },
+  {
+    "hour": 23.0,
+    "positive": 12,
+    "negative": 1,
+    "neutral": 3,
+    "msi": 31.1099282658968,
+    "num_tweets": 16,
+    "day": 6.0
+  }
+]}

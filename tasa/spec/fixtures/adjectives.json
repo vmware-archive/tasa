@@ -1,0 +1,3190 @@
+{"adjective_cloud": [
+  {
+    "normalized_frequency": 0.0176991150442478,
+    "word": "biggest"
+  },
+  {
+    "normalized_frequency": 0.0398230088495575,
+    "word": "huge"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "oldest"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "tingly"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "matching"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "nearby"
+  },
+  {
+    "normalized_frequency": 0.0132743362831858,
+    "word": "fantastic"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "dorky"
+  },
+  {
+    "normalized_frequency": 0.0132743362831858,
+    "word": "silver"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "tamed"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "amber"
+  },
+  {
+    "normalized_frequency": 0.15929203539823,
+    "word": "black"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "sunny"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "evolved"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "steel/ghost"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "unopened"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "lamest"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "sixth"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "prehistoric"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "anime"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "expenisive"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "glitchy"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "happiest"
+  },
+  {
+    "normalized_frequency": 0.0265486725663717,
+    "word": "lucky"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "shiok"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "cheesier"
+  },
+  {
+    "normalized_frequency": 0.0221238938053097,
+    "word": "regular"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "extreme"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "endless-pokemon"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "legless"
+  },
+  {
+    "normalized_frequency": 0.0132743362831858,
+    "word": "lavender"
+  },
+  {
+    "normalized_frequency": 0.0575221238938053,
+    "word": "afraid"
+  },
+  {
+    "normalized_frequency": 0.0132743362831858,
+    "word": "thick"
+  },
+  {
+    "normalized_frequency": 0.0132743362831858,
+    "word": "double"
+  },
+  {
+    "normalized_frequency": 0.00884955752212389,
+    "word": "3rd"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "bream-tan"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "holyyyy"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "toughest"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "easier"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "impossible"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "depressed"
+  },
+  {
+    "normalized_frequency": 0.199115044247788,
+    "word": "cool"
+  },
+  {
+    "normalized_frequency": 0.0176991150442478,
+    "word": "boring"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "iced"
+  },
+  {
+    "normalized_frequency": 0.0265486725663717,
+    "word": "deadly"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "-misty"
+  },
+  {
+    "normalized_frequency": 0.0132743362831858,
+    "word": "worldwide"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "brown_hair"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "western"
+  },
+  {
+    "normalized_frequency": 0.0132743362831858,
+    "word": "inanimate"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "stillz"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "relieved"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "difficult"
+  },
+  {
+    "normalized_frequency": 0.0176991150442478,
+    "word": "certain"
+  },
+  {
+    "normalized_frequency": 0.0398230088495575,
+    "word": "high"
+  },
+  {
+    "normalized_frequency": 0.106194690265487,
+    "word": "happy"
+  },
+  {
+    "normalized_frequency": 0.00884955752212389,
+    "word": "dear"
+  },
+  {
+    "normalized_frequency": 0.00884955752212389,
+    "word": "mature"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "prestigious"
+  },
+  {
+    "normalized_frequency": 0.0221238938053097,
+    "word": "fuckin"
+  },
+  {
+    "normalized_frequency": 0.0132743362831858,
+    "word": "6th"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "dark/flying"
+  },
+  {
+    "normalized_frequency": 0.0132743362831858,
+    "word": "stronger"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "bare"
+  },
+  {
+    "normalized_frequency": 0.566371681415929,
+    "word": "favorite"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "paranoid-black"
+  },
+  {
+    "normalized_frequency": 0.0929203539823009,
+    "word": "over"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "madd"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "worried"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "deabove"
+  },
+  {
+    "normalized_frequency": 0.0265486725663717,
+    "word": "sweet"
+  },
+  {
+    "normalized_frequency": 0.00884955752212389,
+    "word": "depressing"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "set"
+  },
+  {
+    "normalized_frequency": 0.00884955752212389,
+    "word": "equal"
+  },
+  {
+    "normalized_frequency": 0.0132743362831858,
+    "word": "worse"
+  },
+  {
+    "normalized_frequency": 0.0132743362831858,
+    "word": "effective"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "unpleasant"
+  },
+  {
+    "normalized_frequency": 0.128318584070796,
+    "word": "sorry"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "fellow"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "back"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "flat"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "nightly"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "usual"
+  },
+  {
+    "normalized_frequency": 0.0353982300884956,
+    "word": "right"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "one\u2019s"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "ghastly"
+  },
+  {
+    "normalized_frequency": 0.0398230088495575,
+    "word": "likely"
+  },
+  {
+    "normalized_frequency": 0.0132743362831858,
+    "word": "hyper"
+  },
+  {
+    "normalized_frequency": 0.0486725663716814,
+    "word": "able"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "correct"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "picky"
+  },
+  {
+    "normalized_frequency": 0.00884955752212389,
+    "word": "worth"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "slick"
+  },
+  {
+    "normalized_frequency": 0.18141592920354,
+    "word": "better"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "guilty"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "dual"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "frozen"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "additional"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "curved"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "mystic"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "religious"
+  },
+  {
+    "normalized_frequency": 0.00884955752212389,
+    "word": "terrifying"
+  },
+  {
+    "normalized_frequency": 0.0353982300884956,
+    "word": "supposed"
+  },
+  {
+    "normalized_frequency": 0.0265486725663717,
+    "word": "lil"
+  },
+  {
+    "normalized_frequency": 0.00884955752212389,
+    "word": "black/white"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "cruel"
+  },
+  {
+    "normalized_frequency": 0.0442477876106195,
+    "word": "weird"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "scariest/creepiest"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "7th"
+  },
+  {
+    "normalized_frequency": 0.00884955752212389,
+    "word": "popular"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "booby"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "#emerald"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "overall"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "protective"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "clean"
+  },
+  {
+    "normalized_frequency": 0.0265486725663717,
+    "word": "badass"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "dang"
+  },
+  {
+    "normalized_frequency": 0.106194690265487,
+    "word": "big"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "never-before-seen"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "reasonable"
+  },
+  {
+    "normalized_frequency": 0.00884955752212389,
+    "word": "secret"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "puffy"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "senior"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "atomic"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "gossip"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "up"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "saved"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "evolutionary"
+  },
+  {
+    "normalized_frequency": 0.0707964601769911,
+    "word": "hard"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "#rich"
+  },
+  {
+    "normalized_frequency": 0.00884955752212389,
+    "word": "upset"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "conservative"
+  },
+  {
+    "normalized_frequency": 0.00884955752212389,
+    "word": "magic"
+  },
+  {
+    "normalized_frequency": 0.0132743362831858,
+    "word": "harder"
+  },
+  {
+    "normalized_frequency": 0.132743362831858,
+    "word": "free"
+  },
+  {
+    "normalized_frequency": 0.0176991150442478,
+    "word": "gold"
+  },
+  {
+    "normalized_frequency": 0.00884955752212389,
+    "word": "elementary"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "overused"
+  },
+  {
+    "normalized_frequency": 0.0707964601769911,
+    "word": "wrong"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "stoned"
+  },
+  {
+    "normalized_frequency": 0.0353982300884956,
+    "word": "mad"
+  },
+  {
+    "normalized_frequency": 0.00884955752212389,
+    "word": "easiest"
+  },
+  {
+    "normalized_frequency": 0.00884955752212389,
+    "word": "hacked"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "brave"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "xsplit"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "confusing"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "unevolved"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "hodor"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "bright"
+  },
+  {
+    "normalized_frequency": 0.0221238938053097,
+    "word": "plus"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "very"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "terrorist"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "sweeter"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "genderfluid"
+  },
+  {
+    "normalized_frequency": 0.00884955752212389,
+    "word": "present"
+  },
+  {
+    "normalized_frequency": 0.0221238938053097,
+    "word": "gay"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "crafty"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "drained"
+  },
+  {
+    "normalized_frequency": 0.00884955752212389,
+    "word": "naked"
+  },
+  {
+    "normalized_frequency": 0.265486725663717,
+    "word": "red"
+  },
+  {
+    "normalized_frequency": 0.0309734513274336,
+    "word": "glad"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "exotic"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "cool/deep"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "earlier"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "harsh"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "pissy"
+  },
+  {
+    "normalized_frequency": 0.0221238938053097,
+    "word": "inner"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "plain"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "useful"
+  },
+  {
+    "normalized_frequency": 0.0707964601769911,
+    "word": "dead"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "skinned"
+  },
+  {
+    "normalized_frequency": 0.247787610619469,
+    "word": "legendary"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "impeccable"
+  },
+  {
+    "normalized_frequency": 0.0353982300884956,
+    "word": "like"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "nervous"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "fourth"
+  },
+  {
+    "normalized_frequency": 0.128318584070796,
+    "word": "rare"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "spiky"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "queer"
+  },
+  {
+    "normalized_frequency": 0.0265486725663717,
+    "word": "nerdy"
+  },
+  {
+    "normalized_frequency": 0.0132743362831858,
+    "word": "musical"
+  },
+  {
+    "normalized_frequency": 0.00884955752212389,
+    "word": "banned"
+  },
+  {
+    "normalized_frequency": 0.0353982300884956,
+    "word": "excited"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "underrated"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "unwritten"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "vicious"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "anime-like"
+  },
+  {
+    "normalized_frequency": 0.0221238938053097,
+    "word": "4th"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "dumbest"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "spoiled"
+  },
+  {
+    "normalized_frequency": 0.0132743362831858,
+    "word": "willing"
+  },
+  {
+    "normalized_frequency": 0.0265486725663717,
+    "word": "successful"
+  },
+  {
+    "normalized_frequency": 0.0132743362831858,
+    "word": "endless"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "fanmade"
+  },
+  {
+    "normalized_frequency": 0.00884955752212389,
+    "word": "national"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "straight"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "unimaginable"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "undefeated"
+  },
+  {
+    "normalized_frequency": 0.00884955752212389,
+    "word": "gorgeous"
+  },
+  {
+    "normalized_frequency": 0.00884955752212389,
+    "word": "pregnant"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "retarded"
+  },
+  {
+    "normalized_frequency": 0.00884955752212389,
+    "word": "heavy"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "gr8"
+  },
+  {
+    "normalized_frequency": 0.0132743362831858,
+    "word": "blind"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "animated"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "rubbish"
+  },
+  {
+    "normalized_frequency": 0.0353982300884956,
+    "word": "5th"
+  },
+  {
+    "normalized_frequency": 0.0176991150442478,
+    "word": "worst"
+  },
+  {
+    "normalized_frequency": 0.0309734513274336,
+    "word": "weak"
+  },
+  {
+    "normalized_frequency": 0.371681415929204,
+    "word": "real"
+  },
+  {
+    "normalized_frequency": 0.00884955752212389,
+    "word": "multiple"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "secondary"
+  },
+  {
+    "normalized_frequency": 0.0176991150442478,
+    "word": "creepy"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "bestest"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "peripheral"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "deepest"
+  },
+  {
+    "normalized_frequency": 0.579646017699115,
+    "word": "first"
+  },
+  {
+    "normalized_frequency": 0.00884955752212389,
+    "word": "korean"
+  },
+  {
+    "normalized_frequency": 0.119469026548673,
+    "word": "wild"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "greater"
+  },
+  {
+    "normalized_frequency": 0.0132743362831858,
+    "word": "illegal"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "wounded"
+  },
+  {
+    "normalized_frequency": 0.0221238938053097,
+    "word": "tall"
+  },
+  {
+    "normalized_frequency": 0.0530973451327434,
+    "word": "normal"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "inspirational"
+  },
+  {
+    "normalized_frequency": 0.0575221238938053,
+    "word": "fav"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "haunted"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "vocal"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "terrible"
+  },
+  {
+    "normalized_frequency": 0.00884955752212389,
+    "word": "odd"
+  },
+  {
+    "normalized_frequency": 0.0132743362831858,
+    "word": "depraved"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "injured"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "funky"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "ookido_green"
+  },
+  {
+    "normalized_frequency": 0.0353982300884956,
+    "word": "possible"
+  },
+  {
+    "normalized_frequency": 0.0132743362831858,
+    "word": "daily"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "wierdest"
+  },
+  {
+    "normalized_frequency": 0.0176991150442478,
+    "word": "lightskin"
+  },
+  {
+    "normalized_frequency": 0.00884955752212389,
+    "word": "russian"
+  },
+  {
+    "normalized_frequency": 0.0132743362831858,
+    "word": "fat"
+  },
+  {
+    "normalized_frequency": 0.0176991150442478,
+    "word": "fake"
+  },
+  {
+    "normalized_frequency": 0.0575221238938053,
+    "word": "hot"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "cataclysmic"
+  },
+  {
+    "normalized_frequency": 0.00884955752212389,
+    "word": "epileptic"
+  },
+  {
+    "normalized_frequency": 0.0575221238938053,
+    "word": "younger"
+  },
+  {
+    "normalized_frequency": 0.128318584070796,
+    "word": "amazing"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "disgusting"
+  },
+  {
+    "normalized_frequency": 0.084070796460177,
+    "word": "early"
+  },
+  {
+    "normalized_frequency": 0.0221238938053097,
+    "word": "available"
+  },
+  {
+    "normalized_frequency": 0.0707964601769911,
+    "word": "special"
+  },
+  {
+    "normalized_frequency": 0.0265486725663717,
+    "word": "main"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "catchable"
+  },
+  {
+    "normalized_frequency": 0.00884955752212389,
+    "word": "impressed"
+  },
+  {
+    "normalized_frequency": 0.0309734513274336,
+    "word": "evil"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "international"
+  },
+  {
+    "normalized_frequency": 0.0929203539823009,
+    "word": "funny"
+  },
+  {
+    "normalized_frequency": 0.00884955752212389,
+    "word": "typical"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "playable"
+  },
+  {
+    "normalized_frequency": 0.00884955752212389,
+    "word": "accurate"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "cowardly"
+  },
+  {
+    "normalized_frequency": 0.00884955752212389,
+    "word": "expensive"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "favorit"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "imaginary"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "generic"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "skinhead"
+  },
+  {
+    "normalized_frequency": 0.0132743362831858,
+    "word": "wide"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "heartwarming"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "fascinating"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "sketchy"
+  },
+  {
+    "normalized_frequency": 0.0132743362831858,
+    "word": "underage"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "posessive"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "fused"
+  },
+  {
+    "normalized_frequency": 0.00884955752212389,
+    "word": "extinct"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "touching"
+  },
+  {
+    "normalized_frequency": 0.0575221238938053,
+    "word": "sexual"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "experimental"
+  },
+  {
+    "normalized_frequency": 0.482300884955752,
+    "word": "best"
+  },
+  {
+    "normalized_frequency": 0.0619469026548673,
+    "word": "sad"
+  },
+  {
+    "normalized_frequency": 0.0265486725663717,
+    "word": "serious"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "psyched"
+  },
+  {
+    "normalized_frequency": 0.0929203539823009,
+    "word": "true"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "disney"
+  },
+  {
+    "normalized_frequency": 0.00884955752212389,
+    "word": "motherly"
+  },
+  {
+    "normalized_frequency": 0.0132743362831858,
+    "word": "jamaican"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "bellend"
+  },
+  {
+    "normalized_frequency": 0.00884955752212389,
+    "word": "soft"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "haired"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "opposite"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "sickening"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "stuffed"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "free-to-play"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "slow"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "100th"
+  },
+  {
+    "normalized_frequency": 0.247787610619469,
+    "word": "awesome"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "immortal"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "rad"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "calico"
+  },
+  {
+    "normalized_frequency": 0.0132743362831858,
+    "word": "addicting"
+  },
+  {
+    "normalized_frequency": 0.0132743362831858,
+    "word": "irritating"
+  },
+  {
+    "normalized_frequency": 0.00884955752212389,
+    "word": "unbearable"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "hungry"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "creditable"
+  },
+  {
+    "normalized_frequency": 0.00884955752212389,
+    "word": "several"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "6ft"
+  },
+  {
+    "normalized_frequency": 0.0221238938053097,
+    "word": "scary"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "interactive"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "reclusive"
+  },
+  {
+    "normalized_frequency": 0.00884955752212389,
+    "word": "ype"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "gaaaaaay"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "understandable"
+  },
+  {
+    "normalized_frequency": 0.0176991150442478,
+    "word": "upcoming"
+  },
+  {
+    "normalized_frequency": 0.0132743362831858,
+    "word": "soviet"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "derpy"
+  },
+  {
+    "normalized_frequency": 0.0221238938053097,
+    "word": "lost"
+  },
+  {
+    "normalized_frequency": 0.0575221238938053,
+    "word": "strange"
+  },
+  {
+    "normalized_frequency": 0.0132743362831858,
+    "word": "orange"
+  },
+  {
+    "normalized_frequency": 0.0575221238938053,
+    "word": "final"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "helpful"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "well"
+  },
+  {
+    "normalized_frequency": 0.0176991150442478,
+    "word": "older"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "total"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "pink"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "sims"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "creepy/weir"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "unbeaten"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "oude"
+  },
+  {
+    "normalized_frequency": 0.00884955752212389,
+    "word": "fifth"
+  },
+  {
+    "normalized_frequency": 0.0309734513274336,
+    "word": "legit"
+  },
+  {
+    "normalized_frequency": 0.0132743362831858,
+    "word": "ridiculous"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "annual"
+  },
+  {
+    "normalized_frequency": 0.115044247787611,
+    "word": "great"
+  },
+  {
+    "normalized_frequency": 0.00884955752212389,
+    "word": "incredible"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "cuddly"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "socialist"
+  },
+  {
+    "normalized_frequency": 0.0442477876106195,
+    "word": "ugliest"
+  },
+  {
+    "normalized_frequency": 0.0221238938053097,
+    "word": "primary"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "weored"
+  },
+  {
+    "normalized_frequency": 0.185840707964602,
+    "word": "last"
+  },
+  {
+    "normalized_frequency": 0.0221238938053097,
+    "word": "enough"
+  },
+  {
+    "normalized_frequency": 0.0221238938053097,
+    "word": "intense"
+  },
+  {
+    "normalized_frequency": 0.0132743362831858,
+    "word": "jiggly"
+  },
+  {
+    "normalized_frequency": 0.0442477876106195,
+    "word": "addicted"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "red/blue"
+  },
+  {
+    "normalized_frequency": 1.0,
+    "word": "new"
+  },
+  {
+    "normalized_frequency": 0.101769911504425,
+    "word": "online"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "phantom"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "unable"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "soy"
+  },
+  {
+    "normalized_frequency": 0.084070796460177,
+    "word": "such"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "grim"
+  },
+  {
+    "normalized_frequency": 0.00884955752212389,
+    "word": "worthy"
+  },
+  {
+    "normalized_frequency": 0.0353982300884956,
+    "word": "social"
+  },
+  {
+    "normalized_frequency": 0.0442477876106195,
+    "word": "sexy"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "stubborn"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "down"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "oral"
+  },
+  {
+    "normalized_frequency": 0.00884955752212389,
+    "word": "poor"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "dutch"
+  },
+  {
+    "normalized_frequency": 0.110619469026549,
+    "word": "blue"
+  },
+  {
+    "normalized_frequency": 0.0575221238938053,
+    "word": "top"
+  },
+  {
+    "normalized_frequency": 0.0398230088495575,
+    "word": "epic"
+  },
+  {
+    "normalized_frequency": 0.00884955752212389,
+    "word": "cheesy"
+  },
+  {
+    "normalized_frequency": 0.00884955752212389,
+    "word": "spare"
+  },
+  {
+    "normalized_frequency": 0.0176991150442478,
+    "word": "ashamed"
+  },
+  {
+    "normalized_frequency": 0.0398230088495575,
+    "word": "awkward"
+  },
+  {
+    "normalized_frequency": 0.150442477876106,
+    "word": "next"
+  },
+  {
+    "normalized_frequency": 0.00884955752212389,
+    "word": "dark-type"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "significant"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "customized"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "untold"
+  },
+  {
+    "normalized_frequency": 0.0530973451327434,
+    "word": "own"
+  },
+  {
+    "normalized_frequency": 0.0132743362831858,
+    "word": "emotional"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "frustrated"
+  },
+  {
+    "normalized_frequency": 0.00884955752212389,
+    "word": "ancient"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "mega"
+  },
+  {
+    "normalized_frequency": 0.00884955752212389,
+    "word": "desperate"
+  },
+  {
+    "normalized_frequency": 0.0176991150442478,
+    "word": "faithful"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "deafening"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "white/black"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "6\u20194"
+  },
+  {
+    "normalized_frequency": 0.00884955752212389,
+    "word": "thankful"
+  },
+  {
+    "normalized_frequency": 0.0176991150442478,
+    "word": "ugly"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "batshit"
+  },
+  {
+    "normalized_frequency": 0.0309734513274336,
+    "word": "fairy"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "grand"
+  },
+  {
+    "normalized_frequency": 0.00884955752212389,
+    "word": "disappointed"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "blonde"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "massive"
+  },
+  {
+    "normalized_frequency": 0.0221238938053097,
+    "word": "shitty"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "outer"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "missed"
+  },
+  {
+    "normalized_frequency": 0.0265486725663717,
+    "word": "awful"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "bangin"
+  },
+  {
+    "normalized_frequency": 0.0353982300884956,
+    "word": "annoying"
+  },
+  {
+    "normalized_frequency": 0.0619469026548673,
+    "word": "young"
+  },
+  {
+    "normalized_frequency": 0.0265486725663717,
+    "word": "exclusive"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "entertaining"
+  },
+  {
+    "normalized_frequency": 0.00884955752212389,
+    "word": "miraculous"
+  },
+  {
+    "normalized_frequency": 0.00884955752212389,
+    "word": "smart"
+  },
+  {
+    "normalized_frequency": 0.623893805309734,
+    "word": "old"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "unmissable"
+  },
+  {
+    "normalized_frequency": 0.00884955752212389,
+    "word": "limited-edition"
+  },
+  {
+    "normalized_frequency": 0.0176991150442478,
+    "word": "mini"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "cray"
+  },
+  {
+    "normalized_frequency": 0.00884955752212389,
+    "word": "determined"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "eternal"
+  },
+  {
+    "normalized_frequency": 0.0132743362831858,
+    "word": "angry"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "current"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "artistic"
+  },
+  {
+    "normalized_frequency": 0.0265486725663717,
+    "word": "crazy"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "72-year-old"
+  },
+  {
+    "normalized_frequency": 0.00884955752212389,
+    "word": "open"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "24hr"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "151st"
+  },
+  {
+    "normalized_frequency": 0.0353982300884956,
+    "word": "extra"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "ole"
+  },
+  {
+    "normalized_frequency": 0.0486725663716814,
+    "word": "past"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "star"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "kinky"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "menacing"
+  },
+  {
+    "normalized_frequency": 0.0176991150442478,
+    "word": "former"
+  },
+  {
+    "normalized_frequency": 0.0486725663716814,
+    "word": "green"
+  },
+  {
+    "normalized_frequency": 0.176991150442478,
+    "word": "same"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "racist"
+  },
+  {
+    "normalized_frequency": 0.0265486725663717,
+    "word": "rich"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "\u0441\u043a\u0430\u0447\u0430\u0442\u044c"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "immature"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "magnetic"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "curly"
+  },
+  {
+    "normalized_frequency": 0.0176991150442478,
+    "word": "latest"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "altered"
+  },
+  {
+    "normalized_frequency": 0.00884955752212389,
+    "word": "major"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "empty"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "fricking"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "various"
+  },
+  {
+    "normalized_frequency": 0.0221238938053097,
+    "word": "calm"
+  },
+  {
+    "normalized_frequency": 0.00884955752212389,
+    "word": "female"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "friggen"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "wise"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "permanent"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "aforementioned"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "surprising"
+  },
+  {
+    "normalized_frequency": 0.0221238938053097,
+    "word": "personal"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "f*cking"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "raw"
+  },
+  {
+    "normalized_frequency": 0.00884955752212389,
+    "word": "useless"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "pleased"
+  },
+  {
+    "normalized_frequency": 0.0398230088495575,
+    "word": "tired"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "youngest"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "kickass"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "menstrual"
+  },
+  {
+    "normalized_frequency": 0.0132743362831858,
+    "word": "freaking"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "super"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "convinced"
+  },
+  {
+    "normalized_frequency": 0.0442477876106195,
+    "word": "whole"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "supersonic"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "revolutionary"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "diehard"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "sentient"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "feisty"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "general"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "fair"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "rocky"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "enhanced"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "comparable"
+  },
+  {
+    "normalized_frequency": 0.0221238938053097,
+    "word": "limited"
+  },
+  {
+    "normalized_frequency": 0.0176991150442478,
+    "word": "powerful"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "flyin"
+  },
+  {
+    "normalized_frequency": 0.00884955752212389,
+    "word": "petty"
+  },
+  {
+    "normalized_frequency": 0.172566371681416,
+    "word": "little"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "slender"
+  },
+  {
+    "normalized_frequency": 0.00884955752212389,
+    "word": "small"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "standard"
+  },
+  {
+    "normalized_frequency": 0.0707964601769911,
+    "word": "ready"
+  },
+  {
+    "normalized_frequency": 0.00884955752212389,
+    "word": "strongest"
+  },
+  {
+    "normalized_frequency": 0.0973451327433628,
+    "word": "perfect"
+  },
+  {
+    "normalized_frequency": 0.146017699115044,
+    "word": "many"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "natured"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "ratchet"
+  },
+  {
+    "normalized_frequency": 0.0176991150442478,
+    "word": "suppose"
+  },
+  {
+    "normalized_frequency": 0.0442477876106195,
+    "word": "stupid"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "ass"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "patient"
+  },
+  {
+    "normalized_frequency": 0.194690265486726,
+    "word": "white"
+  },
+  {
+    "normalized_frequency": 0.0132743362831858,
+    "word": "red/blue/yellow"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "homemade"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "truueeeeee"
+  },
+  {
+    "normalized_frequency": 0.0176991150442478,
+    "word": "deep"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "norwegian"
+  },
+  {
+    "normalized_frequency": 0.0221238938053097,
+    "word": "childish"
+  },
+  {
+    "normalized_frequency": 0.20353982300885,
+    "word": "only"
+  },
+  {
+    "normalized_frequency": 0.0132743362831858,
+    "word": "ok"
+  },
+  {
+    "normalized_frequency": 0.0663716814159292,
+    "word": "emerald"
+  },
+  {
+    "normalized_frequency": 0.00884955752212389,
+    "word": "pure"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "awesomest"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "worthless"
+  },
+  {
+    "normalized_frequency": 0.00884955752212389,
+    "word": "wonder"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "addictive"
+  },
+  {
+    "normalized_frequency": 0.274336283185841,
+    "word": "original"
+  },
+  {
+    "normalized_frequency": 0.0176991150442478,
+    "word": "safe"
+  },
+  {
+    "normalized_frequency": 0.13716814159292,
+    "word": "full"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "public"
+  },
+  {
+    "normalized_frequency": 0.00884955752212389,
+    "word": "large"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "damned"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "sour"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "fan-made"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "alone"
+  },
+  {
+    "normalized_frequency": 0.0221238938053097,
+    "word": "cutest"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "committed"
+  },
+  {
+    "normalized_frequency": 0.0132743362831858,
+    "word": "brutal-pokemon"
+  },
+  {
+    "normalized_frequency": 0.0353982300884956,
+    "word": "shy"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "rogue"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "winnable"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "bigger"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "outrageous"
+  },
+  {
+    "normalized_frequency": 0.0176991150442478,
+    "word": "cellular"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "sold"
+  },
+  {
+    "normalized_frequency": 0.00884955752212389,
+    "word": "shiney"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "intellectual"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "rude"
+  },
+  {
+    "normalized_frequency": 0.141592920353982,
+    "word": "paralyzed"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "remaining"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "gaaaayyy"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "fye"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "unbelievable"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "personalized"
+  },
+  {
+    "normalized_frequency": 0.0398230088495575,
+    "word": "fun"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "legal"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "custom"
+  },
+  {
+    "normalized_frequency": 0.0530973451327434,
+    "word": "complete"
+  },
+  {
+    "normalized_frequency": 0.00884955752212389,
+    "word": "acceptable"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "unoriginal"
+  },
+  {
+    "normalized_frequency": 0.0309734513274336,
+    "word": "interesting"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "detailed"
+  },
+  {
+    "normalized_frequency": 0.0486725663716814,
+    "word": "bored"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "galactic"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "claaassic"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "dark/psychic"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "hawt"
+  },
+  {
+    "normalized_frequency": 0.00884955752212389,
+    "word": "low"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "vivid"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "anticipated"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "hardcore"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "airborne"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "characmter"
+  },
+  {
+    "normalized_frequency": 0.0176991150442478,
+    "word": "grown"
+  },
+  {
+    "normalized_frequency": 0.141592920353982,
+    "word": "shiny"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "godless"
+  },
+  {
+    "normalized_frequency": 0.0929203539823009,
+    "word": "nice"
+  },
+  {
+    "normalized_frequency": 0.0398230088495575,
+    "word": "entire"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "magenta"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "recre"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "overwhelming"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "polluted"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "key"
+  },
+  {
+    "normalized_frequency": 0.101769911504425,
+    "word": "rarest"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "non-jailbreak"
+  },
+  {
+    "normalized_frequency": 0.225663716814159,
+    "word": "cute"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "kn-known"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "drunken"
+  },
+  {
+    "normalized_frequency": 0.0132743362831858,
+    "word": "3d"
+  },
+  {
+    "normalized_frequency": 0.00884955752212389,
+    "word": "romantic"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "confirmed"
+  },
+  {
+    "normalized_frequency": 0.079646017699115,
+    "word": "different"
+  },
+  {
+    "normalized_frequency": 0.00884955752212389,
+    "word": "alive"
+  },
+  {
+    "normalized_frequency": 0.0132743362831858,
+    "word": "healthy"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "vegetarian"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "untrained"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "mystical"
+  },
+  {
+    "normalized_frequency": 0.0132743362831858,
+    "word": "usable"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "non-profit"
+  },
+  {
+    "normalized_frequency": 0.0132743362831858,
+    "word": "dumb"
+  },
+  {
+    "normalized_frequency": 0.0221238938053097,
+    "word": "loud"
+  },
+  {
+    "normalized_frequency": 0.00884955752212389,
+    "word": "truer"
+  },
+  {
+    "normalized_frequency": 0.0398230088495575,
+    "word": "late"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "longest"
+  },
+  {
+    "normalized_frequency": 0.0265486725663717,
+    "word": "close"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "skilled"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "dirty"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "simple"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "tougher"
+  },
+  {
+    "normalized_frequency": 0.0398230088495575,
+    "word": "live"
+  },
+  {
+    "normalized_frequency": 0.0132743362831858,
+    "word": "welcome"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "lesser"
+  },
+  {
+    "normalized_frequency": 0.0132743362831858,
+    "word": "digital"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "charizard"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "morphin"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "larger"
+  },
+  {
+    "normalized_frequency": 0.00884955752212389,
+    "word": "professional"
+  },
+  {
+    "normalized_frequency": 0.00884955752212389,
+    "word": "interested"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "rough"
+  },
+  {
+    "normalized_frequency": 0.00884955752212389,
+    "word": "third"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "low-ranking"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "japanese-style"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "moot"
+  },
+  {
+    "normalized_frequency": 0.00884955752212389,
+    "word": "attractive"
+  },
+  {
+    "normalized_frequency": 0.00884955752212389,
+    "word": "middle"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "contradictory"
+  },
+  {
+    "normalized_frequency": 0.15929203539823,
+    "word": "much"
+  },
+  {
+    "normalized_frequency": 0.0486725663716814,
+    "word": "less"
+  },
+  {
+    "normalized_frequency": 0.00884955752212389,
+    "word": "coolest"
+  },
+  {
+    "normalized_frequency": 0.0398230088495575,
+    "word": "busy"
+  },
+  {
+    "normalized_frequency": 0.119469026548673,
+    "word": "sure"
+  },
+  {
+    "normalized_frequency": 0.0132743362831858,
+    "word": "golden"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "warm"
+  },
+  {
+    "normalized_frequency": 0.0176991150442478,
+    "word": "beautiful"
+  },
+  {
+    "normalized_frequency": 0.00884955752212389,
+    "word": "daft"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "peachy"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "elegant"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "debatable"
+  },
+  {
+    "normalized_frequency": 0.00884955752212389,
+    "word": "outdated"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "electric-type"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "seafoam"
+  },
+  {
+    "normalized_frequency": 0.00884955752212389,
+    "word": "scared"
+  },
+  {
+    "normalized_frequency": 0.0132743362831858,
+    "word": "shaped"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "global"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "fxckin"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "happier"
+  },
+  {
+    "normalized_frequency": 0.0398230088495575,
+    "word": "most"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "bk"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "collaborative"
+  },
+  {
+    "normalized_frequency": 0.0132743362831858,
+    "word": "confused"
+  },
+  {
+    "normalized_frequency": 0.0132743362831858,
+    "word": "fave"
+  },
+  {
+    "normalized_frequency": 0.0929203539823009,
+    "word": "few"
+  },
+  {
+    "normalized_frequency": 0.0132743362831858,
+    "word": "short"
+  },
+  {
+    "normalized_frequency": 0.0176991150442478,
+    "word": "goddamn"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "bittersweet"
+  },
+  {
+    "normalized_frequency": 0.0309734513274336,
+    "word": "fine"
+  },
+  {
+    "normalized_frequency": 0.00884955752212389,
+    "word": "basic"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "amusing"
+  },
+  {
+    "normalized_frequency": 0.079646017699115,
+    "word": "single"
+  },
+  {
+    "normalized_frequency": 0.0221238938053097,
+    "word": "tiny"
+  },
+  {
+    "normalized_frequency": 0.0132743362831858,
+    "word": "mobile"
+  },
+  {
+    "normalized_frequency": 0.0132743362831858,
+    "word": "out"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "likable"
+  },
+  {
+    "normalized_frequency": 0.0265486725663717,
+    "word": "plush"
+  },
+  {
+    "normalized_frequency": 0.0265486725663717,
+    "word": "asian"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "lighskinned"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "false"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "fainted"
+  },
+  {
+    "normalized_frequency": 0.0176991150442478,
+    "word": "lame"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "unusual"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "temporary"
+  },
+  {
+    "normalized_frequency": 0.0176991150442478,
+    "word": "creative"
+  },
+  {
+    "normalized_frequency": 0.0221238938053097,
+    "word": "competitive"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "studded"
+  },
+  {
+    "normalized_frequency": 0.0132743362831858,
+    "word": "horrible"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "lunar"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "relapsed"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "creepiest"
+  },
+  {
+    "normalized_frequency": 0.0398230088495575,
+    "word": "1st"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "abandoned"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "bow"
+  },
+  {
+    "normalized_frequency": 0.0663716814159292,
+    "word": "least"
+  },
+  {
+    "normalized_frequency": 0.00884955752212389,
+    "word": "talented"
+  },
+  {
+    "normalized_frequency": 0.0176991150442478,
+    "word": "ultimate"
+  },
+  {
+    "normalized_frequency": 0.101769911504425,
+    "word": "japanese"
+  },
+  {
+    "normalized_frequency": 0.0398230088495575,
+    "word": "random"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "ideal"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "new+pc1817"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "sus"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "heartbroken"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "brutal"
+  },
+  {
+    "normalized_frequency": 0.00884955752212389,
+    "word": "adorable"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "8-bit"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "nuts"
+  },
+  {
+    "normalized_frequency": 0.00884955752212389,
+    "word": "solid"
+  },
+  {
+    "normalized_frequency": 0.0398230088495575,
+    "word": "related"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "azn"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "huuuge"
+  },
+  {
+    "normalized_frequency": 0.0221238938053097,
+    "word": "silly"
+  },
+  {
+    "normalized_frequency": 0.00884955752212389,
+    "word": "elite"
+  },
+  {
+    "normalized_frequency": 0.00884955752212389,
+    "word": "awake"
+  },
+  {
+    "normalized_frequency": 0.101769911504425,
+    "word": "favourite"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "manly"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "forced"
+  },
+  {
+    "normalized_frequency": 0.415929203539823,
+    "word": "more"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "slutty"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "left"
+  },
+  {
+    "normalized_frequency": 0.0132743362831858,
+    "word": "teenage"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "#touchy"
+  },
+  {
+    "normalized_frequency": 0.0132743362831858,
+    "word": "used"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "civil"
+  },
+  {
+    "normalized_frequency": 0.115044247787611,
+    "word": "long"
+  },
+  {
+    "normalized_frequency": 0.0265486725663717,
+    "word": "newest"
+  },
+  {
+    "normalized_frequency": 0.0132743362831858,
+    "word": "cold"
+  },
+  {
+    "normalized_frequency": 0.0221238938053097,
+    "word": "fresh"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "motherfucking"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "cheeeeap"
+  },
+  {
+    "normalized_frequency": 0.0265486725663717,
+    "word": "easy"
+  },
+  {
+    "normalized_frequency": 0.0486725663716814,
+    "word": "misty"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "uncharted"
+  },
+  {
+    "normalized_frequency": 0.0221238938053097,
+    "word": "fast"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "wet"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "semi"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "avid"
+  },
+  {
+    "normalized_frequency": 0.00884955752212389,
+    "word": "saddest"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "disrespectful"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "unbeatable"
+  },
+  {
+    "normalized_frequency": 0.0132743362831858,
+    "word": "heated"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "hidden"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "21year"
+  },
+  {
+    "normalized_frequency": 0.00884955752212389,
+    "word": "wonderful"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "colored"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "aware"
+  },
+  {
+    "normalized_frequency": 0.0221238938053097,
+    "word": "funniest"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "fuggin"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "sexist"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "traumatic"
+  },
+  {
+    "normalized_frequency": 0.00884955752212389,
+    "word": "exciting"
+  },
+  {
+    "normalized_frequency": 0.00884955752212389,
+    "word": "closest"
+  },
+  {
+    "normalized_frequency": 0.185840707964602,
+    "word": "bad"
+  },
+  {
+    "normalized_frequency": 0.00884955752212389,
+    "word": "previous"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "kiddy"
+  },
+  {
+    "normalized_frequency": 0.0176991150442478,
+    "word": "longer"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "cheap"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "livest"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "profound"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "half"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "offensive"
+  },
+  {
+    "normalized_frequency": 0.0176991150442478,
+    "word": "quick"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "nutz"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "oversized"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "pre"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "bold"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "slight"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "darn"
+  },
+  {
+    "normalized_frequency": 0.00884955752212389,
+    "word": "future"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "finest"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "nasty"
+  },
+  {
+    "normalized_frequency": 0.0353982300884956,
+    "word": "strong"
+  },
+  {
+    "normalized_frequency": 0.0973451327433628,
+    "word": "fucking"
+  },
+  {
+    "normalized_frequency": 0.00884955752212389,
+    "word": "trill"
+  },
+  {
+    "normalized_frequency": 0.0176991150442478,
+    "word": "pleyed"
+  },
+  {
+    "normalized_frequency": 0.0353982300884956,
+    "word": "sick"
+  },
+  {
+    "normalized_frequency": 0.00884955752212389,
+    "word": "furry"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "satisfied"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "innocent"
+  },
+  {
+    "normalized_frequency": 0.0221238938053097,
+    "word": "actual"
+  },
+  {
+    "normalized_frequency": 0.0132743362831858,
+    "word": "purple"
+  },
+  {
+    "normalized_frequency": 0.00884955752212389,
+    "word": "mysterious"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "legendary's!"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "highest"
+  },
+  {
+    "normalized_frequency": 0.0265486725663717,
+    "word": "okay"
+  },
+  {
+    "normalized_frequency": 0.00884955752212389,
+    "word": "hilarious"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "alternate"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "bamboo"
+  },
+  {
+    "normalized_frequency": 0.146017699115044,
+    "word": "yellow"
+  },
+  {
+    "normalized_frequency": 0.243362831858407,
+    "word": "other"
+  },
+  {
+    "normalized_frequency": 0.00884955752212389,
+    "word": "infinite"
+  },
+  {
+    "normalized_frequency": 0.00884955752212389,
+    "word": "pretty"
+  },
+  {
+    "normalized_frequency": 0.0442477876106195,
+    "word": "damn"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "lower"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "unskilled"
+  },
+  {
+    "normalized_frequency": 0.0309734513274336,
+    "word": "greatest"
+  },
+  {
+    "normalized_frequency": 0.00884955752212389,
+    "word": "newer"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "pumped"
+  },
+  {
+    "normalized_frequency": 0.0132743362831858,
+    "word": "giant"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "abt"
+  },
+  {
+    "normalized_frequency": 0.0132743362831858,
+    "word": "lovely"
+  },
+  {
+    "normalized_frequency": 0.00884955752212389,
+    "word": "looking"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "childs"
+  },
+  {
+    "normalized_frequency": 0.0132743362831858,
+    "word": "unknown"
+  },
+  {
+    "normalized_frequency": 0.0132743362831858,
+    "word": "important"
+  },
+  {
+    "normalized_frequency": 0.0221238938053097,
+    "word": "dark"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "toasted"
+  },
+  {
+    "normalized_frequency": 0.0530973451327434,
+    "word": "second"
+  },
+  {
+    "normalized_frequency": 0.0309734513274336,
+    "word": "proud"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "twisted"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "tiny-tea-party"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "unappreciative"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "decisive"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "fucked"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "vile"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "aerial"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "brown"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "advanced"
+  },
+  {
+    "normalized_frequency": 0.0132743362831858,
+    "word": "tight"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "asain"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "bland"
+  },
+  {
+    "normalized_frequency": 0.0132743362831858,
+    "word": "hardest"
+  },
+  {
+    "normalized_frequency": 0.0752212389380531,
+    "word": "official"
+  },
+  {
+    "normalized_frequency": 0.00884955752212389,
+    "word": "male"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "impressive"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "fitting"
+  },
+  {
+    "normalized_frequency": 0.0132743362831858,
+    "word": "chinese"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "disappointing"
+  },
+  {
+    "normalized_frequency": 0.0132743362831858,
+    "word": "lazy"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "10hours"
+  },
+  {
+    "normalized_frequency": 0.0442477876106195,
+    "word": "holy"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "worldly"
+  },
+  {
+    "normalized_frequency": 0.415929203539823,
+    "word": "good"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "9th"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "exact"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "darkskin"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "metrosexual"
+  },
+  {
+    "normalized_frequency": 0.00442477876106195,
+    "word": "disturbing"
+  }
+]}
