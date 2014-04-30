@@ -279,6 +279,129 @@ def getTopTweetDataWithSentimentSQL(search_term):
         where tbl1.id = id_to_attributes_map.id
     '''.format(search_term=search_term)
 
+def getHeatMapTweetIdsSQL(search_term):
+    return '''
+        with hmap
+        as (
+            select day_of_week,
+                   hour_of_day,
+                   id,
+                   sentiment,
+                   row_number() over (partition by day_of_week, hour_of_day, sentiment order by score desc) as index
+            from
+            (
+                select t1.id,
+                       t1.score,
+                       case
+                            when t3.median_sentiment_index > 1 then 'positive'
+                            when t3.median_sentiment_index < -1 then 'negative'
+                            else  'neutral'
+                       end as sentiment,
+                       extract(DOW from (t2.postedtime at time zone 'UTC')) as day_of_week,
+                       extract(HOUR from (t2.postedtime at time zone 'UTC')) as hour_of_day
+                from
+                    gptext.search (
+                        TABLE(select * from topicdemo.tweet_dataset),
+                        'vatsandb.topicdemo.tweet_dataset',
+                        '{search_term}',
+                        null
+                    ) t1,
+                    topicdemo.tweet_dataset t2,
+                    sentimentdemo.training_data_scored t3
+                where t1.id = t2.id and t2.tweet_id = t3.id and t3.median_sentiment_index IS NOT NULL
+            ) q
+        )     
+        select hmap_stats.day_of_week,
+               hmap_stats.hour_of_day,
+               id_arr.sentiment,
+               hmap_stats.num_tweets,
+               hmap_stats.num_positive,
+               hmap_stats.num_negative,
+               id_arr.id_arr
+        from (
+            select day_of_week,
+                   hour_of_day,
+                   count(id) as num_tweets,
+                   count(id) filter(where sentiment='positive') as num_positive,
+                   count(id) filter(where sentiment='negative') as num_negative,
+                   count(id) filter(where sentiment='neutral') as num_neutral
+            from hmap
+            group by day_of_week, hour_of_day
+        ) hmap_stats,
+        (
+            select day_of_week,
+                   hour_of_day,
+                   sentiment,
+                   array_agg(id order by index) as id_arr
+            from hmap
+            where sentiment in ('positive', 'negative') and index <=10
+            group by day_of_week, hour_of_day, sentiment
+        ) id_arr
+        where hmap_stats.day_of_week = id_arr.day_of_week and
+        hmap_stats.hour_of_day = id_arr.hour_of_day
+    '''.format(search_term=search_term)
+
+def getHeatMapTweetDateSQL(search_term):
+    return '''
+        with hmap
+        as (
+            select day_of_week,
+                   hour_of_day,
+                   id,
+                   sentiment,
+                   row_number() over (partition by day_of_week, hour_of_day, sentiment order by score desc) as index
+            from (
+                select t1.id,
+                       t1.score,
+                       case
+                           when t3.median_sentiment_index > 1 then 'positive'
+                           when t3.median_sentiment_index < -1 then 'negative'
+                           else  'neutral'
+                       end as sentiment,
+                       extract(DOW from (t2.postedtime at time zone 'UTC')) as day_of_week,
+                       extract(HOUR from (t2.postedtime at time zone 'UTC')) as hour_of_day
+                from
+                    gptext.search (
+                        TABLE(select * from topicdemo.tweet_dataset),
+                        'vatsandb.topicdemo.tweet_dataset',
+                        '{search_term}',
+                        null
+                    ) t1,
+                    topicdemo.tweet_dataset t2,
+                    sentimentdemo.training_data_scored t3
+                where t1.id = t2.id and t2.tweet_id = t3.id and t3.median_sentiment_index IS NOT NULL
+            ) q
+        ),
+        id_to_attributes_map
+        as (
+            select t1.id,
+                   t3.displayname,
+                   t3.preferredusername,
+                   t2.body,
+                   t3.image
+            from
+                gptext.search(
+                    TABLE(select * from topicdemo.tweet_dataset),
+                    'vatsandb.topicdemo.tweet_dataset',
+                    '{search_term}',
+                    null
+                ) t1,
+                topicdemo.tweet_dataset t2,
+                sentimentdemo.actor_info t3
+            where t1.id = t2.id and t2.tweet_id = t3.tweet_id
+        )
+        select id_to_attributes_map.*
+        from
+            (
+                select id
+                from hmap
+                where sentiment in ('positive', 'negative') and index <=10
+                group by id
+            ) tbl1,
+            id_to_attributes_map
+        where tbl1.id = id_to_attributes_map.id                     
+    '''.format(search_term=search_term)
+
 def getCountOfRelevantTweetsSQL(search_term):
     '''
        Grab the count of relevant tweets

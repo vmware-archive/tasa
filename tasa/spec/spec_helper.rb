@@ -9,7 +9,7 @@ Capybara.register_driver :selenium do |app|
 end
 # Capybara.default_driver = :poltergeist
 Capybara.default_driver = :selenium
-Capybara.default_wait_time = 60
+Capybara.default_wait_time = 5
 
 Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
 

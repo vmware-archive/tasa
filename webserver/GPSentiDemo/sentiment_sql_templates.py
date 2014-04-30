@@ -94,8 +94,8 @@ def getDayHourHeatMapSQL(search_term):
                               t2.tweet_id,
                               t2.postedtime,
                               t3.median_sentiment_index,
-                              extract(DOW from t2.postedtime) as day_of_week,
-                              extract(HOUR from t2.postedtime) as hour_of_day
+                              extract(DOW from (t2.postedtime at time zone 'UTC')) as day_of_week,
+                              extract(HOUR from (t2.postedtime at time zone 'UTC')) as hour_of_day
                        from gptext.search (
                               TABLE(select * from topicdemo.tweet_dataset),
                               'vatsandb.topicdemo.tweet_dataset',

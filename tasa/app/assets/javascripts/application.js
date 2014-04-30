@@ -44,10 +44,17 @@
          });
        },
        parse: function(attrs) {
-         _.each(attrs.tweets, function(tweet) {
-           _.forIn(tweet, function(value, key) {
-             if (!_.isString(value)) { return; }
-             tweet[key] = _.unescape(eval('"' + value.replace(/"/g, '\\x22').replace(/\r\n|\n/gm, '\\x0A').replace(/\\/, '\\x5c') + '"'));
+         if (_.isArray(attrs.tweets)) {
+           var groups = {};
+           groups[this.get('sentiment') || 'total'] = attrs.tweets;
+           attrs.tweets = groups
+         }
+         _.each(attrs.tweets, function(tweets, type) {
+           _.each(tweets, function(tweet) {
+             _.forIn(tweet, function(value, key) {
+               if (!_.isString(value)) { return; }
+               tweet[key] = _.unescape(eval('"' + value.replace(/"/g, '\\x22').replace(/\r\n|\n/gm, '\\x0A').replace(/\\/, '\\x5c') + '"'));
+             });
            });
          });
          return _.extend({tweets: attrs.tweets}, attrs.counts, {
@@ -104,14 +111,20 @@
         return _.invoke(this.last(64), 'toJSON');
       }
      }))(),
-    heatmap = new (Backbone.Collection.extend({
-      url: function() { return '/gp/senti/hmap/q?sr_trm=' + query.get('query'); },
-      parse: function(response) { return response.hmap; },
+    heatmap = new (Backbone.Model.extend({
+      url: function() { return '/gp/tasa/tweets/q?hmap=true&sr_trm=' + query.get('query'); },
       toJSON: function() {
-        return this.reduce(function(result, model) {
-          result[new Date(2013, 5, 31) / 1000 + model.get('day') * 60 * 60 * 24 + model.get('hour') * 60 * 60] = model.get('num_tweets');
-          return result;
-        }, {});
+        var self = this, result = {};
+        self._timestampMap = {};
+        _.each(this.get('tweet_ids_by_date'), function(row) {
+          var timestamp = new Date(2013, 5, 31) / 1000 + row.day * 60 * 60 * 24 + row.hour * 60 * 60;
+          result[timestamp] = row.counts.total;
+          self._timestampMap[timestamp] = row;
+        });
+        return result;
+      },
+      data: function(timestamp) {
+        return this._timestampMap[timestamp/1000];
       }
     }))()
    ;
@@ -123,16 +136,25 @@
     template: 'templates/sidebar_tweets',
     model: sideBar,
     decorator: function() {
-      return _.extend(this.model.toJSON(), {
+      return _.extend(this.model.omit('tweets'), {
         date: sideBar.has('posted_date') && d3.time.format.utc('%B %d, %Y')(new Date(sideBar.get('posted_date'))) ||
+              sideBar.has('heatmap') && d3.time.format('%As at %I%p')(new Date(sideBar.get('heatmap'))).replace(/at 0/, 'at ') ||
               'July 1 - 31, 2013',
         title: this.model.get('sentiment') && 'Sentiment Mapping' ||
                this.model.get('topic') && 'Topic Words' ||
                this.model.get('adjective') && 'Adjectives' ||
+               this.model.get('heatmap') && 'Tweet Activity' ||
                'Top 20 Tweets',
-        subtitle: this.model.get('sentiment') && 'Top 20 ' + this.model.get('sentiment') + ' tweets' ||
-                  this.model.get('adjective') && 'Top 20 tweets for "' + this.model.get('adjective') + '"' ||
-                  ''
+        groups: _.map(this.model.get('tweets'), function(tweets, sentiment) {
+          return {
+            sentiment: sentiment,
+            tweets: tweets,
+            subtitle: this.model.get('sentiment') && 'Top 20 ' + sentiment + ' tweets' ||
+                      this.model.get('adjective') && 'Top 20 tweets for "' + this.model.get('adjective') + '"' ||
+                      this.model.get('heatmap') && 'Top 10 ' + sentiment + ' tweets' ||
+                      ''
+          }
+        }, this)
       });
     },
     render: function() {
@@ -230,12 +252,13 @@
     delete $('.topic-cluster')[0].dataset.selected;
   });
 
-  $('body').on('click', '.detail, .tag-cloud text', function(e) {
+  $('body').on('click', '.detail, .tag-cloud text, .graph-rect', function(e) {
     sideBar.set({
       posted_date: $(e.currentTarget).find('[data-posted-date]').data('posted-date'),
       sentiment: $(e.currentTarget).find('[data-sentiment]').data('sentiment'),
       adjective: $(e.currentTarget).data('adjective'),
-      topic: $(e.currentTarget).data('topic')
+      topic: $(e.currentTarget).data('topic'),
+      heatmap: $(e.currentTarget).data('heatmap-timestamp')
     });
   });
 
@@ -248,7 +271,14 @@
       sideBar.set(sideBar.parse({
         tweets: _.values(_.pick(force.get('tweets'), ids)),
         counts: {total: ids.length}
-      }));
+      }), {silent: true});
+      sideBar.trigger('sync');
+    } else if (sideBar.get('heatmap')) {
+      var data = heatmap.data(sideBar.get('heatmap'));
+      _.each(data.tweets, function(ids, sentiment) {
+        data.tweets[sentiment] = _.values(_.pick(heatmap.get('tweets_by_id'), ids));
+      });
+      sideBar.set(sideBar.parse(data), {silent: true});
       sideBar.trigger('sync');
     } else {
       _.result(sidebarXhrRequest, 'abort');

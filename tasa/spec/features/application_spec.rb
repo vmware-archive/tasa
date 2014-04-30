@@ -5,7 +5,7 @@ feature 'Application' do
     {
       '/gp/topic/ts/q?sr_trm=pokemon' => total_tweets,
       '/gp/senti/ms/q?sr_trm=pokemon' => sentiment_mapping,
-      '/gp/senti/hmap/q?sr_trm=pokemon' => tweet_activity,
+      '/gp/tasa/tweets/q?hmap=true&sr_trm=pokemon' => tweet_activity,
       '/gp/senti/acloud/q?sr_trm=pokemon' => adjectives,
       '/gp/topic/fetch/q?num_topics=3&sr_trm=pokemon' => topic_cluster_for_3_topics,
       '/gp/topic/fetch/q?num_topics=4&sr_trm=pokemon' => topic_cluster_for_4_topics,
@@ -33,6 +33,13 @@ feature 'Application' do
 
     expect(page).to have_no_css('.ball')
     expect(page).to have_content('Tweets from July 1 - 31 of 2013')
+
+    actual = page.all('.drilldown ol li').map do |node|
+      {username: node.find('.username').text, text: node.find('.text').text}.with_indifferent_access
+    end
+    expected = top_20_tweets['tweets'].map {|point| point.slice('username', 'text')}
+    expect(actual).to eq(expected)
+    page.find('.drilldown').should have_content("#{top_20_tweets['counts']['total']} Total Tweets")
 
     actual = page.evaluate_script <<-JS
       _.pluck(d3.select('.total-tweets .graph path').data()[0], 'y');
@@ -70,15 +77,13 @@ feature 'Application' do
         }).filter(Boolean);
       })();
     JS
-    expected = tweet_activity['hmap'].sort_by {|point| [point['day'], point['hour']]}.map {|point| point.slice('day', 'hour', 'num_tweets')}
+    expected = tweet_activity['tweet_ids_by_date'].sort_by {|point| [point['day'], point['hour']]}.map {|point| point.slice('day', 'hour').merge('num_tweets' => point['counts']['total'])}
     expect(actual).to eq(expected)
 
-    actual = page.all('.drilldown ol li').map do |node|
-      {username: node.find('.username').text, text: node.find('.text').text}.with_indifferent_access
-    end
-    expected = top_20_tweets['tweets'].map {|point| point.slice('username', 'text')}
-    expect(actual).to eq(expected)
-    page.find('.drilldown').should have_content("#{top_20_tweets['counts']['total']} Total Tweets")
+    page.all('.graph-rect').first.click
+    expect(page.find('.drilldown-overview')).to have_content("#{tweet_activity['tweet_ids_by_date'][0]['counts']['total']} Total Tweets")
+    expect(page.find('.drilldown-overview')).to have_content('Mondays at 12AM')
+    expect(page.find('.drilldown')).to have_content('@kiaraajw  what is this Pokemon?o.O')
 
     # actual = page.all('.adjectives .tag-cloud text').map(&:text)
     # expected = adjectives['adjective_cloud'].sort {|point| -point['normalized_frequency']}.take(64).map {|point| point['word']}
@@ -93,7 +98,6 @@ feature 'Application' do
     page.find('.total-tweets .graph svg > path').hover
     details = page.find('.total-tweets .graph .detail .item')
     details.click
-
     expect(page.find('.drilldown')).to have_content('July 16, 2013')
     expect(page.find('.drilldown')).to have_content("#{top_20_tweets_for_july_16['counts']['total']} Total Tweets")
 

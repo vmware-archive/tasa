@@ -40,6 +40,10 @@
         legend: legend
       });
 
+      $('.graph-rect').each(function() {
+        $(this).attr('data-heatmap-timestamp', d3.select(this).data()[0].t);
+      });
+
       this.$el.append('<style>.ch-tooltip {margin-top: ' + cellSize / 2 + 'px;' + ' margin-left: ' + (labelWidth - 2) + 'px;}</style>');
     }
   });

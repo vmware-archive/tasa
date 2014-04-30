@@ -335,6 +335,10 @@ h2 {
       height: 8px;
     }
   }
+
+  .tweet-group + .tweet-group {
+    margin-top: 21px;
+  }
 }
 
 .list-inline {

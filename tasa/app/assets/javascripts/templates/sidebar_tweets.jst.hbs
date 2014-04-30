@@ -17,12 +17,16 @@
   <div class="de-emphasize drilldown-info">{{total}} Total Tweets </div>
 </div>
 
-{{#if subtitle}}<h3 class="sidebar-subtitle {{sentiment}}">{{subtitle}}</h3>{{/if}}
-<ol>
-  {{#tweets}}
-    <li class="sidebar-tweet">
-      <span class="username">{{username}}</span>
-      <p class="text">{{text}}</p>
-    </li>
-  {{/tweets}}
-</ol>
+{{#groups}}
+  <article class="tweet-group">
+    {{#if subtitle}}<h3 class="sidebar-subtitle {{sentiment}}">{{subtitle}}</h3>{{/if}}
+    <ol>
+      {{#tweets}}
+      <li class="sidebar-tweet">
+        <span class="username">{{username}}</span>
+        <p class="text">{{text}}</p>
+      </li>
+      {{/tweets}}
+    </ol>
+  </article>
+{{/groups}}

@@ -13,6 +13,7 @@ SEARCH_TERM = 'sr_trm'
 SEARCH_ADJECTIVE = 'sr_adj'
 TIMESTAMP = 'ts'
 SENTIMENT = 'snt'
+HEATMAP = 'hmap'
 
 conn = DBConnect()
 
@@ -53,6 +54,7 @@ def relevant_tweets(request):
 def tweets(request):
     search_term = request.REQUEST.get(SEARCH_TERM)
     sentiment = request.REQUEST.get(SENTIMENT)
+    heatmap = request.REQUEST.get(HEATMAP)
 
     if sentiment:
         _, raw_tweet_ids_by_date = conn.fetchRows(getTopTweetIdsWithSentimentSQL(search_term))
@@ -61,6 +63,25 @@ def tweets(request):
         tweet_ids_by_date = collections.defaultdict(lambda: {})
         for row in raw_tweet_ids_by_date:
             tweet_ids_by_date[str(calendar.timegm(row.get('posted_date').timetuple()) * 1000)][row.get('sentiment')] = row.get('tweet_ids')
+
+        tweets_by_id = dict([(str(r.get('id')), {'username': r.get('preferredusername'), 'text': r.get('body')}) for r in tweets_by_id])
+    elif heatmap:
+        _, raw_tweet_ids_by_date = conn.fetchRows(getHeatMapTweetIdsSQL(search_term))
+        _, tweets_by_id = conn.fetchRows(getHeatMapTweetDateSQL(search_term))
+
+        less_raw_tweet_ids_by_date = collections.defaultdict(lambda: collections.defaultdict(lambda: {'tweets': {'positive': [], 'negative': []}, 'counts': {'total': 0, 'positive': 0, 'negative': 0, 'neutral': 0}}))
+        for row in raw_tweet_ids_by_date:
+            less_raw_tweet_ids_by_date[row.get('day_of_week')][row.get('hour_of_day')]['tweets'][row.get('sentiment')] = row.get('id_arr', [])
+            less_raw_tweet_ids_by_date[row.get('day_of_week')][row.get('hour_of_day')]['counts'] = {'total': row.get('num_tweets', 0),
+                                                                                                    'positive': row.get('num_positive', 0),
+                                                                                                    'negative': row.get('num_negative', 0),
+                                                                                                    'neutral': row.get('num_neutral', 0)}
+        tweet_ids_by_date = []
+        for day in less_raw_tweet_ids_by_date:
+            for hour in less_raw_tweet_ids_by_date[day]:
+                data = less_raw_tweet_ids_by_date[day][hour]
+                tweet_ids_by_date.append({'day': day, 'hour': hour, 'tweets': data['tweets'], 'counts': data['counts']})
+
 
         tweets_by_id = dict([(str(r.get('id')), {'username': r.get('preferredusername'), 'text': r.get('body')}) for r in tweets_by_id])
     else:
