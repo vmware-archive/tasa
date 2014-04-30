@@ -7,7 +7,8 @@ feature 'Application' do
       '/gp/senti/ms/q?sr_trm=pokemon' => sentiment_mapping,
       '/gp/senti/hmap/q?sr_trm=pokemon' => tweet_activity,
       '/gp/senti/acloud/q?sr_trm=pokemon' => adjectives,
-      '/gp/topic/fetch/q?num_topics=3&sr_trm=pokemon' => topic_cluster,
+      '/gp/topic/fetch/q?num_topics=3&sr_trm=pokemon' => topic_cluster_for_3_topics,
+      '/gp/topic/fetch/q?num_topics=4&sr_trm=pokemon' => topic_cluster_for_4_topics,
 
       '/gp/tasa/relevant_tweets/?sr_trm=pokemon&sr_adj=&ts=&snt=' => top_20_tweets,
       '/gp/tasa/relevant_tweets/?sr_trm=pokemon&sr_adj=&ts=1373932800000&snt=' => top_20_tweets_for_july_16,
@@ -20,11 +21,15 @@ feature 'Application' do
     visit root_path
   end
 
+  def search_for(query)
+    page.fill_in(:query, with: query)
+    page.find('.query-input').native.send_keys(:return)
+  end
+
   scenario 'Bill searches for "pokemon"' do
     expect(page).to have_css('h1')
 
-    page.fill_in(:query, with: 'pokemon')
-    page.find('.query-input').native.send_keys(:return)
+    search_for 'pokemon'
 
     expect(page).to have_no_css('.ball')
     expect(page).to have_content('Tweets from July 1 - 31 of 2013')
@@ -80,8 +85,10 @@ feature 'Application' do
     # expect(actual).to eq(expected)
 
     actual = page.evaluate_script("d3.selectAll('.node').data().length")
-    expected = JSON.parse(topic_cluster['topic_graph'])['nodes'].length
+    expected = JSON.parse(topic_cluster_for_3_topics['topic_graph'])['nodes'].length
     expect(actual).to eq(expected)
+
+    expect(page.all('.topic-cluster .force-legend .swatch')).to have(3).topics
 
     page.find('.total-tweets .graph svg > path').hover
     details = page.find('.total-tweets .graph .detail .item')
@@ -92,5 +99,16 @@ feature 'Application' do
 
     page.all('.topic-cluster .tag-cloud text', text: 'plai').first.click
     expect(page.all('.drilldown .sidebar-tweet .text', text: 'play')).to_not be_empty
+  end
+
+  scenario 'Bill searches for "pokemon | 4" and changes the number of topics to 3' do
+    search_for 'pokemon | 4'
+    expect(page).to have_no_css('.ball')
+    expect(page.all('.topic-cluster .force-legend .swatch')).to have(4).topics
+
+    page.fill_in('Number of topics', with: 3)
+    page.find('[name="topics"]').native.send_keys(:return)
+    expect(page).to have_no_css('.ball')
+    expect(page.all('.topic-cluster .force-legend .swatch')).to have(3).topics
   end
 end

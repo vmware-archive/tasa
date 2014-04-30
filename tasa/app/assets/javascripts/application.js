@@ -16,8 +16,10 @@
 (function() {
   'use strict';
 
+  var DEFAULT_TOPICS = 3;
+
   var
-    query = new Backbone.Model({query: ''}),
+    query = new Backbone.Model({query: '', topics: 0}),
     totalTweets = new (Backbone.Collection.extend({
       model: Backbone.Model.extend({
         parse: function(response) { return {posted_date: new Date(response.posted_date), num_tweets: response.num_tweets} },
@@ -77,7 +79,7 @@
       }
     }))(),
     force = new (Backbone.Model.extend({
-      url: function() { return '/gp/topic/fetch/q?num_topics=3&sr_trm=' + query.get('query'); },
+      url: function() { return '/gp/topic/fetch/q?num_topics=' + query.get('topics') + '&sr_trm=' + query.get('query'); },
       parse: function(response) {
         var cloud = _.flatten(_.map(response.topic_cloud_d3, function(data, topic) {
           data = _.chain(data.word_freq_list).reject({word: 't.co'}).sortBy('normalized_frequency').last(10).value();
@@ -162,9 +164,14 @@
     model: force
   });
 
-  $('body').on('submit', '.query', function(e) {
+  $('body').on('submit', 'form', function(e) {
     _.each($(e.currentTarget).serializeArray(), function(input) {
-      query.set(input.name, input.value);
+      if (input.name === 'query') {
+        var parsedQuery = input.value.split(/\s*\|\s*/);
+        query.set({query: parsedQuery[0], topics: parsedQuery[1] || DEFAULT_TOPICS});
+      } else if (input.name === 'topics') {
+        query.set(input.name, Number(input.value))
+      }
     });
     $(document.activeElement).blur();
   });
@@ -188,13 +195,25 @@
     });
   });
 
-  var xhrRequests;
-  query.on('change:query', function(query, value) {
-    _.invoke(xhrRequests, 'abort');
-    _.result(sidebarXhrRequest, 'abort');
+  var xhrRequests, forceXhrRequest;
+  query.on('change', function(query) {
+    var oldXhrRequests = xhrRequests;
+    xhrRequests = [];
+
     sideBar.clear({silent: true});
-    $('body').toggleClass('has-query', Boolean(value));
-    xhrRequests = _.invoke([totalTweets, sideBar, sentiment, heatmap, adjectives, force], 'fetch', {reset: true});
+
+    if (_.has(query.changedAttributes(), 'query')) {
+      _.invoke(oldXhrRequests, 'abort');
+      _.result(forceXhrRequest, 'abort');
+      _.result(sidebarXhrRequest, 'abort');
+
+      $('body').toggleClass('has-query', Boolean(query.get('query')));
+      xhrRequests = _.invoke([totalTweets, sideBar, sentiment, heatmap, adjectives], 'fetch', {reset: true});
+      forceXhrRequest = force.fetch({reset: true});
+    } else if (_.has(query.changedAttributes(), 'topics')) {
+      _.result(forceXhrRequest, 'abort');
+      forceXhrRequest = force.fetch({reset: true});
+    }
   });
 
   $('body').on('click', '[data-topic]', function(e) {
