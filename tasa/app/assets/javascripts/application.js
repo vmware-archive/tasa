@@ -166,13 +166,17 @@
   });
 
   $('body').on('submit', 'form', function(e) {
-    _.each($(e.currentTarget).serializeArray(), function(input) {
+    var $form = $(e.currentTarget);
+
+    _.each($form.serializeArray(), function(input) {
       if (input.name === 'query') {
         var parsedQuery = input.value.split(/\s*\|\s*/);
         query.set({query: parsedQuery[0], topics: parsedQuery[1] || DEFAULT_TOPICS});
       } else if (input.name === 'topics') {
         query.set(input.name, Number(input.value))
       }
+
+      $form.find('[name="' + input.name + '"]').val(query.get(input.name));
     });
     $(document.activeElement).blur();
   });
