@@ -46,6 +46,7 @@
        parse: function(attrs) {
          _.each(attrs.tweets, function(tweet) {
            _.forIn(tweet, function(value, key) {
+             if (!_.isString(value)) { return; }
              tweet[key] = _.unescape(eval('"' + value.replace(/"/g, '\\x22').replace(/\r\n|\n/gm, '\\x0A').replace(/\\/, '\\x5c') + '"'));
            });
          });
@@ -240,10 +241,10 @@
 
     if (sideBar.get('adjective') && sideBar.get('topic')) {
       var ids = _.result(force.get('topic_words')[sideBar.get('adjective')], sideBar.get('topic')) || [];
-      sideBar.set({
+      sideBar.set(sideBar.parse({
         tweets: _.values(_.pick(force.get('tweets'), ids)),
         counts: {total: ids.length}
-      });
+      }));
       sideBar.trigger('sync');
     } else {
       _.result(sidebarXhrRequest, 'abort');
