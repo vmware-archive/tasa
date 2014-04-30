@@ -11,7 +11,7 @@
     render: function(options) {
       this.$el.empty();
       var template = options.loading ? 'templates/spinner' : _.result(this, 'template');
-      if (template) { this.$el.html(JST[template](this.decorator())); }
+      if (template) { this.$el.html(JST[template](this.decorator(options))); }
       return this;
     },
 

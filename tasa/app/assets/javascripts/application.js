@@ -135,7 +135,9 @@
     el: $('.drilldown-content'),
     template: 'templates/sidebar_tweets',
     model: sideBar,
-    decorator: function() {
+    decorator: function(options) {
+      if (options.loading) { return {}; }
+
       return _.extend(this.model.omit('tweets'), {
         date: sideBar.has('posted_date') && d3.time.format.utc('%B %d, %Y')(new Date(sideBar.get('posted_date'))) ||
               sideBar.has('heatmap') && d3.time.format('%As at %I%p')(new Date(sideBar.get('heatmap'))).replace(/at 0/, 'at ') ||
@@ -144,14 +146,13 @@
                this.model.get('topic') && 'Topic Words' ||
                this.model.get('adjective') && 'Adjectives' ||
                this.model.get('heatmap') && 'Tweet Activity' ||
-               'Top 20 Tweets',
+               'Top ' + this.model.get('tweets').total.length + ' Tweets',
         groups: _.map(this.model.get('tweets'), function(tweets, sentiment) {
           return {
             sentiment: sentiment,
             tweets: tweets,
-            subtitle: this.model.get('sentiment') && 'Top 20 ' + sentiment + ' tweets' ||
-                      this.model.get('adjective') && 'Top 20 tweets for "' + this.model.get('adjective') + '"' ||
-                      this.model.get('heatmap') && 'Top 10 ' + sentiment + ' tweets' ||
+            subtitle: (this.model.get('sentiment') || this.model.get('heatmap')) && 'Top ' + tweets.length + ' ' + sentiment + ' tweets' ||
+                      this.model.get('adjective') && 'Top ' + tweets.length + ' tweets for "' + this.model.get('adjective') + '"' ||
                       ''
           }
         }, this)
