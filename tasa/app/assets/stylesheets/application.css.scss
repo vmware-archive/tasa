@@ -5,33 +5,6 @@
   @return rgba(36, 38, 67, $opacity);
 }
 
-.graph-title {
-  margin-bottom: 20px;
-}
-
-.graph-legend {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-
-  li {
-    display: inline-block;
-    color: base-color(.5);
-    font-size: 11px;
-    margin-right: 10px;
-
-    > * {
-      vertical-align: middle;
-    }
-
-    .swatch {
-      display: inline-block;
-      width: 11px;
-      height: 11px;
-    }
-  }
-}
-
 @import 'font-awesome';
 @import 'bootstrap/variables';
 @import 'bootstrap/mixins';
@@ -220,6 +193,40 @@ h2 {
 
   > article + article {
     margin-top: 150px;
+  }
+}
+
+.graph-title {
+  margin-bottom: 20px;
+}
+
+.graph-title + .graph-subtitle {
+  margin-top: -12px;
+  margin-bottom: 34px;
+  color: base-color(0.6);
+  font-size: 14px;
+}
+
+.graph-legend {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  li {
+    display: inline-block;
+    color: base-color(.5);
+    font-size: 11px;
+    margin-right: 10px;
+
+    > * {
+      vertical-align: middle;
+    }
+
+    .swatch {
+      display: inline-block;
+      width: 11px;
+      height: 11px;
+    }
   }
 }
 
