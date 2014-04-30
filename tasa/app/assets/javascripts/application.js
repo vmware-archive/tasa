@@ -262,6 +262,23 @@
     });
   });
 
+
+  function dirtyForm(e) {
+    _.defer(function() {
+      var $inputs = $(e.currentTarget).find('input');
+      $inputs.each(function() {
+        var $input = $(this);
+        $input.toggleClass('changed', ($input.attr('value') || '') !== ($input.val() || ''));
+      });
+    });
+  }
+  $('body')
+    .on('input', 'form', dirtyForm)
+    .on('reset', 'form', dirtyForm)
+  ;
+
+
+
   var sidebarXhrRequest;
   sideBar.on('change', function(sideBar, options) {
     if (options.xhr) { return; }

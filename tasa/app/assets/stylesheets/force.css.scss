@@ -98,12 +98,25 @@ $t6-color: #ff8533;
   input {
     background: none;
     border: none;
-    border-bottom: 1px solid base-color(0.5);
-    text-align: center;
-    padding-left: 13px;
 
     &:focus {
       outline: none;
+    }
+  }
+
+  .topics-number {
+    border-bottom: 1px solid base-color(0.5);
+    text-align: center;
+    padding-left: 13px;
+  }
+
+  .topics-submit, .topics-reset {
+    visibility: hidden;
+  }
+
+  .topics-number.changed {
+    & ~ .topics-submit, & ~ .topics-reset {
+      visibility: visible;
     }
   }
 }

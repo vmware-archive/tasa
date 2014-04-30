@@ -5,5 +5,8 @@
   {{/topics}}
 </ul>
 <form class="topics-input" onsubmit="event.preventDefault()">
-  <label>Number of topics: <input type="number" min="1" max="6" step="1" name="topics" value="{{topics.length}}" data-type="number"></label>
+  <label for="topics-number">Number of topics:</label>
+  <input id="topics-number" class="topics-number" type="number" min="1" max="6" step="1" name="topics" value="{{topics.length}}" data-type="number">
+  <input class="topics-submit" type="submit" value="Submit">
+  <input class="topics-reset" type="reset" value="Reset">
 </form>
