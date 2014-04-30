@@ -5,7 +5,7 @@ feature 'Application' do
     {
       '/gp/topic/ts/q?sr_trm=pokemon' => total_tweets,
       '/gp/senti/ms/q?sr_trm=pokemon' => sentiment_mapping,
-      '/gp/tasa/tweets/q?hmap=true&sr_trm=pokemon' => tweet_activity,
+      '/gp/tasa/hmap/?sr_trm=pokemon' => tweet_activity,
       '/gp/senti/acloud/q?sr_trm=pokemon' => adjectives,
       '/gp/topic/fetch/q?num_topics=3&sr_trm=pokemon' => topic_cluster_for_3_topics,
       '/gp/topic/fetch/q?num_topics=4&sr_trm=pokemon' => topic_cluster_for_4_topics,

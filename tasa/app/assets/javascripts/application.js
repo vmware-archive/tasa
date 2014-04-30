@@ -112,7 +112,7 @@
       }
      }))(),
     heatmap = new (Backbone.Model.extend({
-      url: function() { return '/gp/tasa/tweets/q?hmap=true&sr_trm=' + query.get('query'); },
+      url: function() { return '/gp/tasa/hmap/?sr_trm=' + query.get('query'); },
       toJSON: function() {
         var self = this, result = {};
         self._timestampMap = {};
