@@ -46,7 +46,7 @@
        parse: function(attrs) {
          _.each(attrs.tweets, function(tweet) {
            _.forIn(tweet, function(value, key) {
-             tweet[key] = _.unescape(eval('"' + value.replace(/"/g, '\\x22').replace(/\r\n|\n/gm, '\\x0A') + '"'));
+             tweet[key] = _.unescape(eval('"' + value.replace(/"/g, '\\x22').replace(/\r\n|\n/gm, '\\x0A').replace(/\\/, '\\x5c') + '"'));
            });
          });
          return _.extend({tweets: attrs.tweets}, attrs.counts, {
