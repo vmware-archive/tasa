@@ -276,15 +276,26 @@ h2 {
   ol {
     margin: 0;
     padding: 0;
+    padding-right: 25px;
     list-style: none;
   }
 
   .sidebar-tweet {
-    margin-top: 10px;
+    margin-top: 7px;
+    padding-bottom: 7px;
     opacity: 0.6;
+    border-bottom: 1px solid base-color(.15);
     &:hover {
       opacity: 1;
     }
+    @extend .fa;
+    @extend .fa-twitter;
+    &:before {
+      color: #55acee;
+      margin-right: 5px;
+    }
+    display: block;
+    -webkit-font-smoothing: auto;
   }
 
   color: base-color();
