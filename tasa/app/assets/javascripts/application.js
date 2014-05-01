@@ -21,34 +21,31 @@
   var
     query = new Backbone.Model({query: '', topics: 0}),
     totalTweets = new (Backbone.Collection.extend({
-      model: Backbone.Model.extend({
-        parse: function(response) { return {posted_date: new Date(response.posted_date), num_tweets: response.num_tweets} },
-        toJSON: function() { return {posted_date: this.get('posted_date'), y: this.get('num_tweets')}; }
-      }),
+      url: function() { return '/gp/tasa/total_tweets/q?sr_trm=' + query.get('query'); },
       comparator: 'posted_date',
-      url: function() { return '/gp/topic/ts/q?sr_trm=' + query.get('query'); },
-      parse: function(response) { return response.tseries; },
+      model: Backbone.Model.extend({
+        idAttribute: 'posted_date',
+        parse: function(data) { return _.extend(data, {posted_date: new Date(data.posted_date)}); }
+      }),
       toJSON: function() {
         return [
-          {name: 'Tweets', className: 'total', data: this.map(function(model, i) { return _.extend(model.toJSON(), {x: i}); }), color: 'rgba(234, 239, 235, .8)'}
+          {
+            name: 'Tweets',
+            className: 'total',
+            color: 'rgba(234, 239, 235, .8)',
+            data: this.map(function(model, i) { return {x: i, y: model.get('counts').total, posted_date: model.get('posted_date')}; })
+          }
         ];
       }
     }))(),
     sideBar = new (Backbone.Model.extend({
        url: function() {
-         return '/gp/tasa/relevant_tweets/?' + $.param({
+         return '/gp/tasa/top_tweets/q?' + $.param({
            sr_trm: query.get('query'),
            sr_adj: this.get('adjective'),
-           ts: this.get('posted_date'),
-           snt: this.get('sentiment')
          });
        },
        parse: function(attrs) {
-         if (_.isArray(attrs.tweets)) {
-           var groups = {};
-           groups[this.get('sentiment') || 'total'] = attrs.tweets;
-           attrs.tweets = groups
-         }
          _.each(attrs.tweets, function(tweets, type) {
            _.each(tweets, function(tweet) {
              _.forIn(tweet, function(value, key) {
@@ -57,32 +54,36 @@
              });
            });
          });
-         return _.extend({tweets: attrs.tweets}, attrs.counts, {
-           positive_proportion: 100 * attrs.counts.positive / attrs.counts.total,
-           negative_proportion: 100 * attrs.counts.negative / attrs.counts.total,
-           neutral_proportion: 100 * attrs.counts.neutral / attrs.counts.total
-         });
+         return attrs;
        }
      }))(),
-    sentiment = new (Backbone.Collection.extend({
-      model: Backbone.Model.extend({
-        parse: function(response) {
-          return {
-            posted_date: new Date(response.posted_date),
-            negative_count: response.negative_count,
-            positive_count: response.positive_count,
-            neutral_count: response.neutral_count
-          }
-        }
-      }),
+    sentimentMapping = new (Backbone.Collection.extend({
+      url: function() { return '/gp/tasa/sentiment_mapping/q?sr_trm=' + query.get('query'); },
       comparator: 'posted_date',
-      url: function() { return '/gp/senti/ms/q?sr_trm=' + query.get('query'); },
-      parse: function(response) { return response.multi_series; },
+      model: Backbone.Model.extend({
+        idAttribute: 'posted_date',
+        parse: function(data) { return _.extend(data, {posted_date: new Date(data.posted_date)}); }
+      }),
       toJSON: function() {
         return [
-          {name: 'Positive tweets', className: 'positive', data: this.map(function(model, i){ return {posted_date: model.get('posted_date'), x: i, y: model.get('positive_count')}}), color: '#80a55d'},
-          {name: 'Negative tweets', className: 'negative', data: this.map(function(model, i){ return {posted_date: model.get('posted_date'), x: i, y: model.get('negative_count')}}), color: '#ce522c'},
-          {name: 'Neutral tweets', className: 'neutral', data: this.map(function(model, i){ return {posted_date: model.get('posted_date'), x: i, y: model.get('neutral_count')}}), color: 'rgba(234, 239, 235, .3)'}
+          {
+            name: 'Positive tweets',
+            className: 'positive',
+            color: '#80a55d',
+            data: this.map(function(model, i) { return {x: i, y: model.get('counts').positive, posted_date: model.get('posted_date')}; })
+          },
+          {
+            name: 'Negative tweets',
+            className: 'negative',
+            color: '#ce522c',
+            data: this.map(function(model, i) { return {x: i, y: model.get('counts').negative, posted_date: model.get('posted_date')}; })
+          },
+          {
+            name: 'Neutral tweets',
+            className: 'neutral',
+            color: 'rgba(234, 239, 235, .3)',
+            data: this.map(function(model, i) { return {x: i, y: model.get('counts').neutral, posted_date: model.get('posted_date')}; })
+          }
         ];
       }
     }))(),
@@ -104,27 +105,23 @@
       }
     }))(),
     adjectives = new (Backbone.Collection.extend({
-      url: function() { return '/gp/senti/acloud/q?sr_trm=' + query.get('query'); },
-      parse: function(response) { return response.adjective_cloud; },
+      url: function() { return '/gp/tasa/adjectives/q?sr_trm=' + query.get('query'); },
       comparator: 'normalized_frequency',
-      toJSON: function() {
-        return _.invoke(this.last(64), 'toJSON');
-      }
+      model: Backbone.Model.extend({
+        idAttribute: 'word'
+      })
      }))(),
-    heatmap = new (Backbone.Model.extend({
-      url: function() { return '/gp/tasa/hmap/?sr_trm=' + query.get('query'); },
+    tweetActivity = new (Backbone.Collection.extend({
+      url: function() { return '/gp/tasa/tweet_activity/q?sr_trm=' + query.get('query'); },
+      model: Backbone.Model.extend({
+        idAttribute: 'timestamp',
+        parse: function(data) { return _.extend(data, {timestamp: Number(new Date(2013, 5, 31)) + data.day * 1000 * 60 * 60 * 24 + data.hour * 1000 * 60 * 60 }); }
+      }),
       toJSON: function() {
-        var self = this, result = {};
-        self._timestampMap = {};
-        _.each(this.get('tweet_ids_by_date'), function(row) {
-          var timestamp = new Date(2013, 5, 31) / 1000 + row.day * 60 * 60 * 24 + row.hour * 60 * 60;
-          result[timestamp] = row.counts.total;
-          self._timestampMap[timestamp] = row;
-        });
-        return result;
-      },
-      data: function(timestamp) {
-        return this._timestampMap[timestamp/1000];
+        return this.reduce(function(result, model) {
+          result[model.get('timestamp') / 1000] = model.get('counts').total;
+          return result;
+        }, {});
       }
     }))()
    ;
@@ -147,7 +144,14 @@
                this.model.get('adjective') && 'Adjectives' ||
                this.model.get('heatmap') && 'Tweet Activity' ||
                'Top ' + this.model.get('tweets').total.length + ' Tweets',
+        proportions: this.model.get('sentiment') && {
+          positive_proportion: 100 * this.model.get('counts').positive / this.model.get('counts').total,
+          negative_proportion: 100 * this.model.get('counts').negative / this.model.get('counts').total,
+          neutral_proportion: 100 * this.model.get('counts').neutral / this.model.get('counts').total
+        } || undefined,
         groups: _.map(this.model.get('tweets'), function(tweets, sentiment) {
+          if (this.model.get('sentiment') && this.model.get('sentiment') !== sentiment) { return; }
+
           return {
             sentiment: sentiment,
             tweets: tweets,
@@ -169,11 +173,11 @@
   });
   var sentimentView = new TimeSeriesView({
     el: $('.sentiment .graph-content'),
-    model: sentiment
+    model: sentimentMapping
   });
   var heatmapView = new HeatmapView({
     el: $('.tweet-activity .heatmap-content'),
-    model: heatmap
+    model: tweetActivity
   });
   var adjectivesView = new TagCloudView({
     el: $('.adjectives .tag-cloud'),
@@ -236,7 +240,7 @@
       _.result(sidebarXhrRequest, 'abort');
 
       $('body').toggleClass('has-query', Boolean(query.get('query')));
-      xhrRequests = _.invoke([totalTweets, sideBar, sentiment, heatmap, adjectives], 'fetch', {reset: true});
+      xhrRequests = _.invoke([totalTweets, sideBar, sentimentMapping, tweetActivity, adjectives], 'fetch', {reset: true});
       forceXhrRequest = force.fetch({reset: true});
     } else if (_.has(query.changedAttributes(), 'topics')) {
       _.result(forceXhrRequest, 'abort');
@@ -263,7 +267,6 @@
     });
   });
 
-
   function dirtyForm(e) {
     _.defer(function() {
       var $inputs = $(e.currentTarget).find('input');
@@ -278,25 +281,23 @@
     .on('reset', 'form', dirtyForm)
   ;
 
-
-
   var sidebarXhrRequest;
   sideBar.on('change', function(sideBar, options) {
-    if (options.xhr) { return; }
-
     if (sideBar.get('adjective') && sideBar.get('topic')) {
       var ids = _.result(force.get('topic_words')[sideBar.get('adjective')], sideBar.get('topic')) || [];
       sideBar.set(sideBar.parse({
-        tweets: _.values(_.pick(force.get('tweets'), ids)),
+        tweets: {total: _.values(_.pick(force.get('tweets'), ids))},
         counts: {total: ids.length}
       }), {silent: true});
       sideBar.trigger('sync');
     } else if (sideBar.get('heatmap')) {
-      var data = heatmap.data(sideBar.get('heatmap'));
-      _.each(data.tweets, function(ids, sentiment) {
-        data.tweets[sentiment] = _.values(_.pick(heatmap.get('tweets_by_id'), ids));
-      });
-      sideBar.set(sideBar.parse(data), {silent: true});
+      sideBar.set(sideBar.parse(tweetActivity.get(sideBar.get('heatmap')).toJSON()), {silent: true});
+      sideBar.trigger('sync');
+    } else if (sideBar.get('sentiment')) {
+      sideBar.set(sideBar.parse(sentimentMapping.get(new Date(sideBar.get('posted_date'))).toJSON()), {silent: true});
+      sideBar.trigger('sync');
+    } else if (sideBar.get('posted_date')) {
+      sideBar.set(sideBar.parse(totalTweets.get(new Date(sideBar.get('posted_date'))).toJSON()), {silent: true});
       sideBar.trigger('sync');
     } else {
       _.result(sidebarXhrRequest, 'abort');

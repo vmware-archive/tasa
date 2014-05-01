@@ -1,20 +1,28 @@
 <h2>{{title}}</h2>
 <div class='drilldown-overview'>
   <div class="de-emphasize drilldown-info">{{date}}</div>
-  {{#if sentiment}}
-    <ul class="drilldown-counts list-inline">
-      <li class="positive">Positive: {{positive}}</li>
-      <li class="negative">Negative: {{negative}}</li>
-      <li class="neutral">Neutral: {{neutral}}</li>
-    </ul>
 
-    <ul class="drilldown-breakdown list-inline">
-      <li class="positive-proportion" style="width: {{positive_proportion}}%"></li>
-      <li class="negative-proportion" style="width: {{negative_proportion}}%"></li>
-      <li class="neutral-proportion" style="width: {{neutral_proportion}}%"></li>
-    </ul>
+  {{#if sentiment}}
+    {{#counts}}
+      <ul class="drilldown-counts list-inline">
+        <li class="positive">Positive: {{positive}}</li>
+        <li class="negative">Negative: {{negative}}</li>
+        <li class="neutral">Neutral: {{neutral}}</li>
+      </ul>
+    {{/counts}}
+
+    {{#proportions}}
+      <ul class="drilldown-breakdown list-inline">
+        <li class="positive-proportion" style="width: {{positive_proportion}}%"></li>
+        <li class="negative-proportion" style="width: {{negative_proportion}}%"></li>
+        <li class="neutral-proportion" style="width: {{neutral_proportion}}%"></li>
+      </ul>
+    {{/proportions}}
   {{/if}}
-  <div class="de-emphasize drilldown-info">{{total}} Total Tweets </div>
+
+  {{#counts}}
+    <div class="de-emphasize drilldown-info">{{total}} Total Tweets </div>
+  {{/counts}}
 </div>
 
 {{#groups}}

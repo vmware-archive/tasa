@@ -3,6 +3,6 @@ module API
   CACHE = {}
   def self.get(url)
     proxy_url = url.gsub(/:\d+/, ':8081')
-    (CACHE[proxy_url] ||= open(proxy_url).read)
+    (CACHE[proxy_url] ||= open(proxy_url, read_timeout: nil).read)
   end
 end

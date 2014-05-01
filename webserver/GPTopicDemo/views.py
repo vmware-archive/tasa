@@ -100,14 +100,14 @@ def topic_fetch(request):
     ''' Handles creation of a topic dashboard '''
     search_term = request.REQUEST[SEARCH_TERM]
     num_topics = request.REQUEST[NUM_TOPICS]
-    suffix_id = str(time.time())
-    suffix_id = suffix_id.replace('.','_dot_')
-    print '#Request search_term : ',search_term, ' num topics: ',num_topics,' suffix: ',suffix_id
+    print '#Request search_term : ',search_term, ' num topics: ',num_topics
     
-    return topicDashboardGenerator(search_term,suffix_id,num_topics)
+    return topicDashboardGenerator(search_term,num_topics)
 
-def topicDashboardGenerator(search_term,suffix_id, num_topics):
+def topicDashboardGenerator(search_term, num_topics):
     ''' This function should be invoked in a new thread '''
+
+    suffix_id = str(time.time()).replace('.', '_dot_')
 
     conn_dict = DBConnect.getConnectionString()
 

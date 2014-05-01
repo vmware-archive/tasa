@@ -10,9 +10,12 @@ urlpatterns = patterns('',
     #Mapping for new UI code
     url(r'^tasa/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.STATIC_ROOT + 'tasa/'}),
     #Mapping for the TASA Queries
-    url(r'^gp/tasa/relevant_tweets/','webserver.TASADemo.views.relevant_tweets', name='relevant_tweets'),
-    url(r'^gp/tasa/tweets/','webserver.TASADemo.views.tweets', name='tweets'),
-    url(r'^gp/tasa/hmap/','webserver.TASADemo.views.hmap', name='hmap'),
+    url(r'^gp/tasa/top_tweets/','webserver.TASADemo.views.top_tweets', name='top_tweets'),
+    url(r'^gp/tasa/total_tweets/','webserver.TASADemo.views.total_tweets', name='total_tweets'),
+    url(r'^gp/tasa/sentiment_mapping/','webserver.TASADemo.views.sentiment_mapping', name='sentiment_mapping'),
+    url(r'^gp/tasa/tweet_activity/','webserver.TASADemo.views.tweet_activity', name='tweet_activity'),
+    url(r'^gp/tasa/adjectives/','webserver.TASADemo.views.adjectives', name='adjectives'),
+    url(r'^gp/tasa/topic_cluster/','webserver.TASADemo.views.topic_cluster', name='topic_cluster'),
 
     #Mapping for media files - images/icons etc
     url(r'^images/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.MEDIA_ROOT}),

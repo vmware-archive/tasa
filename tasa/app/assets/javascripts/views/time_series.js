@@ -9,9 +9,11 @@
       if (options.loading) { return; }
 
       var series = this.model.toJSON(),
-          max = _.max(_.map(this.model.invoke('omit', 'posted_date'), function(counts) {
-            return _.reduce(counts, function(sum, count) { return sum + count; }, 0);
-          }));
+          max = _.chain(this.model.pluck('counts'))
+            .map(function(counts) { return _.omit(counts, _.size(counts) > 1 && 'total'); })
+            .map(_.max)
+            .max()
+          .value();
 
       var graph = new Rickshaw.Graph({
         element: this.$('.graph')[0],
@@ -48,7 +50,6 @@
         ;
       });
 
-
       new Rickshaw.Graph.Axis.Y({
         element: this.$('.y-axis-left')[0],
         graph: graph,
@@ -77,7 +78,7 @@
       new Rickshaw.Graph.HoverDetail({
         graph: graph,
         formatter: function(series, i, tweets) {
-          var postedDate = self.model.at(i).get('posted_date'),
+          var postedDate = series.data[i].posted_date,
               sentiment = series.name.match(/(\w*)\s?[Tt]weets/)[1].toLowerCase();
           return '' +
             '<div data-sentiment="' + sentiment + '" data-posted-date="' + Number(postedDate) + '" style="color:' + series.color + '">' +

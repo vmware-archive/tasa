@@ -3,17 +3,16 @@ require 'spec_helper'
 feature 'Application' do
   let(:fixtures) do
     {
-      '/gp/topic/ts/q?sr_trm=pokemon' => total_tweets,
-      '/gp/senti/ms/q?sr_trm=pokemon' => sentiment_mapping,
-      '/gp/tasa/hmap/?sr_trm=pokemon' => tweet_activity,
-      '/gp/senti/acloud/q?sr_trm=pokemon' => adjectives,
+      '/gp/tasa/total_tweets/q?sr_trm=pokemon' => total_tweets,
+      '/gp/tasa/sentiment_mapping/q?sr_trm=pokemon' => sentiment_mapping,
+      '/gp/tasa/tweet_activity/q?sr_trm=pokemon' => tweet_activity,
+      '/gp/tasa/adjectives/q?sr_trm=pokemon' => adjectives,
+
       '/gp/topic/fetch/q?num_topics=3&sr_trm=pokemon' => topic_cluster_for_3_topics,
       '/gp/topic/fetch/q?num_topics=4&sr_trm=pokemon' => topic_cluster_for_4_topics,
 
-      '/gp/tasa/relevant_tweets/?sr_trm=pokemon&sr_adj=&ts=&snt=' => top_20_tweets,
-      '/gp/tasa/relevant_tweets/?sr_trm=pokemon&sr_adj=&ts=1373932800000&snt=' => top_20_tweets_for_july_16,
-      '/gp/tasa/relevant_tweets/?sr_trm=pokemon&sr_adj=&ts=1373932800000&snt=positive' => top_20_positive_tweets_for_july_16,
-      '/gp/tasa/relevant_tweets/?sr_trm=pokemon&sr_adj=new&ts=&snt=' => top_20_tweets_for_new
+      '/gp/tasa/top_tweets/q?sr_trm=pokemon&sr_adj=' => top_20_tweets,
+      '/gp/tasa/top_tweets/q?sr_trm=pokemon&sr_adj=new' => top_20_tweets_for_new
     }
   end
 
@@ -37,14 +36,14 @@ feature 'Application' do
     actual = page.all('.drilldown ol li').map do |node|
       {username: node.find('.username').text, text: node.find('.text').text}.with_indifferent_access
     end
-    expected = top_20_tweets['tweets'].map {|point| point.slice('username', 'text')}
+    expected = top_20_tweets['tweets']['total'].map {|point| point.slice('username', 'text')}
     expect(actual).to eq(expected)
     page.find('.drilldown').should have_content("#{top_20_tweets['counts']['total']} Total Tweets")
 
     actual = page.evaluate_script <<-JS
       _.pluck(d3.select('.total-tweets .graph path').data()[0], 'y');
     JS
-    expected = total_tweets['tseries'].sort_by {|point| point['posted_date']}.map {|point| point['num_tweets']}
+    expected = total_tweets.sort_by {|point| point['posted_date']}.map {|point| point['counts']['total']}
     expect(actual).to eq(expected)
 
     actual = page.evaluate_script <<-JS
@@ -55,14 +54,14 @@ feature 'Application' do
 
         return _.map(positive, function(_, i) {
           return {
-            positive_count: positive[i].y,
-            neutral_count: neutral[i].y,
-            negative_count: negative[i].y
+            positive: positive[i].y,
+            neutral: neutral[i].y,
+            negative: negative[i].y
           };
         });
       })();
     JS
-    expected = sentiment_mapping['multi_series'].sort_by {|point| point['posted_date']}.map {|point| point.except('posted_date')}
+    expected = sentiment_mapping.sort_by {|point| point['posted_date']}.map {|point| point['counts'].except('total')}
     expect(actual).to eq(expected)
 
     actual = page.evaluate_script <<-JS
@@ -77,11 +76,11 @@ feature 'Application' do
         }).filter(Boolean);
       })();
     JS
-    expected = tweet_activity['tweet_ids_by_date'].sort_by {|point| [point['day'], point['hour']]}.map {|point| point.slice('day', 'hour').merge('num_tweets' => point['counts']['total'])}
+    expected = tweet_activity.sort_by {|point| [point['day'], point['hour']]}.map {|point| point.slice('day', 'hour').merge('num_tweets' => point['counts']['total'])}
     expect(actual).to eq(expected)
 
     page.all('.graph-rect').first.click
-    expect(page.find('.drilldown-overview')).to have_content("#{tweet_activity['tweet_ids_by_date'][0]['counts']['total']} Total Tweets")
+    expect(page.find('.drilldown-overview')).to have_content("#{expected[0]['num_tweets']} Total Tweets")
     expect(page.find('.drilldown-overview')).to have_content('Mondays at 12AM')
     expect(page.find('.drilldown')).to have_content('@kiaraajw  what is this Pokemon?o.O')
 
@@ -99,7 +98,9 @@ feature 'Application' do
     details = page.find('.total-tweets .graph .detail .item')
     details.click
     expect(page.find('.drilldown')).to have_content('July 16, 2013')
-    expect(page.find('.drilldown')).to have_content("#{top_20_tweets_for_july_16['counts']['total']} Total Tweets")
+
+    expected = total_tweets.detect {|r| r['posted_date'] == DateTime.parse('July 16, 2013').to_i * 1000}['counts']['total']
+    expect(page.find('.drilldown')).to have_content("#{expected} Total Tweets")
 
     page.all('.topic-cluster .tag-cloud text', text: 'plai').first.click
     expect(page.all('.drilldown .sidebar-tweet .text', text: 'play')).to_not be_empty

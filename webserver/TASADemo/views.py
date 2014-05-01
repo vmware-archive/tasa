@@ -8,97 +8,129 @@ import os, json, time, datetime, calendar, collections
 from operator import itemgetter
 from webserver.common.dbconnector import DBConnect
 from webserver.TASADemo.tasa_sql_templates import *
+from webserver.common.time_series_sql_template import *
+from webserver.GPSentiDemo.sentiment_sql_templates import *
+from webserver.GPTopicDemo.views import topicDashboardGenerator
 
 SEARCH_TERM = 'sr_trm'
 SEARCH_ADJECTIVE = 'sr_adj'
 TIMESTAMP = 'ts'
 SENTIMENT = 'snt'
 HEATMAP = 'hmap'
+TOPICS = 'num_topics'
 
 conn = DBConnect()
 
 @csrf_exempt
-def relevant_tweets(request):
+def top_tweets(request):
     search_term = request.REQUEST.get(SEARCH_TERM)
     search_adjective = request.REQUEST.get(SEARCH_ADJECTIVE)
-    timestamp = request.REQUEST.get(TIMESTAMP)
-    sentiment = request.REQUEST.get(SENTIMENT)
 
     if search_adjective:
         search_term = '(%s AND %s)' % (search_term, search_adjective)
 
-    if timestamp:
-        timestamp = datetime.datetime.utcfromtimestamp(int(timestamp) / 1000 + time.localtime().tm_isdst * 60 * 60)
-        min_timestamp = timestamp.strftime('%Y-%m-%dT%H:%M:%SZ')
-        max_timestamp = (timestamp + datetime.timedelta(days=1)).strftime('%Y-%m-%dT%H:%M:%SZ')
+    tweet_sql = getTop20RelevantTweetsSQL(search_term)
+    count_sql = getCountOfRelevantTweetsSQL(search_term)
 
-    if timestamp and sentiment:
-        tweet_sql = getTop20RelevantTweetsRangeSentSQL(search_term, min_timestamp, max_timestamp, sentiment)
-        count_sql = getStatsRelevantTweetsSQL(search_term, min_timestamp, max_timestamp)
-    elif timestamp:
-        tweet_sql = getTop20RelevantTweetsRangeSQL(search_term, min_timestamp, max_timestamp)
-        count_sql = getCountOfRelevantTweetsRangeSQL(search_term, min_timestamp, max_timestamp)
-    else:
-        tweet_sql = getTop20RelevantTweetsSQL(search_term)
-        count_sql = getCountOfRelevantTweetsSQL(search_term)
+    _, tweets = conn.fetchRows(tweet_sql)
+    _, counts = conn.fetchRows(count_sql)
 
-    _, tweet_rows = conn.fetchRows(tweet_sql)
-    _, count_rows = conn.fetchRows(count_sql)
+    result = {
+        'tweets': {'total': [{'username': tweet[1], 'text': tweet[2]} for tweet in tweets]},
+        'counts': {'total': counts[0][0]}
+    }
 
-    tweets = [{'display_name': tweet[0], 'username': tweet[1], 'text': tweet[2], 'profile_image': tweet[3]} for tweet in tweet_rows]
-    counts = dict(zip(('total', 'mean_sentiment_index', 'positive', 'negative', 'neutral'), count_rows[0]))
-
-    return HttpResponse(json.dumps({'tweets': tweets, 'counts': counts}), content_type='application/json')
+    return HttpResponse(json.dumps(result), content_type='application/json')
 
 @csrf_exempt
-def tweets(request):
-    search_term = request.REQUEST.get(SEARCH_TERM)
-    sentiment = request.REQUEST.get(SENTIMENT)
+def total_tweets(request):
+    search_term = request.REQUEST[SEARCH_TERM]
 
-    if sentiment:
-        _, raw_tweet_ids_by_date = conn.fetchRows(getTopTweetIdsWithSentimentSQL(search_term))
-        _, tweets_by_id = conn.fetchRows(getTopTweetDataWithSentimentSQL(search_term))
+    _, time_series = conn.fetchRows(numTweetsByDate(search_term))
+    _, tweet_ids_by_date = conn.fetchRows(getTopTweetIdsSQL(search_term))
+    _, tweets_by_id = conn.fetchRows(getTopTweetDataSQL(search_term))
 
-        tweet_ids_by_date = collections.defaultdict(lambda: {})
-        for row in raw_tweet_ids_by_date:
-            tweet_ids_by_date[str(calendar.timegm(row.get('posted_date').timetuple()) * 1000)][row.get('sentiment')] = row.get('tweet_ids')
+    tweet_ids_by_date = {r.get('posted_date'): r.get('tweet_ids') for r in tweet_ids_by_date}
+    tweets_by_id = {r['id']: {'username': r['preferredusername'], 'text': r['body']} for r in tweets_by_id}
 
-        tweets_by_id = dict([(str(r.get('id')), {'username': r.get('preferredusername'), 'text': r.get('body')}) for r in tweets_by_id])
-    else:
-        _, tweet_ids_by_date = conn.fetchRows(getTopTweetIdsSQL(search_term))
-        _, tweets_by_id = conn.fetchRows(getTopTweetDataSQL(search_term))
+    result = [
+        {'posted_date': calendar.timegm(point['posted_date'].timetuple()) * 1000,
+         'tweets': {'total': [tweets_by_id[tweet_id] for tweet_id in tweet_ids_by_date[point['posted_date']] if tweet_id in tweets_by_id]},
+         'counts': {'total': point['num_tweets']}}
+        for point in sorted(time_series, key=itemgetter('posted_date'))
+    ]
+    return HttpResponse(json.dumps(result), content_type='application/json')
 
-        tweet_ids_by_date = dict([(str(calendar.timegm(r.get('posted_date').timetuple()) * 1000), r.get('tweet_ids')) for r in tweet_ids_by_date])
-        tweets_by_id = dict([(str(r.get('id')), {'username': r.get('preferredusername'), 'text': r.get('body')}) for r in tweets_by_id])
+@csrf_exempt
+def sentiment_mapping(request):
+    search_term = request.REQUEST[SEARCH_TERM]
 
-    return HttpResponse(json.dumps({'tweet_ids_by_date': tweet_ids_by_date, 'tweets_by_id': tweets_by_id}), content_type='application/json')
+    _, time_series = conn.fetchRows(getMultiSeriesSentimentSQl(search_term))
+    _, raw_tweet_ids_by_date = conn.fetchRows(getTopTweetIdsWithSentimentSQL(search_term))
+    _, tweets_by_id = conn.fetchRows(getTopTweetDataWithSentimentSQL(search_term))
+
+    tweet_ids_by_date = collections.defaultdict(lambda: {})
+    for r in raw_tweet_ids_by_date:
+        tweet_ids_by_date[r['posted_date']][r['sentiment']] = r.get('tweet_ids')
+
+    tweets_by_id = {r['id']: {'username': r['preferredusername'], 'text': r['body']} for r in tweets_by_id}
+
+    result = [
+        {
+            'posted_date': calendar.timegm(point['posted_date'].timetuple()) * 1000,
+            'tweets': {
+                'positive': [tweets_by_id[tweet_id] for tweet_id in tweet_ids_by_date[point['posted_date']].get('positive', []) if tweet_id in tweets_by_id],
+                'negative': [tweets_by_id[tweet_id] for tweet_id in tweet_ids_by_date[point['posted_date']].get('negative', []) if tweet_id in tweets_by_id],
+                'neutral': [tweets_by_id[tweet_id] for tweet_id in tweet_ids_by_date[point['posted_date']].get('neutral', []) if tweet_id in tweets_by_id]
+            },
+            'counts': {
+                'total': point['positive_count'] + point['negative_count'] + point['neutral_count'],
+                'positive': point['positive_count'],
+                'negative': point['negative_count'],
+                'neutral': point['neutral_count']
+            }
+        }
+        for point in sorted(time_series, key=itemgetter('posted_date'))
+    ]
+
+    return HttpResponse(json.dumps(result), content_type='application/json')
 
 
 @csrf_exempt
-def hmap(request):
-    search_term = request.REQUEST.get(SEARCH_TERM)
+def tweet_activity(request):
+    search_term = request.REQUEST[SEARCH_TERM]
 
-    _, raw_tweet_ids_by_date = conn.fetchRows(getHeatMapTweetIdsSQL(search_term))
+    _, tweet_ids_by_date = conn.fetchRows(getHeatMapTweetIdsSQL(search_term))
     _, tweets_by_id = conn.fetchRows(getHeatMapTweetDateSQL(search_term))
 
-    less_raw_tweet_ids_by_date = collections.defaultdict(lambda: collections.defaultdict(
-        lambda: {'tweets': {'positive': [], 'negative': []},
-                 'counts': {'total': 0, 'positive': 0, 'negative': 0, 'neutral': 0}}))
-    for row in raw_tweet_ids_by_date:
-        less_raw_tweet_ids_by_date[row.get('day_of_week')][row.get('hour_of_day')]['tweets'][
-            row.get('sentiment')] = row.get('id_arr', [])
-        less_raw_tweet_ids_by_date[row.get('day_of_week')][row.get('hour_of_day')]['counts'] = {
-        'total': row.get('num_tweets', 0),
-        'positive': row.get('num_positive', 0),
-        'negative': row.get('num_negative', 0),
-        'neutral': row.get('num_neutral', 0)}
-    tweet_ids_by_date = []
-    for day in less_raw_tweet_ids_by_date:
-        for hour in less_raw_tweet_ids_by_date[day]:
-            data = less_raw_tweet_ids_by_date[day][hour]
-            tweet_ids_by_date.append({'day': day, 'hour': hour, 'tweets': data['tweets'], 'counts': data['counts']})
+    tweets_by_id = {r['id']: {'username': r['preferredusername'], 'text': r['body']} for r in tweets_by_id}
 
-    tweets_by_id = dict(
-        [(str(r.get('id')), {'username': r.get('preferredusername'), 'text': r.get('body')}) for r in tweets_by_id])
+    result = collections.defaultdict(lambda: {'tweets': {}})
+    for row in tweet_ids_by_date:
+        point = result[(row['day_of_week'], row['hour_of_day'])]
+        point['day'] = row['day_of_week']
+        point['hour'] = row['hour_of_day']
+        point['tweets'][row['sentiment']] = [tweets_by_id[tweet_id] for tweet_id in row.get('id_arr', []) if tweet_id in tweets_by_id]
+        point['counts'] = {'total': row.get('num_tweets', 0),
+                           'positive': row.get('num_positive', 0),
+                           'negative': row.get('num_negative', 0),
+                           'neutral': row.get('num_neutral', 0)}
+    result = result.values()
 
-    return HttpResponse(json.dumps({'tweet_ids_by_date': tweet_ids_by_date, 'tweets_by_id': tweets_by_id}), content_type='application/json')
+    return HttpResponse(json.dumps(result), content_type='application/json')
+
+@csrf_exempt
+def adjectives(request):
+    search_term = request.REQUEST[SEARCH_TERM]
+    _, adjectives = conn.fetchRows(getAdjectivesCloud(search_term))
+    result = [{'word': r[0], 'normalized_frequency': r[1]} for r in adjectives]
+    return HttpResponse(json.dumps(result), content_type='application/json')
+
+@csrf_exempt
+def topic_cluster(request):
+    search_term = request.REQUEST[SEARCH_TERM]
+    topics = request.REQUEST[TOPICS]
+
+    result = topicDashboardGenerator(search_term, topics)
+
+    return HttpResponse(json.dumps(result), content_type='application/json')

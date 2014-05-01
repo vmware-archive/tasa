@@ -3,7 +3,7 @@ Srivatsan Ramanujam<sramanujam@gopivotal.com>
 Collection of SQL templates for time series related plots on the tweets dataset
 '''
 
-def numTweetsByDate(search_term, suffix_id):
+def numTweetsByDate(search_term):
     '''
         Return the number of tweets matching the search term for each date
     '''
