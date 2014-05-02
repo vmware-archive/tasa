@@ -50,7 +50,7 @@
            _.each(tweets, function(tweet) {
              _.forIn(tweet, function(value, key) {
                if (!_.isString(value)) { return; }
-               tweet[key] = _.unescape(eval('"' + value.replace(/"/g, '\\x22').replace(/\r\n|\n/gm, '\\x0A').replace(/\\/, '\\x5c') + '"'));
+               tweet[key] = _.unescape(eval('"' + value.replace(/"/g, '\\x22').replace(/\r\n|\n|\r/gm, '\\x0A').replace(/\\/, '\\x5c') + '"'));
              });
            });
          });
