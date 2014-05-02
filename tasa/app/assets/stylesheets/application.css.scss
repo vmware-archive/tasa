@@ -259,6 +259,14 @@ h2 {
   }
 }
 
+.percentage-chart {
+  font-size: 0;
+  margin: 5px 0;
+  li {
+    height: 4px;
+  }
+}
+
 .drilldown {
   @extend %show-only-with-query;
   box-sizing: border-box;
@@ -342,8 +350,7 @@ h2 {
   }
 
   .drilldown-breakdown {
-    font-size: 0;
-    margin: 5px 0;
+    @extend .percentage-chart;
     width: 80%;
     li {
       height: 8px;

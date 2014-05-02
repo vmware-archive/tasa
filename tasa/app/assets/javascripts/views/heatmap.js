@@ -5,7 +5,8 @@
 
     render: function(options){
       if (!this.loading) {
-        var data = this.model.toJSON(),
+        var self = this,
+            data = this.model.toJSON(),
             dataArray = _.chain(data).toArray().uniq().sortBy(Number).value(),
             legend = [0].concat(_.map([0.2, 0.4, 0.6, 0.8], function(p) { return dataArray[Math.round((dataArray.length - 1) * p)]; }));
         this.decorator = function() { return {legend: legend}; };
@@ -34,7 +35,13 @@
         tooltip: true,
         subDomainTitleFormat: {empty: '{date}', filled: '{date}'},
         subDomainDateFormat: function(date) {
-          return (data[Number(date) / 1000] || 0) + ' Tweets';
+          var counts = self.model.get(Number(date)).get('counts');
+          return (data[Number(date) / 1000] || 0) + ' Tweets ' +
+            '<div class="percentage-chart list-inline">' +
+              '<li class="positive-proportion" style="width: ' + counts.positive/counts.total * 100 + '%;"></li>' +
+              '<li class="negative-proportion" style="width:' + counts.negative/counts.total * 100 + '%;"></li>' +
+              '<li class="neutral-proportion" style="width:' + (counts.total - counts.negative - counts.positive)/counts.total * 100 + '%;"></li>' +
+            '</div>';
         },
         displayLegend: false,
         legend: legend
