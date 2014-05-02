@@ -291,6 +291,9 @@
         counts: {total: ids.length}
       }), {silent: true});
       sideBar.trigger('sync');
+    } else if (sideBar.get('adjective')) {
+      sideBar.set(sideBar.parse(adjectives.get(sideBar.get('adjective')).toJSON()), {silent: true});
+      sideBar.trigger('sync');
     } else if (sideBar.get('heatmap')) {
       sideBar.set(sideBar.parse(tweetActivity.get(sideBar.get('heatmap')).toJSON()), {silent: true});
       sideBar.trigger('sync');

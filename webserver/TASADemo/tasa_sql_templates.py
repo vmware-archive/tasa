@@ -402,6 +402,108 @@ def getHeatMapTweetDateSQL(search_term):
         where tbl1.id = id_to_attributes_map.id                     
     '''.format(search_term=search_term)
 
+def getAdjectivesTweetIdsSQL(search_term):
+    return '''
+        	with token_freq_id_arr
+        	as
+        	(
+        		select token,
+        		       count(*) as frequency,
+        		       array_agg(id order by score desc) as id_arr
+        		from
+        		(
+        			select t1.id,
+        			       t1.score,
+        			       lower(t3.token) as token,
+        			       t3.indx
+        			from gptext.search(
+        				TABLE(select * from topicdemo.tweet_dataset),
+        				'vatsandb.topicdemo.tweet_dataset',
+        				'{search_term}',
+        				null
+        			     ) t1,
+        			     topicdemo.tweet_dataset t2,
+        			     sentimentdemo.training_data_pos_tagged t3
+        			     where t1.id = t2.id and t2.tweet_id = t3.id and t3.tag = 'A'
+        		 ) tbl
+        		 group by token
+        	)
+        	select token,
+        	       frequency*1.0/(select max(frequency) from token_freq_id_arr) as normalized_frequency,
+        	       id_arr[1:20] -- Top 20 tweets per adjective
+        	from token_freq_id_arr
+        	order by normalized_frequency desc
+            --Top-100 adjectives by normalized frequency
+        	limit 100
+    '''.format(search_term=search_term)
+
+def getAdjectivesTweetDataSQL(search_term):
+    return '''
+        	with id_to_attributes_map
+        	as
+        	(
+        		select t1.id,
+        		       t3.displayname,
+        		       t3.preferredusername,
+        		       t2.body,
+        		       t3.image
+        		from gptext.search(
+        			     TABLE(select * from topicdemo.tweet_dataset),
+        			     'vatsandb.topicdemo.tweet_dataset',
+        			     '{search_term}',
+        			     null
+        		     ) t1,
+        		     topicdemo.tweet_dataset t2,
+        		     sentimentdemo.actor_info t3
+        		where t1.id = t2.id and
+        		      t2.tweet_id = t3.tweet_id
+        	),
+        	token_freq_id_arr
+        	as
+        	(
+        		select token,
+        		       count(*) as frequency,
+        		       array_agg(id order by score desc) as id_arr
+        		from
+        		(
+        			select t1.id,
+        			       t1.score,
+        			       lower(t3.token) as token,
+        			       t3.indx
+        			from gptext.search(
+        				TABLE(select * from topicdemo.tweet_dataset),
+        				'vatsandb.topicdemo.tweet_dataset',
+        				'{search_term}',
+        				null
+        			     ) t1,
+        			     topicdemo.tweet_dataset t2,
+        			     sentimentdemo.training_data_pos_tagged t3
+        			     where t1.id = t2.id and t2.tweet_id = t3.id and t3.tag = 'A'
+        		 ) tbl
+        		 group by token
+                 order by frequency desc
+                 -- Top-100 adjectives only
+                 limit 100
+        	)
+        	select id_to_attributes_map.*
+        	from
+        	(
+        		select id
+        		from
+        		(
+        			select token,
+        			       frequency,
+                           -- Top-20 tweets per adjective
+        			       unnest(id_arr[1:20]) as id
+        			from token_freq_id_arr
+
+        		)q
+        		group by id
+        	) top_adj,
+        	id_to_attributes_map
+        	where id_to_attributes_map.id = top_adj.id
+    '''.format(search_term=search_term)
+
 def getCountOfRelevantTweetsSQL(search_term):
     '''
        Grab the count of relevant tweets
@@ -410,7 +512,6 @@ def getCountOfRelevantTweetsSQL(search_term):
              SELECT * FROM gptext.search_count('vatsandb.topicdemo.tweet_dataset','{search_term}', null)
           '''
     return sql.format(search_term=search_term)
-
 
 def getCountOfRelevantTweetsRangeSQL(search_term, min_timestamp, max_timestamp):
     '''
@@ -421,7 +522,6 @@ def getCountOfRelevantTweetsRangeSQL(search_term, min_timestamp, max_timestamp):
              SELECT * FROM gptext.search_count('vatsandb.topicdemo.tweet_dataset','{search_term}','{{postedtime:[{min_timestamp} TO {max_timestamp}]}}')
           '''
     return sql.format(search_term=search_term,min_timestamp=min_timestamp,max_timestamp=max_timestamp)
-
 
 def getStatsRelevantTweetsSQL(search_term,min_timestamp,max_timestamp):
     '''

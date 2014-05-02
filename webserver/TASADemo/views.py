@@ -122,8 +122,16 @@ def tweet_activity(request):
 @csrf_exempt
 def adjectives(request):
     search_term = request.REQUEST[SEARCH_TERM]
-    _, adjectives = conn.fetchRows(getAdjectivesCloud(search_term))
-    result = [{'word': r[0], 'normalized_frequency': r[1]} for r in adjectives]
+
+    _, tweet_ids_by_adjective = conn.fetchRows(getAdjectivesTweetIdsSQL(search_term))
+    _, tweets_by_id = conn.fetchRows(getAdjectivesTweetDataSQL(search_term))
+
+    tweets_by_id = {r['id']: {'username': r['preferredusername'], 'text': r['body']} for r in tweets_by_id}
+    result = [{'word': r['token'],
+               'normalized_frequency': float(r['normalized_frequency']),
+               'tweets': {'total': [tweets_by_id[tweet_id] for tweet_id in r['id_arr'] if tweet_id in tweets_by_id]}}
+              for r in tweet_ids_by_adjective]
+
     return HttpResponse(json.dumps(result), content_type='application/json')
 
 @csrf_exempt
