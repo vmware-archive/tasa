@@ -36,7 +36,7 @@
         subDomainTitleFormat: {empty: '{date}', filled: '{date}'},
         subDomainDateFormat: function(date) {
           var counts = self.model.get(Number(date)).get('counts');
-          return (data[Number(date) / 1000] || 0) + ' Tweets ' +
+          return (data[Number(date) / 1000] || 0) + ' tweets ' +
             '<div class="percentage-chart list-inline">' +
               '<li class="positive-proportion" style="width: ' + counts.positive/counts.total * 100 + '%;"></li>' +
               '<li class="negative-proportion" style="width:' + counts.negative/counts.total * 100 + '%;"></li>' +

@@ -67,6 +67,10 @@
   }
 }
 
+.graph-rect {
+  cursor: pointer;
+}
+
 .heatmap {
   position: relative;
 }
@@ -126,8 +130,8 @@ $q6-color: #e5e584;
   fill: $q6-color;
 }
 
-.heatmap-legend {
-  margin: 13px 0 0 60px;
+.heatmap-legend.graph-legend {
+  margin: 10px 0 0 57px;
 
   li {
     &:nth-child(1) .swatch { @extend .q1; }

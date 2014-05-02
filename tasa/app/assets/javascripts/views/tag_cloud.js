@@ -50,7 +50,7 @@
                   .attr('data-toggle', 'tooltip')
                   .attr('title', function(d) {
                     var total = _.reduce(_.pluck(data, 'normalized_frequency'), function(sum, freq){return sum+freq;}, 0);
-                    return 'Used in ' + (100 * d.normalized_frequency / total).toFixed(2) + '% of tweets';
+                    return '<div class="tweet-percentage">' + (100 * d.normalized_frequency / total).toFixed(2) + '%</div> of tweets';
                   })
                   .append('tspan')
                     .style('font-size', function(d) { return d.size + 'px'; })
@@ -60,7 +60,7 @@
           ;
 
           self.$('text')
-            .tooltip({container: 'body', placement: 'top'})
+            .tooltip({container: 'body', placement: 'top', html: true})
             .on('shown.bs.tooltip', function() { $('.tooltip').addClass('cloud-tooltip'); })
           ;
         })

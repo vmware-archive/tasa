@@ -238,14 +238,13 @@
     if (_.has(query.changedAttributes(), 'query')) {
       _.invoke(oldXhrRequests, 'abort');
       _.result(forceXhrRequest, 'abort');
-      _.result(sidebarXhrRequest, 'abort');
 
       $('body').toggleClass('has-query', Boolean(query.get('query')));
-      xhrRequests = _.invoke([totalTweets, sideBar, sentimentMapping, tweetActivity, adjectives], 'fetch', {reset: true});
-      forceXhrRequest = force.fetch({reset: true});
+      xhrRequests = _.invoke([totalTweets, sideBar, sentimentMapping, tweetActivity, adjectives], 'fetch', {reset: true, silent: true});
+      forceXhrRequest = force.fetch({reset: true, silent: true});
     } else if (_.has(query.changedAttributes(), 'topics')) {
       _.result(forceXhrRequest, 'abort');
-      forceXhrRequest = force.fetch({reset: true});
+      forceXhrRequest = force.fetch({reset: true, silent: true});
     }
   });
 
@@ -282,7 +281,7 @@
     .on('reset', 'form', dirtyForm)
   ;
 
-  var sidebarXhrRequest;
+
   sideBar.on('change', function(sideBar, options) {
     if (sideBar.get('adjective') && sideBar.get('topic')) {
       var ids = _.result(force.get('topic_words')[sideBar.get('adjective')], sideBar.get('topic')) || [];
@@ -290,22 +289,15 @@
         tweets: {total: _.values(_.pick(force.get('tweets'), ids))},
         counts: {total: ids.length}
       }), {silent: true});
-      sideBar.trigger('sync');
     } else if (sideBar.get('adjective')) {
       sideBar.set(sideBar.parse(adjectives.get(sideBar.get('adjective')).toJSON()), {silent: true});
-      sideBar.trigger('sync');
     } else if (sideBar.get('heatmap')) {
       sideBar.set(sideBar.parse(tweetActivity.get(sideBar.get('heatmap')).toJSON()), {silent: true});
-      sideBar.trigger('sync');
     } else if (sideBar.get('sentiment')) {
       sideBar.set(sideBar.parse(sentimentMapping.get(new Date(sideBar.get('posted_date'))).toJSON()), {silent: true});
-      sideBar.trigger('sync');
     } else if (sideBar.get('posted_date')) {
       sideBar.set(sideBar.parse(totalTweets.get(new Date(sideBar.get('posted_date'))).toJSON()), {silent: true});
-      sideBar.trigger('sync');
-    } else {
-      _.result(sidebarXhrRequest, 'abort');
-      sidebarXhrRequest = sideBar.fetch();
     }
+    sideBar.trigger('sync');
   });
 })();
