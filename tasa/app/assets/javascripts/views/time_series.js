@@ -3,12 +3,44 @@
   window.TimeSeriesView = SpinnerView.extend({
     template: 'templates/time_series',
 
+    decorator: function(options) {
+      if (options.loading) { return {}; }
+
+      var types = this.model.first().get('tweets');
+      return [
+          _.has(types, 'total') && {
+          name: 'Total tweets',
+          className: 'total',
+          color: 'rgba(234, 239, 235, .8)',
+          data: this.model.map(function(model, i) { return {x: i, y: model.get('counts').total, posted_date: model.get('posted_date')}; })
+        },
+        _.has(types, 'positive') && {
+          name: 'Positive tweets',
+          className: 'positive',
+          color: '#80a55d',
+          data: this.model.map(function(model, i) { return {x: i, y: model.get('counts').positive, posted_date: model.get('posted_date')}; })
+        },
+        _.has(types, 'negative') && {
+          name: 'Negative tweets',
+          className: 'negative',
+          color: '#ce522c',
+          data: this.model.map(function(model, i) { return {x: i, y: model.get('counts').negative, posted_date: model.get('posted_date')}; })
+        },
+        _.has(types, 'neutral') && {
+          name: 'Neutral tweets',
+          className: 'neutral',
+          color: 'rgba(234, 239, 235, .3)',
+          data: this.model.map(function(model, i) { return {x: i, y: model.get('counts').neutral, posted_date: model.get('posted_date')}; })
+        }
+      ].filter(Boolean);
+    },
+
     render: function(options) {
       var self = this;
       SpinnerView.prototype.render.call(this, options);
       if (options.loading) { return; }
 
-      var series = this.model.toJSON(),
+      var series = this.decorator(options),
           max = _.chain(this.model.pluck('counts'))
             .map(function(counts) { return _.omit(counts, _.size(counts) > 1 && 'total'); })
             .map(_.max)
@@ -79,7 +111,7 @@
         graph: graph,
         formatter: function(series, i, tweets) {
           var postedDate = series.data[i].posted_date,
-              sentiment = series.name.match(/(\w*)\s?[Tt]weets/)[1].toLowerCase();
+              sentiment = ({positive: 'positive', negative: 'negative', neutral: 'neutral', total: ''})[series.className];
           return '' +
             '<div data-sentiment="' + sentiment + '" data-posted-date="' + Number(postedDate) + '" style="color:' + series.color + '">' +
               '<span class="date">' + d3.time.format.utc('%B %e')(postedDate) + '</span>' +

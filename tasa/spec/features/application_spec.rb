@@ -11,8 +11,7 @@ feature 'Application' do
       '/gp/topic/fetch/q?num_topics=3&sr_trm=pokemon' => topic_cluster_for_3_topics,
       '/gp/topic/fetch/q?num_topics=4&sr_trm=pokemon' => topic_cluster_for_4_topics,
 
-      '/gp/tasa/top_tweets/q?sr_trm=pokemon&sr_adj=' => top_20_tweets,
-      '/gp/tasa/top_tweets/q?sr_trm=pokemon&sr_adj=new' => top_20_tweets_for_new
+      '/gp/tasa/top_tweets/q?sr_trm=pokemon' => top_20_tweets
     }
   end
 
@@ -38,7 +37,7 @@ feature 'Application' do
     end
     expected = top_20_tweets['tweets']['total'].map {|point| point.slice('username', 'text')}
     expect(actual).to eq(expected)
-    page.find('.drilldown').should have_content("#{top_20_tweets['counts']['total']} Total Tweets")
+    page.find('.drilldown').should have_content("#{top_20_tweets['counts']['total']} total tweets")
 
     actual = page.evaluate_script <<-JS
       _.pluck(d3.select('.total-tweets .graph path').data()[0], 'y');
@@ -80,7 +79,7 @@ feature 'Application' do
     expect(actual).to eq(expected)
 
     page.all('.graph-rect').first.click
-    expect(page.find('.drilldown-overview')).to have_content("#{expected[0]['num_tweets']} Total Tweets")
+    expect(page.find('.drilldown-overview')).to have_content("#{expected[0]['num_tweets']} total tweets")
     expect(page.find('.drilldown-overview')).to have_content('Mondays at 12AM')
     expect(page.find('.drilldown')).to have_content('@kiaraajw  what is this Pokemon?o.O')
 
@@ -100,7 +99,7 @@ feature 'Application' do
     expect(page.find('.drilldown')).to have_content('July 16, 2013')
 
     expected = total_tweets.detect {|r| r['posted_date'] == DateTime.parse('July 16, 2013').to_i * 1000}['counts']['total']
-    expect(page.find('.drilldown')).to have_content("#{expected} Total Tweets")
+    expect(page.find('.drilldown')).to have_content("#{expected} total tweets")
 
     page.all('.topic-cluster .tag-cloud text', text: 'plai').first.click
     expect(page.all('.drilldown .sidebar-tweet .text', text: 'play')).to_not be_empty
