@@ -197,7 +197,7 @@ h2 {
 }
 
 .graph-title {
-  margin-bottom: 20px;
+  margin-bottom: 12px;
 }
 
 .graph-title + .graph-subtitle {
@@ -250,6 +250,15 @@ h2 {
   }
 }
 
+.tweet-icon-before {
+  @extend .fa;
+  @extend .fa-twitter;
+  &:before {
+    color: #55acee;
+    margin-right: 5px;
+  }
+}
+
 .drilldown {
   @extend %show-only-with-query;
   box-sizing: border-box;
@@ -287,12 +296,6 @@ h2 {
     border-bottom: 1px solid base-color(.15);
     &:hover {
       opacity: 1;
-    }
-    @extend .fa;
-    @extend .fa-twitter;
-    &:before {
-      color: #55acee;
-      margin-right: 5px;
     }
     display: block;
     -webkit-font-smoothing: auto;

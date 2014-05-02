@@ -11,12 +11,13 @@
   cursor: pointer;
 }
 
-$t1-color: #d33a34;
-$t2-color: #6ac356;
+$t1-color: #9966cc;
+$t2-color: #ff8533;
 $t3-color: #009bd5;
-$t4-color: #9966cc;
-$t5-color: #ffff55;
-$t6-color: #ff8533;
+$t4-color: #ffff55;
+$t5-color: #6ac356;
+$t6-color: #d33a34;
+
 
 .t1 {
   background-color: $t1-color;
@@ -105,9 +106,8 @@ $t6-color: #ff8533;
   }
 
   .topics-number {
-    border-bottom: 1px solid base-color(0.5);
     text-align: center;
-    padding-left: 13px;
+    width: 25px;
   }
 
   .topics-submit, .topics-reset {
