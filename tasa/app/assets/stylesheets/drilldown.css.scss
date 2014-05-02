@@ -1,0 +1,101 @@
+.drilldown {
+  @extend %show-only-with-query;
+  box-sizing: border-box;
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 500px;
+  overflow-y: auto;
+
+  width: 20%;
+  margin-top: -77px;
+  padding-top: 77px;
+
+  &.sticky {
+    position: fixed;
+    top: 77px;
+    padding-bottom: 100px;
+  }
+
+  h2 {
+    font-size: 18px;
+  }
+
+  ol {
+    margin: 0;
+    padding: 0;
+    padding-right: 25px;
+    list-style: none;
+  }
+
+  .sidebar-tweet {
+    margin-top: 7px;
+    padding-bottom: 7px;
+    opacity: 0.6;
+    line-height: 1.3;
+    border-bottom: 1px solid base-color(.15);
+    &:hover {
+      opacity: 1;
+    }
+    display: block;
+    -webkit-font-smoothing: auto;
+  }
+
+  color: base-color();
+  font-size: 12px;
+
+  .username {
+    color: base-color(.5);
+
+    &:before {
+      content: '@';
+    }
+  }
+
+  .text {
+    margin-top: 2px;
+    margin-bottom: 0;
+    color: base-color(.8);
+  }
+
+  &::-webkit-scrollbar {
+    width: 0 !important;
+  }
+
+  .drilldown-info {
+    font-size: 14px;
+  }
+
+  .drilldown-overview {
+    margin-bottom: 20px;
+  }
+
+  .drilldown-content {
+    min-height: 600px;
+  }
+
+  .drilldown-counts {
+    margin-top: 5px;
+    li {
+      margin-right: 3px;
+    }
+  }
+
+  .drilldown-breakdown {
+    @extend .percentage-chart;
+    width: 80%;
+    li {
+      height: 8px;
+    }
+  }
+
+  .tweet-group + .tweet-group {
+    margin-top: 21px;
+  }
+}
+
+.sidebar-subtitle {
+  margin: 0;
+  text-transform: capitalize;
+  color: base-color(0.8);
+}

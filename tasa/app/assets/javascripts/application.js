@@ -289,14 +289,13 @@
         tweets: {total: _.values(_.pick(force.get('tweets'), ids))},
         counts: {total: ids.length}
       }), {silent: true});
-    } else if (sideBar.get('adjective')) {
-      sideBar.set(sideBar.parse(adjectives.get(sideBar.get('adjective')).toJSON()), {silent: true});
-    } else if (sideBar.get('heatmap')) {
-      sideBar.set(sideBar.parse(tweetActivity.get(sideBar.get('heatmap')).toJSON()), {silent: true});
-    } else if (sideBar.get('sentiment')) {
-      sideBar.set(sideBar.parse(sentimentMapping.get(new Date(sideBar.get('posted_date'))).toJSON()), {silent: true});
-    } else if (sideBar.get('posted_date')) {
-      sideBar.set(sideBar.parse(totalTweets.get(new Date(sideBar.get('posted_date'))).toJSON()), {silent: true});
+    } else {
+      sideBar.set(sideBar.parse(
+        sideBar.get('adjective') && adjectives.get(sideBar.get('adjective')).toJSON() ||
+        sideBar.get('heatmap') && tweetActivity.get(sideBar.get('heatmap')).toJSON() ||
+        sideBar.get('sentiment') && sentimentMapping.get(new Date(sideBar.get('posted_date'))).toJSON() ||
+        sideBar.get('posted_date') && totalTweets.get(new Date(sideBar.get('posted_date'))).toJSON()
+      ), {silent: true});
     }
     sideBar.trigger('sync');
   });
