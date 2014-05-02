@@ -73,7 +73,12 @@
 
 .ch-tooltip {
   width: inherit;
-  font-size: 18px;
+  color: base-color(.9);
+  font-size: 16px;
+  padding-top: 5px;
+  .percentage-chart {
+    margin-top: 5px;
+  }
 }
 
 .cal-heatmap-container {

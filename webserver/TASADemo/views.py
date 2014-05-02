@@ -114,7 +114,7 @@ def tweet_activity(request):
         point['counts'] = {'total': row.get('num_tweets', 0),
                            'positive': row.get('num_positive', 0),
                            'negative': row.get('num_negative', 0),
-                           'neutral': row.get('num_neutral', 0)}
+                           'neutral': row.get('num_tweets', 0) - row.get('num_positive', 0) - row.get('num_negative', 0)}
     result = result.values()
 
     return HttpResponse(json.dumps(result), content_type='application/json')

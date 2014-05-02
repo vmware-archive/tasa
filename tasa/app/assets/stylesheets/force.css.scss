@@ -66,6 +66,10 @@ $t6-color: #d33a34;
   }
 }
 
+.tooltip-inner {
+  color: base-color(.9);
+}
+
 .force-tooltip {
   margin-left: 5px;
   margin-top: 2px;

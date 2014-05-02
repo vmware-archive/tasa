@@ -40,7 +40,7 @@
             '<div class="percentage-chart list-inline">' +
               '<li class="positive-proportion" style="width: ' + counts.positive/counts.total * 100 + '%;"></li>' +
               '<li class="negative-proportion" style="width:' + counts.negative/counts.total * 100 + '%;"></li>' +
-              '<li class="neutral-proportion" style="width:' + (counts.total - counts.negative - counts.positive)/counts.total * 100 + '%;"></li>' +
+              '<li class="neutral-proportion" style="width:' + counts.neutral/counts.total * 100 + '%;"></li>' +
             '</div>';
         },
         displayLegend: false,

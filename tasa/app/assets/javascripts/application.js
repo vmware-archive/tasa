@@ -144,11 +144,12 @@
                this.model.get('adjective') && 'Adjectives' ||
                this.model.get('heatmap') && 'Tweet Activity' ||
                'Top ' + this.model.get('tweets').total.length + ' Tweets',
-        proportions: this.model.get('sentiment') && {
+        proportions: (this.model.get('sentiment') || this.model.get('heatmap')) && {
           positive_proportion: 100 * this.model.get('counts').positive / this.model.get('counts').total,
           negative_proportion: 100 * this.model.get('counts').negative / this.model.get('counts').total,
           neutral_proportion: 100 * this.model.get('counts').neutral / this.model.get('counts').total
         } || undefined,
+        breakdown: this.model.get('sentiment') || this.model.get('heatmap'),
         groups: _.map(this.model.get('tweets'), function(tweets, sentiment) {
           if (this.model.get('sentiment') && this.model.get('sentiment') !== sentiment) { return; }
 
