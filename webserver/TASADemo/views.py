@@ -138,7 +138,4 @@ def adjectives(request):
 def topic_cluster(request):
     search_term = request.REQUEST[SEARCH_TERM]
     topics = request.REQUEST[TOPICS]
-
-    result = topicDashboardGenerator(search_term, topics)
-
-    return HttpResponse(json.dumps(result), content_type='application/json')
+    return topicDashboardGenerator(search_term, topics)
