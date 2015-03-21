@@ -112,3 +112,31 @@ Adding a New Visualization
     ```
 
     See the most recent commit on that branch for the example code.
+
+PCF Deployment
+===============
+
+All PCF related deployment code is in the branch pcfize
+The file manifest.yml defined the buildpacks and other params relevant for a cf push.
+The app can be pushed to your PCF instance using the following command:
+
+```
+cf push tasacf -f manifest.yml
+```
+
+User Provided Service
+======================
+Create user provided service for database creds:
+
+```
+cf cups tasacreds -p '{"hostname":"<hostname>","username":"<user>","password":"<password>", "databasename":"<database>", "port":"<port>" }'
+```
+Bind the service to the app using:
+
+```
+cf bind-service tasacf tasacreds
+```
+
+Accessing the demo
+===================
+Currently the demo is accessible at: http://tasacf.pcf1-sc.vchs.pivotal.io/tasa/index.html
