@@ -1,0 +1,10 @@
+#!/bin/bash
+export DJANGO_SETTINGS_MODULE=webserver.settings
+mkdir -p /tmp/django_media_root/tasa
+export DATA_FOLDER=/tmp/django_media_root
+python setup.py build
+python setup.py install
+#Collect static files (images, javascripts etc)
+python webserver/manage.py collectstatic --noinput
+#Start the webserver
+python webserver/manage.py runserver 0.0.0.0:8081
