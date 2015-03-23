@@ -2,9 +2,8 @@
 # Django settings for webserver project.
 import os
 from pkg_resources import resource_filename
-DEBUG = True
 #Turn off debug mode, this will speed up the server and prevent errors from being displayed publicly
-#DEBUG=False
+DEBUG=False
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
