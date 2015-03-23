@@ -6,10 +6,8 @@ from pkg_resources import resource_filename
 DEBUG=False
 TEMPLATE_DEBUG = DEBUG
 
-#ALLOWED HOSTS (required when DEBUG=False)
-ALLOWED_HOSTS = [
-    '.pivotal.io',
-]
+#The following is required when DEBUG=False)
+ALLOWED_HOSTS = ['.pivotal.io', '.localhost',]
 
 ADMINS = (
     # ('Your Name', 'your_email@example.com'),
