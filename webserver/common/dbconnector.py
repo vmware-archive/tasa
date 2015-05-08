@@ -86,8 +86,8 @@ class DBConnect(object):
             with self.getCursor(isQuery) as cursor:
                 try:
                     cursor.execute(ping_cmd)
-                except psycopg2.OperationalError, e:
-                    print 'Operational Error: ',e
+                except psycopg2.Error, e:
+                    print 'Error: ',e
                     conn_alive = False
             return conn_alive
 
