@@ -9,6 +9,8 @@ from psycopg2 import extras
 from psycopg2 import pool
 from contextlib import contextmanager
 import time, sys
+import os
+import json
 
 class DBConnect(object):
         @classmethod
@@ -60,7 +62,18 @@ class DBConnect(object):
 
        
         def __init__(self,conn_str=None):
-            ''' Connect to the DB using Psycopg2, if conn_str is not provided, then it is read from ~/.pymadlib.config file '''
+            ''' Connect to the DB using Psycopg2, if conn_str is not provided, read it from VCAP_SERVICES '''
+            if(not conn_str):
+                vcap_services = json.loads(os.environ['VCAP_SERVICES'])
+                creds = vcap_services['user-provided'][0]['credentials']
+                conn_str = "host='{hostname}' port ='{port}' dbname='{database}' user='{username}' password='{password}'"
+                conn_str = conn_str.format(
+                              hostname=creds['hostname'],
+                              port=creds['port'],
+                              database=creds['databasename'],
+                              username=creds['username'],
+                              password=creds['password']
+                           )
             self.conn_str = conn_str
             self.__initConnectionPool__(conn_str)
 
@@ -73,8 +86,8 @@ class DBConnect(object):
             with self.getCursor(isQuery) as cursor:
                 try:
                     cursor.execute(ping_cmd)
-                except psycopg2.OperationalError, e:
-                    print 'Operational Error: ',e
+                except psycopg2.Error, e:
+                    print 'Error: ',e
                     conn_alive = False
             return conn_alive
 

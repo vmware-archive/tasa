@@ -1,0 +1,10 @@
+---
+# Manifest to deploy Topic and Sentiment Analysis Engine
+applications:
+- name: tasacf
+  memory: 1G
+  instances: 1
+  host: tasacf
+  buildpack: git://github.com/ihuston/python-conda-buildpack.git
+  timeout: 180
+  command: bash start_dev_server

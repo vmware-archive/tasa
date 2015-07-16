@@ -2,12 +2,12 @@
 # Django settings for webserver project.
 import os
 from pkg_resources import resource_filename
-DEBUG = True
 #Turn off debug mode, this will speed up the server and prevent errors from being displayed publicly
-#DEBUG=False
+DEBUG=False
 TEMPLATE_DEBUG = DEBUG
 
-
+#The following is required when DEBUG=False)
+ALLOWED_HOSTS = ['.pivotal.io', '.localhost',]
 
 ADMINS = (
     # ('Your Name', 'your_email@example.com'),
@@ -66,8 +66,6 @@ STATIC_ROOT = os.environ['DATA_FOLDER']+'/static/'
 # URL prefix for static files.
 # Example: "http://media.lawrence.com/static/"
 STATIC_URL = '/static/'
-
-TASA_ROOT = os.environ['DATA_FOLDER']+'/tasa/'
 
 # URL prefix for admin static files -- CSS, JavaScript and images.
 # Make sure to use a trailing slash.

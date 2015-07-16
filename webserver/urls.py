@@ -2,6 +2,7 @@
 from django.conf.urls import patterns, include, url   
 import settings
 import os
+from django.views.generic import RedirectView
 # Uncomment the next two lines to enable the admin:
 # from django.contrib import admin
 # admin.autodiscover()
@@ -39,6 +40,8 @@ urlpatterns = patterns('',
     # Uncomment the next line to enable the admin:
     # url(r'^admin/', include(admin.site.urls)),
 
+    #Redirect to index.html
+    url(r'^/?$', RedirectView.as_view(url='/tasa/index.html')),
     #Mapping for new UI code
     url(r'^(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.STATIC_ROOT + 'tasa/'}),
 )
