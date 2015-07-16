@@ -1,0 +1,24 @@
+#!/bin/bash
+export DJANGO_SETTINGS_MODULE=webserver.settings
+mkdir -p /tmp/django_media_root/tasa
+export DATA_FOLDER=/tmp/django_media_root
+if [ $VCAP_APP_PORT];
+   then
+       PYTHON='.conda/bin/python'
+       APP_PORT=$VCAP_APP_PORT
+       echo 'Using python:'$PYTHON
+   else
+       PYTHON=`which python`
+       APP_PORT=8081
+       echo 'Using python:'$PYTHON
+fi
+
+#Install TASA
+$PYTHON setup.py build
+$PYTHON setup.py install
+
+#Collect static files (images, javascripts etc)
+$PYTHON  webserver/manage.py collectstatic --noinput
+
+#Start the webserver
+$PYTHON webserver/manage.py runserver 0.0.0.0:$APP_PORT
