@@ -13,14 +13,10 @@ __pycache__/
 
 # Distribution / packaging
 .Python
-env/
-bin/
 build/
 develop-eggs/
 dist/
 eggs/
-lib/
-lib64/
 parts/
 sdist/
 var/
@@ -65,3 +61,6 @@ docs/_build/
 /tasa/.idea
 /tasa/public/assets
 /webserver/common/static/tasa
+
+#IntelliJ ignores
+.idea

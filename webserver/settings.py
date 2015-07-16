@@ -17,11 +17,11 @@ MANAGERS = ADMINS
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2', # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': 'vatsandb',                  # Or path to database file if using sqlite3.
-        'USER': 'gpadmin',                   # Not used with sqlite3.
-        'PASSWORD': '*****',              # Not used with sqlite3.
-        'HOST': '10.110.122.107',            # Set to empty string for localhost. Not used with sqlite3.
-        'PORT': '5432',                      # Set to empty string for default. Not used with sqlite3.
+        'NAME': '',                  # Or path to database file if using sqlite3.
+        'USER': '',                   # Not used with sqlite3.
+        'PASSWORD': '',              # Not used with sqlite3.
+        'HOST': '',            # Set to empty string for localhost. Not used with sqlite3.
+        'PORT': '',                      # Set to empty string for default. Not used with sqlite3.
     }
 }
 
@@ -73,18 +73,19 @@ TASA_ROOT = os.environ['DATA_FOLDER']+'/tasa/'
 # Make sure to use a trailing slash.
 # Examples: "http://foo.com/static/admin/", "/static/admin/".
 ADMIN_MEDIA_PREFIX = '/static/admin/'
-
+ROOT_PATH = os.path.dirname(__file__)
 # Additional locations of static files
 STATICFILES_DIRS = (
     # Put strings here, like "/home/html/static" or "C:/www/django/static".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
+    os.path.join(ROOT_PATH, 'common/static'),
 )
 
 # List of finder classes that know how to find static files in
 # various locations.
 STATICFILES_FINDERS = (
-    #'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
     #'django.contrib.staticfiles.finders.DefaultStorageFinder',
 )
@@ -127,6 +128,7 @@ INSTALLED_APPS = (
     #Include Sentiment Analysis Demo
     'webserver.GPSentiDemo',
     'webserver.common',
+    'webserver.TASADemo',
     # Uncomment the next line to enable the admin:
     # 'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:

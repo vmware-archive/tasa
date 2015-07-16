@@ -16,7 +16,6 @@ gem 'bootstrap-sass'
 gem 'font-awesome-rails'
 
 gem 'sass-rails', '>= 4.0.3'
-
 group :development do
   gem 'spring'
   gem 'spring-commands-rspec'

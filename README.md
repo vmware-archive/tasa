@@ -76,9 +76,39 @@ Code Organization
 New UI Code
 ===========
 
-    Before starting the server, the UI assets need to be compiled:
+    Note that Ruby 2.1.1 and Bundler is required to develop and to compile the assets. A tool such as
+    https://rvm.io/ may be useful. RVM installs both Ruby and Bundler.
+
+    Start the Django server:
+    ```bash
+    cd nlpdemo
+    ./start_dev_server
+    ```
+
+    Start the Rails development server:
+    ```bash
+    cd nlpdemo/tasa
+    bundle install
+    bin/rails server
+    ```
+
+    The Rails server serves the development assets at: http://localhost:3000
+
+    Before deploying, compile the UI assets via:
     ```bash
     cd tasa
     RAILS_ENV=production rake compile
     ```
-    Note that Ruby 2.1.1 is required to compile the assets.
+    We have a sample deployment script in `/nlpdemo/deploy`. Please refer to the comments inside.
+
+Adding a New Visualization
+==========================
+
+    We have an example of how to add a time series graph in the `new-visualization-example` branch.
+
+    ```bash
+    git branch -a
+    git checkout new-visualization-example
+    ```
+
+    See the most recent commit on that branch for the example code.
