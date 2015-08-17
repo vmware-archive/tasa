@@ -109,8 +109,6 @@ def topicDashboardGenerator(search_term, num_topics):
 
     suffix_id = str(time.time()).replace('.', '_dot_')
 
-    conn_dict = DBConnect.getConnectionString()
-
     #0) Retrieve matching tweets for the search term
     print 'Retrieving matching tweets'
     executionStatus = conn.executeQuery(retrieveMatchingTweets(search_term,suffix_id))
