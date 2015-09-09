@@ -46,11 +46,16 @@ New UI Code
     Note that Ruby 2.1.1 and Bundler is required to develop and to compile the assets. A tool such as
     https://rvm.io/ may be useful. RVM installs both Ruby and Bundler.
 
-    Start the Django server:
-    ```bash
-    cd nlpdemo
-    ./start_dev_server
+    You may need to install RVM and bundler like so:
+
     ```
+        \curl -sSL https://get.rvm.io | bash -s stable --ruby
+        gem install bundler
+        rvm install ruby-2.1.1
+    ```
+
+    Additionally you'll also need to install phantomjs for your browser (Chrome). 
+    Checkout https://bitbucket.org/ariya/phantomjs/downloads/
 
     Start the Rails development server:
     ```bash
@@ -64,8 +69,17 @@ New UI Code
     Before deploying, compile the UI assets via:
     ```bash
     cd tasa
+    rake
     RAILS_ENV=production rake compile
     ```
+
+    If rake fails complaining that the folder webserver/common/static/tasa does not exist, create it and re-run rake.
+
+    Start the Django server:
+    ```bash
+    cd nlpdemo
+    ./start_dev_server
+
 
 Adding a New Visualization
 ==========================
