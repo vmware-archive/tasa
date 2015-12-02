@@ -97,6 +97,7 @@ def find_package_data(
 setup(
     name='webserver_gpsenti',
     version='0.1.0',
+    zip_safe=False,
     author='Srivatsan Ramanujam',
     author_email='vatsan.cs@gmail.com',
     packages=find_packages(),

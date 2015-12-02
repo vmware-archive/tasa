@@ -2,10 +2,10 @@
 export DJANGO_SETTINGS_MODULE=webserver.settings
 mkdir -p /tmp/django_media_root/tasa
 export DATA_FOLDER=/tmp/django_media_root
-if [ $VCAP_APP_PORT];
+if [ $PORT ];
    then
        PYTHON='.conda/bin/python'
-       APP_PORT=$VCAP_APP_PORT
+       APP_PORT=$PORT
        echo 'Using python:'$PYTHON
    else
        PYTHON=`which python`

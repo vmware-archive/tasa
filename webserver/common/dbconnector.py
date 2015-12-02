@@ -63,7 +63,7 @@ class DBConnect(object):
        
         def __init__(self,conn_str=None):
             ''' Connect to the DB using Psycopg2, if conn_str is not provided, read it from VCAP_SERVICES '''
-            if(not conn_str and os.getenv("VCAP_APP_PORT")):
+            if(not conn_str and os.getenv("PORT")):
                 vcap_services = json.loads(os.environ['VCAP_SERVICES'])
                 creds = vcap_services['user-provided'][0]['credentials']
                 conn_str = "host='{hostname}' port ='{port}' dbname='{database}' user='{username}' password='{password}'"
