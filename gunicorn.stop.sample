@@ -1,7 +1,0 @@
-#!/bin/bash
-PIDFILE=/home/vatsan/webserver_django_media/run/gunicorn.pid
-#Kill the process
-if [ -f $PIDFILE ] ;
-then
-    cat $PIDFILE | xargs kill 
-fi
