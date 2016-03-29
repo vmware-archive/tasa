@@ -1,7 +1,10 @@
+
 Pivotal Topic and Sentiment Analysis Engine
 ============================================
 
 This demo show cases Pivotal's Topic and Sentiment Analysis Engine using MADlib and GPText. The webserver will query a back-end (internal) corpus of over 800 million tweets in response to a search query and display topic & sentiment analysis dashboards powered by D3.js plots.
+
+![TASA Animated GIF](https://github.com/pivotalsoftware/tasa/raw/gh-pages/images/tasacf_animated_highres.gif)
 
 Pre-requisites
 ===============
