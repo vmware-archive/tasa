@@ -9,10 +9,10 @@ This demo show cases Pivotal's Topic and Sentiment Analysis Engine using MADlib 
 Pre-requisites
 ===============
 
-his demo is not self-contained. There is a webserver component and there is a back-end Greenplum Database Component.
+This demo is not self-contained. There is a webserver component and there is a backend Greenplum Database Component.
 This repo only contains the webserver component. To be able to get a fully functional demo, you'll have to build the back-end database, install the libraries (MADlib, GPText) and load a dataset as well. Please contact the author if you interested in going through all that.
 
-We recommend that you install `Anaconda Python` for building this demo. Additionally, you will also need to install the `psycopg2` library (run: `conda install psycopg2` in your Anaconda environment). You should also be able to connect to the Pivotal GPDB  DCA (which means you should be within Pivotal PA VPN).
+We recommend that you install `Anaconda Python` for building this demo. Additionally, you will also need to install the `psycopg2` library (run: `conda install psycopg2` in your Anaconda environment). You should also be able to connect to the Pivotal GPDB DCA, which you to be within Pivotal PA VPN.
 
 Configuration
 =============
@@ -26,12 +26,10 @@ You'll have to create a config file to connect to your backend database. Create 
     port = 5432 (the port# of your DB)
     database = vatsandb (the database you wish to connect to)
 
-
 Starting the webserver
 =======================
 
-You can start the development server by running the script $NLPDEMO_HOME/nlpdemo/deploy.
-This will start the dev server on localhost on port:8081
+You can start the development server by running the script $NLPDEMO_HOME/nlpdemo/deploy.This will start the dev server on localhost on port `8081`.
 
 New UI Code
 ===========
@@ -44,7 +42,6 @@ Note that Ruby 2.1.1 and Bundler is required to develop and to compile the asset
     rvm install ruby-2.1.1
 
 Additionally you'll also need to install phantomjs for your browser (Chrome). Checkout `https://bitbucket.org/ariya/phantomjs/downloads/`
-
 Start the Rails development server:
 
     cd nlpdemo/tasa
@@ -93,11 +90,10 @@ Bind the service to the app using:
 
     cf bind-service tasacf tasacreds
 
-
 Accessing the demo
 ===================
 
-Currently the demo is accessible at: http://tasacf.pcf1-sc.vchs.pivotal.io
+Currently the demo is accessible at `http://tasacf.pcf1-sc.vchs.pivotal.io`
 
 Author
 =======
@@ -112,4 +108,3 @@ Contributors
     Greg Cobb (Dev) 
     Joelle Gernez (PM)
     Jarrod Vawdrey (DS)
-
