@@ -1,7 +1,15 @@
 #!/bin/bash
 export DJANGO_SETTINGS_MODULE=webserver.settings
-mkdir -p /tmp/django_media_root/tasa
-export DATA_FOLDER=/tmp/django_media_root
+if [ $HOME];
+   then
+       mkdir -p $HOME/django_media_root/tasa
+       export DATA_FOLDER=$HOME/django_media_root
+   else
+       rm -rf /tmp/tasa_assets/django_media_root
+       mkdir -p /tmp/tasa_assets/django_media_root/tasa
+       export DATA_FOLDER=/tmp/tasa_assets/django_media_root
+fi
+
 if [ $PORT ];
    then
        PYTHON='.conda/bin/python'
