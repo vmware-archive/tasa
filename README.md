@@ -29,7 +29,7 @@ You'll have to create a config file to connect to your backend database. Create 
 Starting the webserver
 =======================
 
-You can start the development server by running the script $NLPDEMO_HOME/nlpdemo/deploy.This will start the dev server on localhost on port `8081`.
+You can start the development server by running the script $TASA_HOME/tasa/deploy.This will start the dev server on localhost on port `8081`.
 
 New UI Code
 ===========
@@ -44,7 +44,7 @@ Note that Ruby 2.1.1 and Bundler is required to develop and to compile the asset
 Additionally you'll also need to install phantomjs for your browser (Chrome). Checkout `https://bitbucket.org/ariya/phantomjs/downloads/`
 Start the Rails development server:
 
-    cd nlpdemo/tasa
+    cd tasa/tasa
     bundle install
     bin/rails server
 
@@ -58,7 +58,7 @@ Before deploying, compile the UI assets via:
 If rake fails complaining that the folder webserver/common/static/tasa does not exist, create it and re-run rake.
 Start the Django server:
 
-    cd nlpdemo
+    cd tasa
     ./start_dev_server
 
 Adding a New Visualization
