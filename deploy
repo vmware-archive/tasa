@@ -5,11 +5,10 @@ export DATA_FOLDER=/tmp/django_media_root
 if [ $PORT ];
    then
        PYTHON='.conda/bin/python'
-       APP_PORT=$PORT
        echo 'Using python:'$PYTHON
    else
        PYTHON=`which python`
-       APP_PORT=8081
+       PORT=8081
        echo 'Using python:'$PYTHON
 fi
 
@@ -21,4 +20,4 @@ $PYTHON setup.py install
 $PYTHON  webserver/manage.py collectstatic --noinput
 
 #Start the webserver
-$PYTHON webserver/manage.py runserver 0.0.0.0:$APP_PORT
+$PYTHON webserver/manage.py runserver 0.0.0.0:$PORT

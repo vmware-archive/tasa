@@ -74,6 +74,13 @@ See the most recent commit on that branch for the example code.
 PCF Deployment
 ===============
 
+If you've followed the steps above to compile the new UI assets, you can deploy your app to PCF.
+You'll first have to connect to your PCF endpoint, for example:
+
+    cf login -a https://api.pcf1-rdu.nasa.pivotal.io
+
+Enter your email address, password and choose the right space to deploy your app on (ex: "demos").
+
 The file manifest.yml defined the buildpacks and other params relevant for a cf push.
 The app can be pushed to your PCF instance using the following command:
 
@@ -93,7 +100,7 @@ Bind the service to the app using:
 Accessing the demo
 ===================
 
-Currently the demo is accessible at `http://tasacf.pcf1-sc.vchs.pivotal.io`
+Currently the demo is accessible at: [https://tasacf.pcf1-rdu.nasa.pivotal.io/](https://tasacf.pcf1-rdu.nasa.pivotal.io/)
 
 Author
 =======
