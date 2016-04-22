@@ -6,6 +6,12 @@ This demo show cases Pivotal's Topic and Sentiment Analysis Engine using MADlib 
 
 ![TASA Animated GIF](https://github.com/pivotalsoftware/tasa/raw/gh-pages/images/tasacf_animated_highres.gif)
 
+More information on the technology behind the demo can be found here:
+
+1. [A pipeline for distributed topic and sentiment analysis of tweets on Greenplum](http://www.slideshare.net/SrivatsanRamanujam/a-pipeline-for-distributed-topic-and-sentiment-analysis-of-tweets-on-pivotal-greenplum-database).
+2. [All things Python @ Pivotal](https://www.youtube.com/watch?v=dwaUl_V3Nes)
+
+
 Pre-requisites
 ===============
 
