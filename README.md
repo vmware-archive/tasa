@@ -2,7 +2,7 @@
 Pivotal Topic and Sentiment Analysis Engine
 ============================================
 
-This demo show cases Pivotal's Topic and Sentiment Analysis Engine using MADlib and GPText. The webserver will query a back-end (internal) corpus of over 800 million tweets in response to a search query and display topic & sentiment analysis dashboards powered by D3.js plots.
+This demo show cases Pivotal's Topic and Sentiment Analysis Engine using MADlib and GPText. The webserver will query a back-end (internal to Pivotal) corpus of over 800 million tweets in response to a search query and display topic & sentiment analysis dashboards powered by D3.js plots.
 
 ![TASA Animated GIF](https://github.com/pivotalsoftware/tasa/raw/gh-pages/images/tasacf_animated_highres.gif)
 
@@ -15,7 +15,7 @@ This repo only contains the webserver component. To be able to get a fully funct
 We recommend that you install `Anaconda Python` for building this demo. Additionally, you will also need to install the `psycopg2` library (run: `conda install psycopg2` in your Anaconda environment). You should also be able to connect to the Pivotal GPDB DCA, which you to be within Pivotal PA VPN.
 
 Configuration
-=============
+==============
 
 You'll have to create a config file to connect to your backend database. Create a file in your home directory `~/.dbconn.config` like so:
             
@@ -24,15 +24,15 @@ You'll have to create a config file to connect to your backend database. Create 
     password = XXXXX
     hostname = 127.0.0.1 (or the IP of your DB server)
     port = 5432 (the port# of your DB)
-    database = vatsandb (the database you wish to connect to)
+    database = vatsandb (or the database you wish to connect to)
 
 Starting the webserver
 =======================
 
 You can start the development server by running the script $TASA_HOME/tasa/deploy.This will start the dev server on localhost on port `8081`.
 
-New UI Code
-===========
+Front-end code
+===============
 
 Note that Ruby 2.1.1 and Bundler is required to develop and to compile the assets. A tool such as
 `https://rvm.io/` may be useful. RVM installs both Ruby and Bundler. You may need to install RVM and bundler like so:
@@ -52,14 +52,13 @@ The Rails server serves the development assets at: `http://localhost:3000`
 Before deploying, compile the UI assets via:
 
     cd tasa
-    rake
+    rake (only needed if you'd like to run all the tests, else go to step below)
     RAILS_ENV=production rake compile
 
 If rake fails complaining that the folder webserver/common/static/tasa does not exist, create it and re-run rake.
-Start the Django server:
+Start the a development server:
 
-    cd tasa
-    ./start_dev_server
+    ./deploy
 
 Adding a New Visualization
 ==========================
