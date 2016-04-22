@@ -50,8 +50,8 @@ Additionally you'll also need to install phantomjs for your browser (Chrome). Ch
 The Rails server serves the development assets at: `http://localhost:3000`. Before deploying, compile the UI assets via:
 
     cd tasa
-    rake (only needed if you'd like to run all the tests, else go to step below)
-    RAILS_ENV=production rake compile
+    rake #only needed if you'd like to run all the tests, else go to step below
+    RAILS_ENV=production rake compile #compiles all the assets to $TASA_HOME/tasa/public/assets (not versioned on GitHub)
 
 If rake fails complaining that the folder webserver/common/static/tasa does not exist, create it and re-run rake.
 Start the a development server:
