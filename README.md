@@ -41,15 +41,13 @@ Note that Ruby 2.1.1 and Bundler is required to develop and to compile the asset
     gem install bundler
     rvm install ruby-2.1.1
 
-Additionally you'll also need to install phantomjs for your browser (Chrome). Checkout `https://bitbucket.org/ariya/phantomjs/downloads/`
-Start the Rails development server:
+Additionally you'll also need to install phantomjs for your browser (Chrome). Checkout `https://bitbucket.org/ariya/phantomjs/downloads/`.Start the Rails development server:
 
     cd tasa/tasa
     bundle install
     bin/rails server
 
-The Rails server serves the development assets at: `http://localhost:3000`
-Before deploying, compile the UI assets via:
+The Rails server serves the development assets at: `http://localhost:3000`. Before deploying, compile the UI assets via:
 
     cd tasa
     rake (only needed if you'd like to run all the tests, else go to step below)
