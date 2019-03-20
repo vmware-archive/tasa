@@ -10,8 +10,8 @@ standard_exclude_directories = ('.*', 'CVS', '_darcs', './build',
                                 './dist', 'EGG-INFO', '*.egg-info')
 
 
-# (c) 2005 Ian Bicking and contributors; written for Paste (http://pythonpaste.org)
-# Licensed under the MIT license: http://www.opensource.org/licenses/mit-license.php
+# (c) 2005 Ian Bicking and contributors; written for Paste (https://web.archive.org/web/http%3A//pythonpaste.org/)
+# Licensed under the MIT license: https://www.opensource.org/licenses/mit-license.php
 # Note: you may want to copy this into your setup.py file verbatim, as
 # you can't import this from another package, when you don't know if
 # that package is installed yet.

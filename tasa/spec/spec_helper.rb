@@ -24,6 +24,6 @@ RSpec.configure do |config|
   config.order = 'random'
 
   config.before do
-    API.stub(:get) {|url| fixtures[url.gsub(%r{http://.+?/}, '/')] }
+    API.stub(:get) {|url| fixtures[url.gsub(%r{https://.+?/}, '/')] }
   end
 end
