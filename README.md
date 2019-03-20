@@ -8,7 +8,7 @@ This demo show cases Pivotal's Topic and Sentiment Analysis Engine using MADlib 
 
 More information on the technology behind the demo can be found here:
 
-1. [A pipeline for distributed topic and sentiment analysis of tweets on Greenplum](http://www.slideshare.net/SrivatsanRamanujam/a-pipeline-for-distributed-topic-and-sentiment-analysis-of-tweets-on-pivotal-greenplum-database).
+1. [A pipeline for distributed topic and sentiment analysis of tweets on Greenplum](https://www.slideshare.net/SrivatsanRamanujam/a-pipeline-for-distributed-topic-and-sentiment-analysis-of-tweets-on-pivotal-greenplum-database).
 2. [All things Python @ Pivotal](https://www.youtube.com/watch?v=dwaUl_V3Nes)
 
 

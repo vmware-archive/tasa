@@ -1,5 +1,5 @@
 /*
-Modified example from http://bl.ocks.org/mbostock/3884955
+Modified example from https://bl.ocks.org/mbostock/3884955
 */
 function generateMultiSeriesSentimentPlot(searchTerm) {
     var multiSeriesHolder = document.getElementById("d3_plots_multi_series");

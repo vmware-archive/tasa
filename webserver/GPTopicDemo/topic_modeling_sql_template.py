@@ -66,7 +66,7 @@ pruning_rank = 3
        -- h) Some use UDF's in PL/Python which will be used throughout the demo
              --(1) KL-Divergence (Note this is not symmetric).
 
-             -- See : http://en.wikipedia.org/wiki/Kullback%E2%80%93Leibler_divergence
+             -- See : https://en.wikipedia.org/wiki/Kullback%25E2%2580%2593Leibler_divergence
              -- D_KL(P||Q) = Sum_i(ln(P(i)/Q(i))P(i)).
              -- Ensure that P(i),Q(i) are never 0 (by applying smoothing).
                 DROP FUNCTION IF EXISTS topicdemo.kl_div(float[], float[]);

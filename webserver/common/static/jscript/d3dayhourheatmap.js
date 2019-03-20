@@ -18,7 +18,7 @@ function generateDayHourHeatMap(searchTerm) {
 }
 
 /*
-Inspired by : http://bl.ocks.org/tjdecke/5558084
+Inspired by : https://bl.ocks.org/tjdecke/5558084
 */
 function renderDayHourHeatMap(div_id, hmap) {
       var dayhourhmap_holder = document.getElementById(div_id);
